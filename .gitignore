@@ -21,3 +21,12 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# IDE temp files
+
+**/.DS_Store
+/.DS_Store
+**/.vs
+/.vs
+**/.idea
+/.idea
