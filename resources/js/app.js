@@ -14,5 +14,3 @@ require('./bootstrap');
 
 require('./components/Example');
 
-// Test PR
-
