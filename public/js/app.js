@@ -3988,7 +3988,7 @@ var TestReact = /*#__PURE__*/function (_Component) {
       fetch('/users').then(function (response) {
         return response.json();
       }).then(function (users) {
-        //Fetched product is stored in the state
+        //Fetched item is stored in the state
         _this2.setState({
           users: users
         });
