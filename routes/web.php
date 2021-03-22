@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::group([
     'prefix' => '/api/user',
     'namespace' => '\App\Http\Controllers',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
 
@@ -50,6 +50,17 @@ Route::group([
     'middleware' => ['auth']
 ], function (){
 
+});
+
+
+//Route for deploy
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+
+    return "Кэш очищен.";
 });
 
 require __DIR__.'/auth.php';
