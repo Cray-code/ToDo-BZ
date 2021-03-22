@@ -27,11 +27,10 @@ Route::group([
     'namespace' => '\App\Http\Controllers',
     'middleware' => ['auth']
 ], function (){
-    //Роут для извлечения всех пользователей
     Route::get('/all', [UserController::class, 'getAllUsers']);
-    //Роут для извлечения пользователя по id
+
     Route::get('/{user_id}', [UserController::class, 'getUserById']);
-    //Роут для извлечения текущего пользователя
+
     Route::get('/', 'UserController@getCurrentUser');
 });
 
