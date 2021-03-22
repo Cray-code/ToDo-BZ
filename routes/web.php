@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SheduleController;
+use App\Http\Controllers\WorkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,37 +15,42 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
-
+//Users Routes
 Route::group([
-    'prefix' => '/api',
-    'as' => 'api::',
+    'prefix' => '/api/user',
     'namespace' => '\App\Http\Controllers',
     'middleware' => ['auth']
 ], function (){
     //Роут для извлечения всех пользователей
-    Route::get('/users', function (){
-        return response(\App\Models\User::all(), 200);
-    });
+    Route::get('/all', [UserController::class, 'getAllUsers']);
     //Роут для извлечения пользователя по id
-    Route::get('user/{id}', function ($userId) {
-        return response(User::find($userId), 200);
-    });
+    Route::get('/{user_id}', [UserController::class, 'getUserById']);
     //Роут для извлечения текущего пользователя
-    Route::get('/user', function (){
-        return response(\Illuminate\Support\Facades\Auth::user(), 200);
-    });
+    Route::get('/', 'UserController@getCurrentUser');
 });
 
+//Shedules Routes
+Route::group([
+    'prefix' => '/api/shedule',
+    'namespace' => '\App\Http\Controllers',
+    'middleware' => ['auth']
+], function (){
+
+});
+
+//Works Routes
+Route::group([
+    'prefix' => '/api/work',
+    'namespace' => '\App\Http\Controllers',
+    'middleware' => ['auth']
+], function (){
+
+});
 
 require __DIR__.'/auth.php';

@@ -3985,7 +3985,7 @@ var TestReact = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       /* fetch API in action */
-      fetch('/api/users').then(function (response) {
+      fetch('/api/user/all').then(function (response) {
         return response.json();
       }).then(function (users) {
         //Fetched item is stored in the state
