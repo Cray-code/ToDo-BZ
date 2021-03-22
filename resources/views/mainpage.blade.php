@@ -8,5 +8,21 @@
                 </div>
             </div>
         </div>
+
+        {{-- Это тест AJAX--}}
+        <div>
+            <div id="test"></div>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+            <script>
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/api/user/all',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            </script>
+        </div>
     </div>
 </x-app-layout>
