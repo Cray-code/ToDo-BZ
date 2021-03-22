@@ -14,7 +14,7 @@ class TestReact extends Component {
      */
     componentDidMount() {
         /* fetch API in action */
-        fetch('/users')
+        fetch('/api/users')
             .then(response => {
                 return response.json();
             })

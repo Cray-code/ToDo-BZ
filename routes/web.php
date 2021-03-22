@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('users', function (){
+
+//Роут для извлечения всех пользователей
+Route::get('/api/users', function (){
    return response(\App\Models\User::all(), 200);
-});
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
