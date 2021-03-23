@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Task;
 use App\Models\Term;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -16,7 +15,7 @@ class TermsTableSeeder extends Seeder
      */
     public function run()
     {
-        Task::truncate();
+        Term::truncate();
 
         $faker = Factory::create();
 
