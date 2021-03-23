@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SheduleController;
-use App\Http\Controllers\WorkController;
+use App\Http\Controllers\TodolistController;
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,24 +34,23 @@ Route::group([
     Route::get('/', 'UserController@getCurrentUser');
 });
 
-//Shedules Routes
+//Lists Routes
 Route::group([
-    'prefix' => '/api/shedule',
+    'prefix' => '/api/list',
     'namespace' => '\App\Http\Controllers',
     'middleware' => ['auth']
 ], function (){
 
 });
 
-//Works Routes
+//Tasks Routes
 Route::group([
-    'prefix' => '/api/work',
+    'prefix' => '/api/task',
     'namespace' => '\App\Http\Controllers',
     'middleware' => ['auth']
 ], function (){
 
 });
-
 
 //Route for deploy
 Route::get('/clear', function () {
@@ -59,8 +58,9 @@ Route::get('/clear', function () {
     Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
-
     return "Кэш очищен.";
 });
+
+
 
 require __DIR__.'/auth.php';
