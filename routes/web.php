@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SheduleController;
+use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\WorkController;
 /*
 |--------------------------------------------------------------------------
