@@ -18,7 +18,7 @@ class TasksTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 30; $i++){
             Task::create([
                 'name' => $faker->sentence(5),
                 'description' => $faker->sentence(20),
