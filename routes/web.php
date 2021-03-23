@@ -28,9 +28,7 @@ Route::group([
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
-
     Route::get('/{user_id}', [UserController::class, 'getUserById']);
-
     Route::get('/', 'UserController@getCurrentUser');
 });
 
@@ -38,7 +36,7 @@ Route::group([
 Route::group([
     'prefix' => '/api/list',
     'namespace' => '\App\Http\Controllers',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
 
 });
@@ -47,7 +45,7 @@ Route::group([
 Route::group([
     'prefix' => '/api/task',
     'namespace' => '\App\Http\Controllers',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
 
 });
