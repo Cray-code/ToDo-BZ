@@ -3811,12 +3811,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); // import TestReact from "./components/TestReact";
+
+
+__webpack_require__(/*! ./components/TestReact */ "./resources/js/components/TestReact.js");
+
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
-__webpack_require__(/*! ./components/TestReact */ "./resources/js/components/TestReact.js"); // import TestReact from "./components/TestReact";
-
-
-__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+__webpack_require__(/*! ./testAjax */ "./resources/js/testAjax.js");
 
 /***/ }),
 
@@ -3909,8 +3911,8 @@ function Example() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Example);
 
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('example'));
+if (document.getElementById('react')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('react'));
 }
 
 /***/ }),
@@ -4035,6 +4037,49 @@ var TestReact = /*#__PURE__*/function (_Component) {
 if (document.getElementById('users')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TestReact, {}), document.getElementById('users'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/testAjax.js":
+/*!**********************************!*\
+  !*** ./resources/js/testAjax.js ***!
+  \**********************************/
+/***/ (() => {
+
+jQuery(document).ready(function ($) {
+  jQuery('#btn-get').click(function () {
+    jQuery('#myForm').trigger("reset");
+    jQuery('#formModal').modal('show');
+  });
+  $("#btn-request").click(function (e) {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    e.preventDefault();
+    var is_checked = jQuery('#favorites').is('checked') ? 1 : 0;
+    var formData = {
+      task_id: jQuery('#task_id').val(),
+      list_id: jQuery('#list_id').val(),
+      user_id: jQuery('#user_id').val(),
+      favorites: is_checked
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/api/test',
+      data: formData,
+      dataType: 'json',
+      success: function success(data) {
+        console.log(data);
+        jQuery('#formModal').modal('hide');
+      },
+      error: function error() {
+        jQuery('#formModal').modal('hide');
+      }
+    });
+  });
+});
 
 /***/ }),
 

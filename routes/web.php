@@ -21,7 +21,8 @@ Route::get('/', function () {
 })->name('mainpage');
 
 //Test Route
-Route::match(['get', 'post'],'/api/test', [TaskController::class, 'testRequest'])->name('test');
+Route::match(['get', 'post'],'/api/test', [TaskController::class, 'testRequest'])
+    ->name('test');
 
 //Users Routes
 Route::group([

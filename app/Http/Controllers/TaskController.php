@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Todolist;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,10 @@ class TaskController extends Controller
 {
     public function testRequest(Request $request){
 //        dump($request);
-        $user = User::find($request->get('user_id'));
-        $response = $user
-            ?
-            response()->json($user,200)->header('Content-Type', 'application/json')
-            :
-            response()->json($user, 404)->header('Content-Type', 'application/json');
+        $task = Task::where('list_id', $request->get('list_id'))
+            ->find($request->get('task_id'));
+
+        $response = $task ? response()->json($task,200) : response($task, 404);
 //        dump($response);
 
         return $response;
