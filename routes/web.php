@@ -20,6 +20,8 @@ Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
 
+//Test Route
+Route::match(['get', 'post'],'/api/test', [TaskController::class, 'testRequest'])->name('test');
 
 //Users Routes
 Route::group([

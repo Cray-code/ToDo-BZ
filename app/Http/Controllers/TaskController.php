@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function testRequest(Request $request){
+//        dump($request);
+        $resp = User::find($request->get('user_id'));
+        $responce = $resp ? response()->json($resp,200) : response()->json($resp, 404);
+        dump($responce);
+        return $responce;
+    }
+
     public function getAllTasks(){
         return response(Task::all(), 200);
     }
