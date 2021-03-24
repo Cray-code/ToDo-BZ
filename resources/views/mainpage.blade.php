@@ -3,23 +3,25 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-{{--                    <div id="example"></div>--}}{{--Это компонент РЕАКТ--}}
+{{--                    Это компонент РЕАКТ--}}
+                    <div id="example"></div>
                 </div>
             </div>
         </div>
 
-        {{-- Это тест AJAX извлекаем все юзеров--}}
+
+        {{-- Это тест AJAX извлекаем всех юзеров--}}
         <div>
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
             <script>
-                // $.ajax({
-                //     type: "GET",
-                //     dataType: "json",
-                //     url: '/api/user/all',
-                //     success: function (data) {
-                //         console.log(data);
-                //     }
-                // });
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/api/user/all',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
             </script>
         </div>
 
@@ -28,8 +30,8 @@
                 <div id="message"></div>
                 <div class="p-6 bg-white border-b border-gray-200  d-flex justify-content-center">
                     <form style="width: 50%" id="form"
-                          method="post"
-                          action="{{ route('test') }}"
+{{--                          method="post"--}}
+{{--                          action="{{ route('test') }}"--}}
                     >
                         @csrf
 {{--                        ВАЖНО! "ЭТОТ ТОКЕН ДОЛЖЕН БЫТЬ В КАЖДОЙ ФОРМЕ.--}}
@@ -56,28 +58,27 @@
                     </form>
                 </div>
             </div>
-            <script>
-                // $("#form").on("submit", function(){
-                    {{--$.ajax({--}}
-                    {{--    url: '{{ route('test') }}',--}}
-                    {{--    method: 'get',--}}
-                    {{--    dataType: 'json',--}}
-                    {{--    success: function(data){--}}
-                    {{--        console.log(data);--}}
-                    {{--    }--}}
-                    {{--});--}}
 
-                {{--    $.ajax({--}}
-                {{--        url: '{{ route('test') }}',--}}
-                {{--        method: 'post',--}}
-                {{--        dataType: 'html',--}}
-                {{--        data: $(this).serialize(),--}}
-                {{--        success: function(data){--}}
-                {{--            $('#message').html(data);--}}
-                {{--        }--}}
-                {{--    });--}}
-                // });
-            </script>
+{{--            <script>--}}
+{{--                $("#form").on("submit", function(){--}}
+{{--                    $.ajaxSetup({--}}
+{{--                        headers: {--}}
+{{--                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                    $.ajax({--}}
+{{--                        url: '/api/test',--}}
+{{--                        method: 'POST',--}}
+{{--                        dataType: 'json',--}}
+{{--                        success: function(data){--}}
+{{--                            console.log(data);--}}
+{{--                        },--}}
+{{--                        error: function (data) {--}}
+{{--                            console.log('Error');--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                });--}}
+{{--            </script>--}}
         </div>
     </div>
 </x-app-layout>

@@ -10,10 +10,15 @@ class TaskController extends Controller
 {
     public function testRequest(Request $request){
 //        dump($request);
-        $resp = User::find($request->get('user_id'));
-        $responce = $resp ? response()->json($resp,200) : response()->json($resp, 404);
-        dump($responce);
-        return $responce;
+        $user = User::find($request->get('user_id'));
+        $response = $user
+            ?
+            response()->json($user,200)->header('Content-Type', 'application/json')
+            :
+            response()->json($user, 404)->header('Content-Type', 'application/json');
+//        dump($response);
+
+        return $response;
     }
 
     public function getAllTasks(){
