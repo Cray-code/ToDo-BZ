@@ -24,7 +24,6 @@ Route::get('/', function () {
 //Users Routes
 Route::group([
     'prefix' => '/api/user',
-    'namespace' => '\App\Http\Controllers',
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
