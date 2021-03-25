@@ -3816,8 +3816,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
- // require('./components/ListComponent');
-// require('./components/Example');
+
 
 __webpack_require__(/*! ./testAjax */ "./resources/js/testAjax.js");
 

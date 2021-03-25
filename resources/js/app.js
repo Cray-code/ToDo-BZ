@@ -15,6 +15,5 @@ require('./bootstrap');
 require('alpinejs');
 
 import ListComponent from "./components/ListComponent";
-// require('./components/ListComponent');
-// require('./components/Example');
+
 require('./testAjax');
