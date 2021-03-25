@@ -12,6 +12,13 @@ class TodolistController extends Controller
         return response()->json(Todolist::all(), 200);
     }
 
+    public function getListsByUser($user_id){
+        $userTasks = Todolist::where('user_id', $user_id)->get();
+        $response = $userTasks ? response()->json($userTasks,200) : response($userTasks, 404);
+
+        return $response;
+    }
+
     public function getListById($list_id){
         $list = Todolist::find($list_id);
         return $list ? response($list,200) : response('Not found', 404);

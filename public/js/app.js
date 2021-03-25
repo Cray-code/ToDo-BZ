@@ -3920,6 +3920,7 @@ var ListComponent = /*#__PURE__*/function (_Component) {
     _this = _super.call(this); //Initialize the state in the constructor
 
     _this.state = {
+      user_id: null,
       tasks: [],
       currentTask: null
     };
@@ -3931,10 +3932,11 @@ var ListComponent = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      /* fetch API in action */
-      fetch('/api/lists/all', {
+      /* fetch API in action by User_id=2*/
+      fetch('/api/lists/user/2', {
         credentials: "same-origin"
       }).then(function (response) {
+        console.log(response);
         return response.json();
       }).then(function (tasks) {
         // Fetched product is stored in the state
@@ -3972,16 +3974,14 @@ var ListComponent = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-            children: "All Tasks"
+            children: "All Tasks by User_id=2"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
             children: this.renderTasks()
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Task, {
-          task: this.state.currentTask
-        })]
+        })
       });
     }
   }]);

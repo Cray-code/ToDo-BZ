@@ -40,6 +40,7 @@ Route::group([
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [TodolistController::class, 'getAllLists']);
+    Route::get('/user/{user_id}', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
     Route::post('/', [TodolistController::class, 'store']);
     Route::put('/{list_id}', [TodolistController::class, 'update']);

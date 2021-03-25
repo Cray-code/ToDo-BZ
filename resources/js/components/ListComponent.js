@@ -7,15 +7,17 @@ class ListComponent extends Component {
         super();
         //Initialize the state in the constructor
         this.state = {
+            user_id: null,
             tasks: [],
             currentTask: null
         }
     }
 
     componentDidMount() {
-        /* fetch API in action */
-        fetch('/api/lists/all', { credentials: "same-origin" })
+        /* fetch API in action by User_id=2*/
+        fetch('/api/lists/user/2', { credentials: "same-origin" })
             .then(response => {
+                console.log(response)
                 return response.json();
             })
             .then(tasks => {
@@ -46,13 +48,13 @@ class ListComponent extends Component {
         return (
             <div>
                 <div>
-                    <h3>All Tasks</h3>
+                    <h3>All Tasks by User_id=2</h3>
                     <ul>
                         { this.renderTasks() }
                     </ul>
                 </div>
 
-                <Task task={this.state.currentTask} />
+                {/*<Task task={this.state.currentTask} />*/}
             </div>
         );
     }
