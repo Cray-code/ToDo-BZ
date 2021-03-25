@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class TodolistController extends Controller
 {
-    public function getAllLists(){
-        return response(Todolist::all(), 200);
+    public function getAllLists(Request $request){
+//        dump($request);
+        return response()->json(Todolist::all(), 200);
     }
 
     public function getListById($list_id){

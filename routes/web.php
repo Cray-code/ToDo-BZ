@@ -36,7 +36,7 @@ Route::group([
 
 //Lists Routes
 Route::group([
-    'prefix' => '/api/list',
+    'prefix' => '/api/lists',
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [TodolistController::class, 'getAllLists']);
