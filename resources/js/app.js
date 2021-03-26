@@ -12,8 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
-require('./components/TestReact');
-// import TestReact from "./components/TestReact";
 require('alpinejs');
 
+import ListComponent from "./components/ListComponent";
+
+require('./testAjax');

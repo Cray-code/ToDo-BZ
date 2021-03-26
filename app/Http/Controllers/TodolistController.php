@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 
 class TodolistController extends Controller
 {
-    public function getAllLists(){
-        return response(Todolist::all(), 200);
+    public function getAllLists(Request $request){
+//        dump($request);
+        return response()->json(Todolist::all(), 200);
+    }
+
+    public function getListsByUser($user_id){
+        $userTasks = Todolist::where('user_id', $user_id)->get();
+        $response = $userTasks ? response()->json($userTasks,200) : response($userTasks, 404);
+
+        return $response;
     }
 
     public function getListById($list_id){

@@ -20,11 +20,13 @@ Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
 
+//Test Route
+Route::match(['get', 'post'],'/api/test', [TaskController::class, 'testRequest'])
+    ->name('test');
 
 //Users Routes
 Route::group([
     'prefix' => '/api/user',
-    'namespace' => '\App\Http\Controllers',
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
@@ -34,10 +36,11 @@ Route::group([
 
 //Lists Routes
 Route::group([
-    'prefix' => '/api/list',
+    'prefix' => '/api/lists',
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [TodolistController::class, 'getAllLists']);
+    Route::get('/user/{user_id}', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
     Route::post('/', [TodolistController::class, 'store']);
     Route::put('/{list_id}', [TodolistController::class, 'update']);
