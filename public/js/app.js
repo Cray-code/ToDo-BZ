@@ -3917,10 +3917,10 @@ var ListComponent = /*#__PURE__*/function (_Component) {
 
     _classCallCheck(this, ListComponent);
 
-    _this = _super.call(this); //Initialize the state in the constructor
-
+    _this = _super.call(this);
     _this.state = {
-      user_id: null,
+      user_id: 2,
+      // ToDo CSRF-token, не забудь!
       tasks: [],
       currentTask: null
     };
@@ -3933,7 +3933,7 @@ var ListComponent = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       /* fetch API in action by User_id=2*/
-      fetch('/api/lists/user/2', {
+      fetch('/api/lists/user/' + this.state.user_id, {
         credentials: "same-origin"
       }).then(function (response) {
         console.log(response);
@@ -3976,8 +3976,8 @@ var ListComponent = /*#__PURE__*/function (_Component) {
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-            children: "All Tasks by User_id=2"
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
+            children: ["All Tasks by User_id = ", this.state.user_id]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
             children: this.renderTasks()
           })]

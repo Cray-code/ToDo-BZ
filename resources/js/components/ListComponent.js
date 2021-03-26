@@ -5,9 +5,8 @@ class ListComponent extends Component {
 
     constructor() {
         super();
-        //Initialize the state in the constructor
         this.state = {
-            user_id: null,
+            user_id: 2, // ToDo CSRF-token, не забудь!
             tasks: [],
             currentTask: null
         }
@@ -15,7 +14,7 @@ class ListComponent extends Component {
 
     componentDidMount() {
         /* fetch API in action by User_id=2*/
-        fetch('/api/lists/user/2', { credentials: "same-origin" })
+        fetch('/api/lists/user/'+this.state.user_id, { credentials: "same-origin" })
             .then(response => {
                 console.log(response)
                 return response.json();
@@ -48,7 +47,7 @@ class ListComponent extends Component {
         return (
             <div>
                 <div>
-                    <h3>All Tasks by User_id=2</h3>
+                    <h3>All Tasks by User_id = {this.state.user_id}</h3>
                     <ul>
                         { this.renderTasks() }
                     </ul>
