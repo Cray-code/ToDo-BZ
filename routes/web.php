@@ -39,11 +39,10 @@ Route::group([
     'prefix' => '/api/lists',
 //    'middleware' => ['auth']
 ], function (){
-    Route::get('/all', [TodolistController::class, 'getAllLists']);
     Route::get('/user/{user_id}', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
-    Route::post('/', [TodolistController::class, 'store']);
-    Route::put('/{list_id}', [TodolistController::class, 'update']);
+    Route::post('/', [TodolistController::class, 'createList']);
+    Route::put('/{list_id}', [TodolistController::class, 'updateList']);
     Route::delete('/{list_id}', [TodolistController::class, 'delete']);
 });
 

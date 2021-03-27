@@ -35,4 +35,5 @@ class Todolist extends Model
         'pattern_id',
         'predefined'
     ];
+
 }

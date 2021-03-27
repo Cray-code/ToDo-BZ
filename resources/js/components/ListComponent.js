@@ -6,7 +6,7 @@ class ListComponent extends Component {
     constructor() {
         super();
         this.state = {
-            user_id: 2, // ToDo CSRF-token, не забудь!
+            user_id: 1, // ToDo CSRF-token, не забудь переделать на Auth!
             tasks: [],
             currentTask: null
         }
@@ -31,7 +31,7 @@ class ListComponent extends Component {
                 //this.handleClick() method is invoked onClick.
                 <li onClick={
                     () =>this.handleClick(task)} key={task.id} >
-                    { task.name }
+                    id: {task.id} / { task.name }
                 </li>
             );
         })
