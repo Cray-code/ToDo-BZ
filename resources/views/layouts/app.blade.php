@@ -32,10 +32,13 @@
         </div>
 
         @auth()
+{{--            Если пользователь авторизован, получаем объект User--}}
             <script>
-                var user_id = {{ \Illuminate\Support\Facades\Auth::user()->id }};
-                var user_name = '{{ \Illuminate\Support\Facades\Auth::user()->name }}';
-                console.log(user_name)
+                var user = {
+                    user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
+                    user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}'
+                }
+                console.log(user)
             </script>
         @endauth
 {{--           "Без этого колхоза Бутстрап не работает--}}

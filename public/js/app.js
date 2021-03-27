@@ -3919,7 +3919,8 @@ var ListComponent = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      user: [user_id, user_name],
+      currentUser: user,
+      //Объект сущности User, данные получаем из фасада Laravel Auth. См. скрипт на app.blade.php
       lists: [],
       currentList: null
     };
@@ -3932,7 +3933,7 @@ var ListComponent = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       /* fetch API in action by User_id */
-      fetch('/api/lists/user/' + this.state.user[0], {
+      fetch('/api/lists/user/' + this.state.currentUser.user_id, {
         credentials: "same-origin"
       }).then(function (response) {
         // console.log(response)
@@ -3976,7 +3977,7 @@ var ListComponent = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
-            children: ["All Lists by User_name = ", this.state.user[1]]
+            children: ["All Lists by User_name = ", this.state.currentUser.user_name]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
             children: this.renderLists()
           })]

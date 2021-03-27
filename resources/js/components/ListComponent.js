@@ -6,7 +6,7 @@ class ListComponent extends Component {
     constructor() {
         super();
         this.state = {
-            user: [user_id, user_name],
+            currentUser:  user,//Объект сущности User, данные получаем из фасада Laravel Auth. См. скрипт на app.blade.php
             lists: [],
             currentList: null
         }
@@ -14,7 +14,7 @@ class ListComponent extends Component {
 
     componentDidMount() {
         /* fetch API in action by User_id */
-        fetch('/api/lists/user/'+this.state.user[0], { credentials: "same-origin" })
+        fetch('/api/lists/user/'+this.state.currentUser.user_id, { credentials: "same-origin" })
             .then(response => {
                 // console.log(response)
                 return response.json();
@@ -47,7 +47,7 @@ class ListComponent extends Component {
         return (
             <div>
                 <div>
-                    <h3>All Lists by User_name = {this.state.user[1]}</h3>
+                    <h3>All Lists by User_name = {this.state.currentUser.user_name}</h3>
                     <ul>
                         { this.renderLists() }
                     </ul>
