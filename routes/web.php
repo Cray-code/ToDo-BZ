@@ -41,8 +41,10 @@ Route::group([
 ], function (){
     Route::get('/user/{user_id}', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
-    Route::post('/', [TodolistController::class, 'createList']);
-    Route::put('/{list_id}', [TodolistController::class, 'updateList']);
+    Route::post('/', [TodolistController::class, 'createList'])
+        ->middleware('checkListTitle');
+    Route::put('/{list_id}', [TodolistController::class, 'updateList'])
+        ->middleware('checkListTitle');
     Route::delete('/{list_id}', [TodolistController::class, 'delete']);
 });
 

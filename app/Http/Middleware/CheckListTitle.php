@@ -24,6 +24,10 @@ class CheckListTitle
                 $exists = true;
             }
         }
+        if ($exists){
+            abort(208, 'Такой список у Вас уже есть.');
+        }
+
         return $next($request);
     }
 }
