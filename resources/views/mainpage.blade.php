@@ -2,13 +2,23 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-{{--                    Это компонент РЕАКТ--}}
-                    <div id="list"></div>
-                </div>
+                    @auth()
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <div id="list">{{--Это компонент РЕАКТ--}}</div>
+                        </div>
+                    @endauth
+                @if(!Auth::user())
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <h3>Авторизуйтесь, чтобы начать...</h3>
+                    </div>
+                @endif
             </div>
         </div>
 
+
+        {{--Все, что ниже - ДЛЯ ТЕСТОВ --}}
+        <hr>
+        <h5 class="mt-12 text-center">Testing zone</h5>
 
         {{-- Это modal тест AJAX. Извлекаем Task по Списку--}}
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -32,7 +42,7 @@
 {{--                                    CSRF-атаки - это неавторизованные действия, которые выполняют аутентифицированные пользователи системы.--}}
                                     <div class="form-group">
                                         <label>User_id</label>
-                                        <input type="text" class="form-control" id="user_id" name="user_id">
+                                        <input type="text" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>Task_id</label>--}}
@@ -72,7 +82,6 @@
             </div>
         </div>
     </div>
-
 
 
 

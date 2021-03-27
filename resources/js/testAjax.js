@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
     $("#btn-request").click(function (e) {
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') // Обязательно для передачи!!!
             }
         });
         e.preventDefault();
@@ -20,13 +20,13 @@ jQuery(document).ready(function($){
             'DELETE'
         ];
         var formData = {
-            task_id: jQuery('#task_id').val(),
-            list_id: jQuery('#list_id').val(),
             user_id: jQuery('#user_id').val(),
+            list_id: jQuery('#list_id').val(),
             name: jQuery('#list_name').val(),
             pattern_id: jQuery('#pattern_id').val(),
             predefined: jQuery('#predefined').val(),
-            // favorites: is_checked
+            task_id: jQuery('#task_id').val(),
+            favorites: is_checked
         };
         $.ajax({
             type: methods[1],

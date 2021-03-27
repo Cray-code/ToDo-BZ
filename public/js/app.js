@@ -3919,10 +3919,9 @@ var ListComponent = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      user_id: 1,
-      // ToDo CSRF-token, не забудь переделать на Auth!
-      tasks: [],
-      currentTask: null
+      user: [user_id, user_name],
+      lists: [],
+      currentList: null
     };
     return _this;
   }
@@ -3932,43 +3931,43 @@ var ListComponent = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      /* fetch API in action by User_id=2*/
-      fetch('/api/lists/user/' + this.state.user_id, {
+      /* fetch API in action by User_id */
+      fetch('/api/lists/user/' + this.state.user[0], {
         credentials: "same-origin"
       }).then(function (response) {
-        console.log(response);
+        // console.log(response)
         return response.json();
-      }).then(function (tasks) {
+      }).then(function (lists) {
         // Fetched product is stored in the state
         _this2.setState({
-          tasks: tasks
+          lists: lists
         });
       });
     }
   }, {
-    key: "renderTasks",
-    value: function renderTasks() {
+    key: "renderLists",
+    value: function renderLists() {
       var _this3 = this;
 
-      return this.state.tasks.map(function (task) {
+      return this.state.lists.map(function (list) {
         return (
           /*#__PURE__*/
           //this.handleClick() method is invoked onClick.
           (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
             onClick: function onClick() {
-              return _this3.handleClick(task);
+              return _this3.handleClick(list);
             },
-            children: ["id: ", task.id, " / ", task.name]
-          }, task.id)
+            children: ["id: ", list.id, " / ", list.name]
+          }, list.id)
         );
       });
     }
   }, {
     key: "handleClick",
-    value: function handleClick(task) {
+    value: function handleClick(list) {
       //handleClick is used to set the state
       this.setState({
-        currentTask: task
+        currentList: list
       });
     }
   }, {
@@ -3977,9 +3976,9 @@ var ListComponent = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
-            children: ["All Tasks by User_id = ", this.state.user_id]
+            children: ["All Lists by User_name = ", this.state.user[1]]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-            children: this.renderTasks()
+            children: this.renderLists()
           })]
         })
       });
@@ -4011,20 +4010,21 @@ jQuery(document).ready(function ($) {
   $("#btn-request").click(function (e) {
     $.ajaxSetup({
       headers: {
-        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') // Обязательно для передачи!!!
+
       }
     });
     e.preventDefault();
     var is_checked = jQuery('#favorites').is('checked') ? 1 : 0;
     var methods = ['GET', 'POST', 'PUT', 'DELETE'];
     var formData = {
-      task_id: jQuery('#task_id').val(),
-      list_id: jQuery('#list_id').val(),
       user_id: jQuery('#user_id').val(),
+      list_id: jQuery('#list_id').val(),
       name: jQuery('#list_name').val(),
       pattern_id: jQuery('#pattern_id').val(),
-      predefined: jQuery('#predefined').val() // favorites: is_checked
-
+      predefined: jQuery('#predefined').val(),
+      task_id: jQuery('#task_id').val(),
+      favorites: is_checked
     };
     $.ajax({
       type: methods[1],

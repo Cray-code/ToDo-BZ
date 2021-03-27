@@ -6,40 +6,40 @@ class ListComponent extends Component {
     constructor() {
         super();
         this.state = {
-            user_id: 1, // ToDo CSRF-token, не забудь переделать на Auth!
-            tasks: [],
-            currentTask: null
+            user: [user_id, user_name],
+            lists: [],
+            currentList: null
         }
     }
 
     componentDidMount() {
-        /* fetch API in action by User_id=2*/
-        fetch('/api/lists/user/'+this.state.user_id, { credentials: "same-origin" })
+        /* fetch API in action by User_id */
+        fetch('/api/lists/user/'+this.state.user[0], { credentials: "same-origin" })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 return response.json();
             })
-            .then(tasks => {
+            .then(lists => {
                 // Fetched product is stored in the state
-                this.setState({ tasks });
+                this.setState({ lists });
             });
         }
 
-    renderTasks() {
-        return this.state.tasks.map(task => {
+    renderLists() {
+        return this.state.lists.map(list => {
             return (
                 //this.handleClick() method is invoked onClick.
                 <li onClick={
-                    () =>this.handleClick(task)} key={task.id} >
-                    id: {task.id} / { task.name }
+                    () =>this.handleClick(list)} key={list.id} >
+                    id: {list.id} / { list.name }
                 </li>
             );
         })
     }
 
-    handleClick(task) {
+    handleClick(list) {
         //handleClick is used to set the state
-        this.setState({currentTask:task});
+        this.setState({currentList:list});
 
     }
 
@@ -47,9 +47,9 @@ class ListComponent extends Component {
         return (
             <div>
                 <div>
-                    <h3>All Tasks by User_id = {this.state.user_id}</h3>
+                    <h3>All Lists by User_name = {this.state.user[1]}</h3>
                     <ul>
-                        { this.renderTasks() }
+                        { this.renderLists() }
                     </ul>
                 </div>
 
