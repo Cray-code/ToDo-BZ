@@ -3919,8 +3919,8 @@ var ListComponent = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      user_id: 2,
-      // ToDo CSRF-token, не забудь!
+      user_id: 1,
+      // ToDo CSRF-token, не забудь переделать на Auth!
       tasks: [],
       currentTask: null
     };
@@ -3954,11 +3954,11 @@ var ListComponent = /*#__PURE__*/function (_Component) {
         return (
           /*#__PURE__*/
           //this.handleClick() method is invoked onClick.
-          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
             onClick: function onClick() {
               return _this3.handleClick(task);
             },
-            children: task.name
+            children: ["id: ", task.id, " / ", task.name]
           }, task.id)
         );
       });
@@ -4017,14 +4017,17 @@ jQuery(document).ready(function ($) {
     e.preventDefault();
     var is_checked = jQuery('#favorites').is('checked') ? 1 : 0;
     var formData = {
-      task_id: jQuery('#task_id').val(),
+      // task_id: jQuery('#task_id').val(),
       list_id: jQuery('#list_id').val(),
       user_id: jQuery('#user_id').val(),
-      favorites: is_checked
+      name: jQuery('#list_name').val(),
+      pattern_id: jQuery('#pattern_id').val(),
+      predefined: jQuery('#predefined').val() // favorites: is_checked
+
     };
     $.ajax({
-      type: 'POST',
-      url: '/api/test',
+      type: 'PUT',
+      url: '/api/lists/' + jQuery('#list_id').val(),
       data: formData,
       dataType: 'json',
       success: function success(data) {
@@ -4035,6 +4038,9 @@ jQuery(document).ready(function ($) {
         jQuery('#formModal').modal('hide');
       }
     });
+  });
+  $("#btn-close").click(function () {
+    jQuery('#formModal').modal('hide');
   });
 });
 

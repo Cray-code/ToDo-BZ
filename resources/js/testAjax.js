@@ -14,14 +14,17 @@ jQuery(document).ready(function($){
         e.preventDefault();
         var is_checked = jQuery('#favorites').is('checked') ? 1 : 0
         var formData = {
-            task_id: jQuery('#task_id').val(),
+            // task_id: jQuery('#task_id').val(),
             list_id: jQuery('#list_id').val(),
             user_id: jQuery('#user_id').val(),
-            favorites: is_checked
+            name: jQuery('#list_name').val(),
+            pattern_id: jQuery('#pattern_id').val(),
+            predefined: jQuery('#predefined').val(),
+            // favorites: is_checked
         };
         $.ajax({
-            type: 'POST',
-            url: '/api/test',
+            type: 'PUT',
+            url: '/api/lists/'+jQuery('#list_id').val(),
             data: formData,
             dataType: 'json',
             success: function (data) {
@@ -32,5 +35,8 @@ jQuery(document).ready(function($){
                 jQuery('#formModal').modal('hide')
             }
         });
+    });
+    $("#btn-close").click(function (){
+        jQuery('#formModal').modal('hide')
     });
 });

@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class TodolistController extends Controller
 {
-    public function getAllLists(Request $request){
-//        dump($request);
-        return response()->json(Todolist::all(), 200);
-    }
-
     public function getListsByUser($user_id){
         $userTasks = Todolist::where('user_id', $user_id)->get();
         $response = $userTasks ? response()->json($userTasks,200) : response($userTasks, 404);
@@ -24,24 +19,49 @@ class TodolistController extends Controller
         return $list ? response($list,200) : response('Not found', 404);
     }
 
-    public function store(Request $request)
+    public function createList(Request $request) //Todo проверку на уникальность имени перенести в middleware CheckListTitle
     {
-        return Todolist::create($request->all());
+        $userLists = Todolist::where('user_id', $request->get('user_id'))->get();
+        $exists = false;
+        foreach ($userLists as $item) {
+            if ($item->name == $request->get('name')) {
+                $exists = true;
+            }
+        }
+        if (!$exists){
+            $list = Todolist::create($request->all());
+            $response = response()->json($list, 202);
+        } else {
+            $response = response('Такой список у Вас уже есть.',208);
+        }
+
+        return $response;
     }
 
-    public function update(Request $request, $list_id)
+    public function updateList(Request $request, $list_id)
     {
-        $list = Todolist::findOrFail($list_id);
-        $list->update($request->all());
+        $userLists = Todolist::where('user_id', $request->get('user_id'))->get();
+        $exists = false;
+        foreach ($userLists as $item) {
+            if ($item->name == $request->get('name')) {
+                $exists = true;
+            }
+        }
+            if (!$exists){
+                $list = Todolist::findOrFail($list_id);
+                $list->update($request->all());
+                $response = response()->json($list, 202);
+            } else {
+                $response = response('Такой список у Вас уже есть.',208);
+            }
 
-        return $list;
+        return $response;
     }
 
     public function delete(Request $request, $list_id)
     {
-        $list = Todolist::findOrFail($list_id);
-        $list->delete();
+        Todolist::findOrFail($list_id)->delete();
 
-        return 204;
+        return response('Список успешно удален',204);
     }
 }
