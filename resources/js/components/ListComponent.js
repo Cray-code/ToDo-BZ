@@ -14,7 +14,7 @@ class ListComponent extends Component {
 
     componentDidMount() {
         /* fetch API in action by User_id */
-        fetch('/api/lists/user/'+this.state.currentUser.user_id, { credentials: "same-origin" })
+        fetch('/api/lists/user/'+this.state.currentUser.user_id)
             .then(response => {
                 // console.log(response)
                 return response.json();

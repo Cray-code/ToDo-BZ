@@ -25,7 +25,7 @@ class CheckListTitle
             }
         }
         if ($exists){
-            abort(208, 'Такой список у Вас уже есть.');
+            abort(400, 'Такой список уже существует');
         }
 
         return $next($request);

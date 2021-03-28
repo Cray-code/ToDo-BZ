@@ -3933,9 +3933,7 @@ var ListComponent = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       /* fetch API in action by User_id */
-      fetch('/api/lists/user/' + this.state.currentUser.user_id, {
-        credentials: "same-origin"
-      }).then(function (response) {
+      fetch('/api/lists/user/' + this.state.currentUser.user_id).then(function (response) {
         // console.log(response)
         return response.json();
       }).then(function (lists) {
@@ -4028,7 +4026,7 @@ jQuery(document).ready(function ($) {
       favorites: is_checked
     };
     $.ajax({
-      type: methods[1],
+      type: methods[3],
       url: '/api/lists/' + jQuery('#list_id').val(),
       data: formData,
       dataType: 'json',

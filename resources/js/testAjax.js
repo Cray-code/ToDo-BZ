@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
             favorites: is_checked
         };
         $.ajax({
-            type: methods[1],
+            type: methods[3],
             url: '/api/lists/'+jQuery('#list_id').val(),
             data: formData,
             dataType: 'json',
