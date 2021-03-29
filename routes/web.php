@@ -28,28 +28,32 @@ Route::group([
 //    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
-
     Route::get('/{user_id}', [UserController::class, 'getUserById']);
-
     Route::get('/', 'UserController@getCurrentUser');
 });
 
 //Lists Routes
 Route::group([
     'prefix' => '/api/list',
-    'namespace' => '\App\Http\Controllers',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
-
+    Route::get('/all', [TodolistController::class, 'getAllLists']);
+    Route::get('/{list_id}', [TodolistController::class, 'getListById']);
+    Route::post('/', [TodolistController::class, 'store']);
+    Route::put('/{list_id}', [TodolistController::class, 'update']);
+    Route::delete('/{list_id}', [TodolistController::class, 'delete']);
 });
 
 //Tasks Routes
 Route::group([
     'prefix' => '/api/task',
-    'namespace' => '\App\Http\Controllers',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
-
+    Route::get('/all', [TaskController::class, 'getAllTasks']);
+    Route::get('/{task_id}', [TaskController::class, 'getTaskById']);
+    Route::post('/', [TaskController::class, 'store']);
+    Route::put('/{task_id}', [TaskController::class, 'update']);
+    Route::delete('/{task_id}', [TaskController::class, 'delete']);
 });
 
 //Route for deploy
