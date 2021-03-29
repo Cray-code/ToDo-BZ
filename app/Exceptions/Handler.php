@@ -65,11 +65,11 @@ class Handler extends ExceptionHandler
             ], 500);
         }
 
-        if ($exception instanceof \Illuminate\Database\QueryException) {
-            return response()->json([
-                'error' => 'Ошибка обращения к базе данных: '.$exception->getMessage()
-            ], 500);
-        }
+//        if ($exception instanceof \Illuminate\Database\QueryException) {
+//            return response()->json([
+//                'error' => 'Ошибка обращения к базе данных: '.$exception->getMessage()
+//            ], 500);
+//        }
 
         return parent::render($request, $exception);
     }

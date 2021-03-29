@@ -10,8 +10,7 @@ class TodolistController extends Controller
 {
     public function getListsByUser($user_id)
     {
-        $userLists = Todolist::where('user_id', $user_id)
-            ->get();
+        $userLists = Todolist::where('user_id', $user_id)->get();
         $response = $userLists->count() > 0 ? $userLists
                     : response()->json(['error'=>'Ничего не найдено.'], 404);
 
@@ -25,6 +24,8 @@ class TodolistController extends Controller
 
     public function createList(Request $request)
     {
+        $this->validate($request, Todolist::validationRules());
+
         $list = Todolist::create($request->all());
 
         return response()->json($list, 201);
@@ -32,6 +33,8 @@ class TodolistController extends Controller
 
     public function updateList(Request $request, $list_id)
     {
+        $this->validate($request, Todolist::validationRules());
+
         $list = Todolist::findOrFail($list_id);
         $list->update($request->all());
 
