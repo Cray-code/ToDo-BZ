@@ -4,24 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Todolist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodolistController extends Controller
 {
     public function getListsByUser($user_id)
     {
-        $userTasks = Todolist::where('user_id', $user_id)->get();
-        $response = $userTasks ? response($userTasks,200)
-                               : response()->json(['error'=>'Ничего не найдено.'], 404);
+        $userLists = Todolist::where('user_id', $user_id)
+            ->get();
+        $response = $userLists->count() > 0 ? $userLists
+                    : response()->json(['error'=>'Ничего не найдено.'], 404);
 
         return $response;
     }
 
     public function getListById($list_id)
     {
-        $list = Todolist::find($list_id);
-
-        return $list ? response($list,200)
-                     : response()->json(['error'=>'Ничего не найдено.'], 404);
+        return Todolist::findOrFail($list_id);
     }
 
     public function createList(Request $request)
@@ -44,5 +43,15 @@ class TodolistController extends Controller
         Todolist::findOrFail($list_id)->delete();
 
         return response(['success'=>'Список успешно удален'],202);
+    }
+
+    public function getPredefinedLists(){
+        $predefined = Todolist::where('user_id', Auth::id())
+            ->where('predefined', true)
+            ->get();
+        $response = $predefined->count() > 0 ? $predefined
+                    : response()->json(['error'=>'Ничего не найдено.'], 404);
+
+        return $response;
     }
 }

@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $exception)//ToDo разобраться с обработкой исключений
+    public function render($request, Throwable $exception)
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->json([
@@ -55,13 +55,13 @@ class Handler extends ExceptionHandler
 
             if ($exception instanceof HttpException) {
                 return response()->json([
-                    'error' => $exception->getMessage()
+                    'error' => 'Неверный запрос: '.$exception->getMessage()
                 ], 400);
             }
 
         if ($exception instanceof MethodNotAllowedHttpException) {
             return response()->json([
-                'error' => $exception->getMessage()
+                'error' => 'Некорректный роут: '.$exception->getMessage()
             ], 500);
         }
 

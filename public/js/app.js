@@ -4026,8 +4026,10 @@ jQuery(document).ready(function ($) {
       favorites: is_checked
     };
     $.ajax({
-      type: methods[3],
-      url: '/api/lists/' + jQuery('#list_id').val(),
+      type: methods[0],
+      // url: '/api/lists/user/134',
+      url: '/api/lists/prop/predefined',
+      // url: '/api/lists/'+jQuery('#list_id').val(),
       data: formData,
       dataType: 'json',
       success: function success(data) {
