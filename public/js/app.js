@@ -3796,8 +3796,11 @@ module.exports = {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_ListComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ListComponent */ "./resources/js/components/ListComponent.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -3811,12 +3814,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); // import TestReact from "./components/TestReact";
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 
-__webpack_require__(/*! ./components/TestReact */ "./resources/js/components/TestReact.js");
-
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
 __webpack_require__(/*! ./testAjax */ "./resources/js/testAjax.js");
 
@@ -3866,61 +3866,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Example.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Example.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-function Example() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "row justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "col-md-8",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "card",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "card-header",
-            children: "Example Component"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "card-body",
-            children: ["I'm an ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-              children: "React"
-            }), " example component!"]
-          })]
-        })
-      })
-    })
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Example);
-
-if (document.getElementById('react')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('react'));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/TestReact.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/TestReact.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/ListComponent.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ListComponent.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3955,87 +3904,93 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-/* An example React component */
 
 
 
+var ListComponent = /*#__PURE__*/function (_Component) {
+  _inherits(ListComponent, _Component);
 
-var TestReact = /*#__PURE__*/function (_Component) {
-  _inherits(TestReact, _Component);
+  var _super = _createSuper(ListComponent);
 
-  var _super = _createSuper(TestReact);
-
-  function TestReact() {
+  function ListComponent() {
     var _this;
 
-    _classCallCheck(this, TestReact);
+    _classCallCheck(this, ListComponent);
 
     _this = _super.call(this);
     _this.state = {
-      users: []
+      currentUser: user,
+      //Объект сущности User, данные получаем из фасада Laravel Auth. См. скрипт на app.blade.php
+      lists: [],
+      currentList: null
     };
     return _this;
   }
-  /*componentDidMount() is a lifecycle method
-   * that gets called after the component is rendered
-   */
 
-
-  _createClass(TestReact, [{
+  _createClass(ListComponent, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      /* fetch API in action */
-      fetch('/api/user/all').then(function (response) {
+      /* fetch API in action by User_id */
+      fetch('/api/lists/user/' + this.state.currentUser.user_id).then(function (response) {
+        // console.log(response)
         return response.json();
-      }).then(function (users) {
-        //Fetched item is stored in the state
+      }).then(function (lists) {
+        // Fetched product is stored in the state
         _this2.setState({
-          users: users
+          lists: lists
         });
       });
     }
   }, {
-    key: "renderUsers",
-    value: function renderUsers() {
-      return this.state.users.map(function (user) {
+    key: "renderLists",
+    value: function renderLists() {
+      var _this3 = this;
+
+      return this.state.lists.map(function (list) {
         return (
           /*#__PURE__*/
-
-          /* When using list you need to specify a key
-           * attribute that is unique for each list item
-          */
-          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: user.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-              children: user.name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), user.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {})]
-          }, user.id)
+          //this.handleClick() method is invoked onClick.
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
+            onClick: function onClick() {
+              return _this3.handleClick(list);
+            },
+            children: ["id: ", list.id, " / ", list.name]
+          }, list.id)
         );
+      });
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(list) {
+      //handleClick is used to set the state
+      this.setState({
+        currentList: list
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-          children: "All Users"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-          children: this.renderUsers()
-        })]
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
+            children: ["All Lists by User_name = ", this.state.currentUser.user_name]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
+            children: this.renderLists()
+          })]
+        })
       });
     }
   }]);
 
-  return TestReact;
+  return ListComponent;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TestReact);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListComponent);
 
-if (document.getElementById('users')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TestReact, {}), document.getElementById('users'));
+if (document.getElementById('list')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ListComponent, {}), document.getElementById('list'));
 }
 
 /***/ }),
@@ -4054,20 +4009,27 @@ jQuery(document).ready(function ($) {
   $("#btn-request").click(function (e) {
     $.ajaxSetup({
       headers: {
-        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') // Обязательно для передачи!!!
+
       }
     });
     e.preventDefault();
     var is_checked = jQuery('#favorites').is('checked') ? 1 : 0;
+    var methods = ['GET', 'POST', 'PUT', 'DELETE'];
     var formData = {
-      task_id: jQuery('#task_id').val(),
-      list_id: jQuery('#list_id').val(),
       user_id: jQuery('#user_id').val(),
+      list_id: jQuery('#list_id').val(),
+      name: jQuery('#list_name').val(),
+      pattern_id: jQuery('#pattern_id').val(),
+      predefined: jQuery('#predefined').val(),
+      task_id: jQuery('#task_id').val(),
       favorites: is_checked
     };
     $.ajax({
-      type: 'POST',
-      url: '/api/test',
+      type: methods[3],
+      // url: '/api/lists/user/134',
+      // url: '/api/lists/prop/predefined',
+      url: '/api/lists/' + jQuery('#list_id').val(),
       data: formData,
       dataType: 'json',
       success: function success(data) {
@@ -4078,6 +4040,9 @@ jQuery(document).ready(function ($) {
         jQuery('#formModal').modal('hide');
       }
     });
+  });
+  $("#btn-close").click(function () {
+    jQuery('#formModal').modal('hide');
   });
 });
 

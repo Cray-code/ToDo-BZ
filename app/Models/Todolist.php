@@ -35,4 +35,12 @@ class Todolist extends Model
         'pattern_id',
         'predefined'
     ];
+
+    public static function validationRules()
+    {
+        return [
+            'name' => 'min:5|max:255',
+        ];
+    }
+
 }

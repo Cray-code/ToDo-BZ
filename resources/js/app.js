@@ -14,7 +14,6 @@ require('./bootstrap');
 
 require('alpinejs');
 
-// import TestReact from "./components/TestReact";
-require('./components/TestReact');
-require('./components/Example');
+import ListComponent from "./components/ListComponent";
+
 require('./testAjax');
