@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function getAllUsers(){
-//        dd(response(User::all()->toJson, 200)->header('Content-Type', 'text/plain'));
+//        dump(response(User::all(), 200)->header('TestFromBack', 'Hallo from back'));
+//        dd(response()->json(User::all(), 200));
         return response(User::all(), 200);
     }
 
