@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TodolistController extends Controller
 {
-    public function getListsByUser($user_id)
+    public function getListsByUser()
     {
-        $userLists = Todolist::where('user_id', $user_id)->get();
+        $userLists = Todolist::where('user_id', Auth::id())->get();
         $response = $userLists->count() > 0 ? $userLists
-                    : response()->json(['error'=>'Ничего не найдено.'], 404);
+                    : response()->json(null, 200);
 
         return $response;
     }

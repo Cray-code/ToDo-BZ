@@ -9,7 +9,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ListComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ListComponent */ "./resources/js/components/ListComponent.js");
+/* harmony import */ var _components_MainPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/MainPage */ "./resources/js/components/MainPage.js");
+/* harmony import */ var _components_ListsComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ListsComponent */ "./resources/js/components/ListsComponent.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -24,14 +25,55 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 __webpack_require__(/*! ./testAjax */ "./resources/js/testAjax.js");
 
 /***/ }),
 
-/***/ "./resources/js/components/ListComponent.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/ListComponent.js ***!
-  \**************************************************/
+/***/ "./resources/js/components/List.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/List.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var List = function List(_ref) {
+  var list = _ref.list;
+  var divStyle = {
+    color: 'red'
+  };
+
+  if (list) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h4", {
+        style: divStyle,
+        children: [" ", list.name, " "]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+        children: [" ", list.id, " "]
+      })]
+    });
+  }
+
+  return 'Нажмите на список для просмотра...';
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
+
+/***/ }),
+
+/***/ "./resources/js/components/ListsComponent.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/ListsComponent.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -41,7 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./List */ "./resources/js/components/List.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69,37 +112,34 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var ListComponent = /*#__PURE__*/function (_Component) {
-  _inherits(ListComponent, _Component);
 
-  var _super = _createSuper(ListComponent);
+var ListsComponent = /*#__PURE__*/function (_Component) {
+  _inherits(ListsComponent, _Component);
 
-  function ListComponent() {
+  var _super = _createSuper(ListsComponent);
+
+  function ListsComponent() {
     var _this;
 
-    _classCallCheck(this, ListComponent);
+    _classCallCheck(this, ListsComponent);
 
     _this = _super.call(this);
     _this.state = {
       currentUser: user,
-      //Объект сущности User, данные получаем из фасада Laravel Auth. См. скрипт на app.blade.php
       lists: [],
       currentList: null
     };
     return _this;
   }
 
-  _createClass(ListComponent, [{
+  _createClass(ListsComponent, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      /* fetch API in action by User_id */
-      fetch('/api/lists/user/' + this.state.currentUser.user_id).then(function (response) {
-        // console.log(response)
+      fetch('/api/lists', {}).then(function (response) {
         return response.json();
       }).then(function (lists) {
-        // Fetched product is stored in the state
         _this2.setState({
           lists: lists
         });
@@ -110,18 +150,21 @@ var ListComponent = /*#__PURE__*/function (_Component) {
     value: function renderLists() {
       var _this3 = this;
 
-      return this.state.lists.map(function (list) {
-        return (
-          /*#__PURE__*/
-          //this.handleClick() method is invoked onClick.
-          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-            onClick: function onClick() {
-              return _this3.handleClick(list);
-            },
-            children: ["id: ", list.id, " / ", list.name]
-          }, list.id)
-        );
-      });
+      if (this.state.lists.length > 0) {
+        return this.state.lists.map(function (list) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+              href: "#",
+              onClick: function onClick() {
+                return _this3.handleClick(list);
+              },
+              children: ["id: ", list.id, " / ", list.name, " / pattern_id - ", list.pattern_id]
+            })
+          }, list.id);
+        });
+      } else {
+        return 'Списков пока нет';
+      }
     }
   }, {
     key: "handleClick",
@@ -134,26 +177,113 @@ var ListComponent = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h3", {
-            children: ["All Lists by User_name = ", this.state.currentUser.user_name]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-            children: this.renderLists()
+      if (this.state.lists.length > 0) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+              children: this.renderLists()
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_List__WEBPACK_IMPORTED_MODULE_2__.default, {
+            list: this.state.currentList
           })]
-        })
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        children: "\u0421\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442"
       });
     }
   }]);
 
-  return ListComponent;
+  return ListsComponent;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListComponent);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListsComponent);
 
-if (document.getElementById('list')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ListComponent, {}), document.getElementById('list'));
-}
+/***/ }),
+
+/***/ "./resources/js/components/MainPage.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/MainPage.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _ListsComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ListsComponent */ "./resources/js/components/ListsComponent.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var MainPage = /*#__PURE__*/function (_Component) {
+  _inherits(MainPage, _Component);
+
+  var _super = _createSuper(MainPage);
+
+  function MainPage() {
+    var _this;
+
+    _classCallCheck(this, MainPage);
+
+    _this = _super.call(this);
+    _this.state = {
+      currentUser: user
+    };
+    return _this;
+  }
+
+  _createClass(MainPage, [{
+    key: "render",
+    value: function render() {
+      var mainStyles = {
+        height: '80vh',
+        backgroundColor: '#f1efef',
+        padding: '1rem'
+      };
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        style: mainStyles,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
+          children: ["Hello, ", this.state.currentUser.user_name]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ListsComponent__WEBPACK_IMPORTED_MODULE_2__.default, {})]
+      });
+    }
+  }]);
+
+  return MainPage;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainPage);
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MainPage, {}), document.getElementById('main'));
 
 /***/ }),
 

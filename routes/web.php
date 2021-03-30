@@ -39,7 +39,7 @@ Route::group([
     'prefix' => '/api/lists',
     'middleware' => ['auth']
 ], function (){
-    Route::get('/user/{user_id}', [TodolistController::class, 'getListsByUser']);
+    Route::get('/', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
     Route::post('/', [TodolistController::class, 'createList'])
         ->middleware('checkListTitle');
