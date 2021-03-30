@@ -33,4 +33,17 @@ class Task extends Model
         'favorites'
     ];
 
+    public static function validationRules()
+    {
+        return [
+            'id' => 'numeric | min:0 | not_in:0',
+            'name' => 'string | min:5 | max:255',
+            'list_id' => 'numeric | min:0 | not_in:0',
+            'term_id' => 'numeric | min:0 | not_in:0',
+            'repeat_id' => 'numeric | min:0 | not_in:0',
+            'cronTime' => 'datetime',
+            'favorites' => 'integer'
+        ];
+    }
+
 }
