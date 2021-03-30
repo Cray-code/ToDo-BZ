@@ -29,10 +29,10 @@ jQuery(document).ready(function($){
             favorites: is_checked
         };
         $.ajax({
-            type: methods[3],
+            type: methods[2],
             // url: '/api/lists/user/134',
             // url: '/api/lists/prop/predefined',
-            url: '/api/lists/'+jQuery('#list_id').val(),
+            url: '/api/lists/'+formData.list_id,
             data: formData,
             dataType: 'json',
             success: function (data) {
