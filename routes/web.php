@@ -20,10 +20,6 @@ Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
 
-//Test Route
-Route::match(['get', 'post'],'/api/test', [TaskController::class, 'testRequest'])
-    ->name('test');
-
 //Users Routes
 Route::group([
     'prefix' => '/api/user',
@@ -51,17 +47,19 @@ Route::group([
 
 //Tasks Routes
 Route::group([
-    'prefix' => '/api/task',
-//    'middleware' => ['auth']
+    'prefix' => '/api/tasks',
+    'middleware' => ['auth']
 ], function (){
-    Route::get('/all', [TaskController::class, 'getAllTasks']);
-    Route::get('/{task_id}', [TaskController::class, 'getTaskById']);
-    Route::post('/', [TaskController::class, 'store']);
-    Route::put('/{task_id}', [TaskController::class, 'update']);
+    Route::get('/list/{list_id}', [TaskController::class, 'getByListId']);
+    Route::get('/{task_id}', [TaskController::class, 'getById']);
+    Route::post('/', [TaskController::class, 'create'])
+        ->middleware('checkTaskTitle');
+    Route::put('/{task_id}', [TaskController::class, 'update'])
+        ->middleware('checkTaskTitle');
     Route::delete('/{task_id}', [TaskController::class, 'delete']);
 });
 
-//Route for deploy
+//System Route for deploy
 Route::get('/clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:cache');

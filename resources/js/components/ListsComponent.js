@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import List from "./List";
 
 class ListsComponent extends Component {
-
     constructor() {
         super();
         this.state = {
-            currentUser:  user,
             lists: [],
             currentList: null
         }
