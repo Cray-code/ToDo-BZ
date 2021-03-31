@@ -21,7 +21,7 @@ class CheckTaskTitle
         $tasks = Task::where('list_id', $request->get('list_id'))->get();
         $exists = false;
         foreach ($tasks as $item) {
-            if ($item->name == $request->get('name')) {
+            if ($item->name == $request->get('name') && $item->id != $request->get('task_id')) {
                 $exists = true;
             }
         }

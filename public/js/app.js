@@ -322,10 +322,10 @@ jQuery(document).ready(function ($) {
       favorites: is_checked
     };
     $.ajax({
-      type: methods[1],
-      url: '/api/tasks/',
+      type: methods[0],
+      // url: '/api/tasks/',
       // url: '/api/tasks/' + formData.task_id,
-      // url: '/api/tasks/list/' + formData.list_id,
+      url: '/api/tasks/list/' + formData.list_id,
       // url: '/api/lists/prop/predefined',
       // url: '/api/lists/'+formData.list_id,
       data: formData,
