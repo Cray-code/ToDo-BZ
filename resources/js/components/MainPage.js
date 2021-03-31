@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ListsPredefined from "./ListsPredefined";
 import ListsUser from "./ListsUser";
 import Tasks from "./Tasks";
-import ListsComponent from "./ListsComponent";
+import ListsComponent from "./ListsComponent"; //Просьба пока не убирать!!!
 
 class MainPage extends Component {
      constructor() {
