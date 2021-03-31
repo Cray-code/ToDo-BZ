@@ -20,7 +20,7 @@ class CheckListTitle
         $userLists = Todolist::where('user_id', $request->get('user_id'))->get();
         $exists = false;
         foreach ($userLists as $item) {
-            if ($item->name == $request->get('name')) {
+            if ($item->name == $request->get('name') && $item->id != $request->get('list_id')) {
                 $exists = true;
             }
         }
