@@ -19,6 +19,11 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.11.3",
+        "@material-ui/icons": "^4.11.2",
+        "react-redux": "^7.2.3",
+        "redux": "^4.0.5"
     }
-
 }
