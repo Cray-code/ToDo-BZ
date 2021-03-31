@@ -25,7 +25,6 @@ class TodolistController extends Controller
     public function createList(Request $request)
     {
         $this->validate($request, Todolist::validationRules());
-
         $list = Todolist::create($request->all());
 
         return response()->json($list, 201);

@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Task;
 use App\Models\Todolist;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckListTitle
+class CheckTaskTitle
 {
     /**
      * Handle an incoming request.
@@ -17,17 +18,16 @@ class CheckListTitle
      */
     public function handle(Request $request, Closure $next)
     {
-        $userLists = Todolist::where('user_id', $request->get('user_id'))->get();
+        $tasks = Task::where('list_id', $request->get('list_id'))->get();
         $exists = false;
-        foreach ($userLists as $item) {
-            if ($item->name == $request->get('name') && $item->id != $request->get('list_id')) {
+        foreach ($tasks as $item) {
+            if ($item->name == $request->get('name') && $item->id != $request->get('task_id')) {
                 $exists = true;
             }
         }
         if ($exists){
-            abort(400, 'Такой список уже существует');
+            abort(400, 'Такая задача уже существует');
         }
-
         return $next($request);
     }
 }
