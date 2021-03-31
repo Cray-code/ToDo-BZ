@@ -26,7 +26,6 @@
                     @endif
 
                 @auth()
-                    <div>{{ Auth::user()->name }}</div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -35,14 +34,8 @@
                 @endauth
             {{--End Navigation--}}
 
-            <main>
-                @auth()
-                        <div id="list">{{--Это компонент РЕАКТ--}}</div>
-                @endauth
-                @if(!Auth::user())
-                        <h3>Авторизуйтесь, чтобы начать...</h3>
-                @endif
-            </main>
+            <div id="main"></div>
+
 
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
         <hr>
@@ -113,16 +106,23 @@
         {{-------------------------------------------Конец зоны для тестов--------------------------------------------}}
 
             {{--            Если пользователь авторизован, получаем объект User--}}
-        @auth()
+        @if(\Illuminate\Support\Facades\Auth::user())
             <script>
                 var user = {
                     user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
                     user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                     user_email: '{{ \Illuminate\Support\Facades\Auth::user()->email }}',
                 }
-                console.log(user)
             </script>
-        @endauth
+        @else
+            <script>
+                var user ={
+                    user_id: null,
+                    user_name: 'Guest',
+                    user_email: null
+                }
+            </script>
+        @endif
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
