@@ -19,6 +19,7 @@ class MainPage extends Component {
         return (
                 <div style={mainStyles}>
                     <h3>Hello, {this.state.currentUser.user_name}</h3>
+
                     <ListsComponent />
                 </div>
         );

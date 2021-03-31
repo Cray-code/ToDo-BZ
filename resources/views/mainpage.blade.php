@@ -65,32 +65,54 @@
                                         <label>User_id</label>
                                         <input type="text" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>Task_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="task_id" name="task_id">--}}
-{{--                                    </div>--}}
                                     <div class="form-group">
                                         <label>List_id</label>
                                         <input type="text" class="form-control" id="list_id" name="list_id">
                                     </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>list_Name</label>--}}
+{{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>pattern_id</label>--}}
+{{--                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>predefined</label>--}}
+{{--                                        <input type="text" class="form-control" id="predefined" name="predefined">--}}
+{{--                                    </div>--}}
+
                                     <div class="form-group">
-                                        <label>list_Name</label>
-                                        <input type="text" class="form-control" id="list_name" name="name">
+                                        <label>Task_id</label>
+                                        <input type="text" class="form-control" id="task_id" name="task_id">
                                     </div>
                                     <div class="form-group">
-                                        <label>pattern_id</label>
-                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">
+                                        <label>Task_name</label>
+                                        <input type="text" class="form-control" id="task_name" name="task_name">
                                     </div>
                                     <div class="form-group">
-                                        <label>predefined</label>
-                                        <input type="text" class="form-control" id="predefined" name="predefined">
+                                        <label>Task_description</label>
+                                        <input type="text" class="form-control" id="task_description" name="description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Term_id</label>
+                                        <input type="text" class="form-control" id="term_id" name="term_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Repeat_id</label>
+                                        <input type="text" class="form-control" id="repeat_id" name="repeat_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CronTime</label>
+                                        <input type="datetime-local" class="form-control" id="cron" name="cron">
                                     </div>
                                     <div class="mt-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">
                                             <label for="favorites" class="form-check-label">Favorites</label>
+                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                             <div class="modal-footer">
