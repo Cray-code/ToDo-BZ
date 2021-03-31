@@ -2,7 +2,13 @@
 
 namespace App\Exceptions;
 
+use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Query\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -38,5 +44,35 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json([
+                'error' => 'Ничего не найдено!!!'
+            ], 404);
+        }
+
+            if ($exception instanceof HttpException) {
+                return response()->json([
+                    'error' => 'Неверный запрос: '.$exception->getMessage()
+                ], 400);
+            }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json([
+                'error' => 'Некорректный роут: '.$exception->getMessage()
+            ], 500);
+        }
+
+//        if ($exception instanceof \Illuminate\Database\QueryException) {
+//            return response()->json([
+//                'error' => 'Ошибка обращения к базе данных: '.$exception->getMessage()
+//            ], 500);
+//        }
+
+        return parent::render($request, $exception);
+    }
+
 
 }
