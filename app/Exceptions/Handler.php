@@ -6,6 +6,7 @@ use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Psy\Exception\TypeErrorException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -64,12 +65,6 @@ class Handler extends ExceptionHandler
                 'error' => 'Некорректный роут: '.$exception->getMessage()
             ], 500);
         }
-
-//        if ($exception instanceof \Illuminate\Database\QueryException) {
-//            return response()->json([
-//                'error' => 'Ошибка обращения к базе данных: '.$exception->getMessage()
-//            ], 500);
-//        }
 
         return parent::render($request, $exception);
     }

@@ -36,12 +36,7 @@ class Task extends Model
     public static function validationRules()
     {
         return [
-            'id' => 'numeric | min:0 | not_in:0',
-            'name' => 'required |string | min:5 | max:255',
-            'list_id' => 'required | numeric | min:0 | not_in:0',
-            'term_id' => 'numeric | min:0 | not_in:0',
-            'repeat_id' => 'numeric | min:0 | not_in:0',
-            'favorites' => 'boolean'
+
         ];
     }
 

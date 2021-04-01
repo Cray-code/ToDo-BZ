@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TasksRequest;
 use App\Models\Task;
-use App\Models\Todolist;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -19,17 +17,15 @@ class TaskController extends Controller
         return Task::findOrFail($id);
     }
 
-    public function create(Request $request)
+    public function create(TasksRequest $request)
     {
-        $this->validate($request, Task::validationRules());
         $task = Task::create($request->all());
 
         return response()->json($task, 201);
     }
 
-    public function update(Request $request, $task_id)
+    public function update(TasksRequest $request, $task_id)
     {
-        $this->validate($request,Task::validationRules());
         $task = Task::findOrFail($task_id);
         $task->update($request->all());
 

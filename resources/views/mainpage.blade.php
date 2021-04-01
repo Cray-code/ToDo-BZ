@@ -69,14 +69,14 @@
                                         <label>List_id</label>
                                         <input type="text" class="form-control" id="list_id" name="list_id">
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>list_Name</label>--}}
-{{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>pattern_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">--}}
-{{--                                    </div>--}}
+                                    <div class="form-group">
+                                        <label>list_Name</label>
+                                        <input type="text" class="form-control" id="list_name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>pattern_id</label>
+                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">
+                                    </div>
                                     <div class="form-group">
                                         <label>predefined</label>
                                         <input type="text" class="form-control" id="predefined" name="predefined">
