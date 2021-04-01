@@ -33,7 +33,7 @@ Route::group([
     Route::put('/{list_id}', [TodolistController::class, 'updateList'])
         ->middleware('checkListTitle');
     Route::delete('/{list_id}', [TodolistController::class, 'delete']);
-    Route::get('/prop/predefined', [TodolistController::class, 'getPredefinedLists']);
+    Route::get('/predefined/{predefined}', [TodolistController::class, 'getPredefinedLists']);
 });
 
 //Tasks Routes

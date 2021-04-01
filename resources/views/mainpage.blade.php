@@ -77,10 +77,10 @@
 {{--                                        <label>pattern_id</label>--}}
 {{--                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">--}}
 {{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>predefined</label>--}}
-{{--                                        <input type="text" class="form-control" id="predefined" name="predefined">--}}
-{{--                                    </div>--}}
+                                    <div class="form-group">
+                                        <label>predefined</label>
+                                        <input type="text" class="form-control" id="predefined" name="predefined">
+                                    </div>
 
                                     <div class="form-group">
                                         <label>Task_id</label>

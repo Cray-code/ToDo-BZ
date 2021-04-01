@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Integer;
 
 class TodolistController extends Controller
 {
@@ -40,18 +41,20 @@ class TodolistController extends Controller
         return response()->json($list, 202);
     }
 
-    public function delete($list_id)
+    public function delete(int $list_id)
     {
         Todolist::findOrFail($list_id)->delete();
 
         return response(['success'=>'Список успешно удален'],202);
     }
 
-    public function getPredefinedLists(){
-        $predefined = Todolist::where('user_id', Auth::id())
-            ->where('predefined', true)
+    public function getPredefinedLists(bool $predefined)
+    {
+        $predefinedLists = Todolist::where('user_id', Auth::id())
+            ->where('predefined', $predefined)
+            ->orderBy('created_at', 'DESC')
             ->get();
-        $response = $predefined->count() > 0 ? $predefined
+        $response = $predefinedLists->count() > 0 ? $predefinedLists
                     : response()->json(['error'=>'Ничего не найдено.'], 404);
 
         return $response;
