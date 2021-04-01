@@ -3,15 +3,18 @@ import ReactDom from 'react-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 import { Provider } from "react-redux";
 import ourStore from './core/store';
-import MainPage from "./MainPage";
+import Router from "./core/Router";
+import { BrowserRouter } from "react-router-dom";
 
 const container = document.querySelector('#main');
 
 ReactDom.render(
     <Provider store={ ourStore() }>
-        <StylesProvider>
-            <MainPage />
-        </StylesProvider>
+        <BrowserRouter>
+            <StylesProvider>
+                <Router />
+            </StylesProvider>
+        </BrowserRouter>
     </Provider>,
     container
 );

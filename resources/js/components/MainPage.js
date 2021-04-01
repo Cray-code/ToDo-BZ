@@ -5,8 +5,8 @@ import Tasks from "./Tasks";
 import ListsComponent from "./ListsComponent"; //Просьба пока не убирать!!!
 
 class MainPage extends Component {
-     constructor() {
-         super();
+     constructor(props) {
+         super(props);
          this.state = {
              userId: user.user_id,
              userName: user.user_name,
@@ -25,7 +25,7 @@ class MainPage extends Component {
             <div className="main-page">
                 <ListsPredefined userId={ this.state.userId }/>
                 <ListsUser userId={ this.state.userId }/>
-                <Tasks userId={ this.state.userId }/>
+                <Tasks userId={ this.state.userId } listId={ this.props.listId }/>
 
                 <div style={mainStyles}>
                     <h3>Hello, {this.state.userName}</h3>
