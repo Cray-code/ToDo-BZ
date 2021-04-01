@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import AddIcon from '@material-ui/icons/Add';
 import CreateList from "./CreateList";
+import { Link } from "react-router-dom";
 
 class ListsUser extends Component {
     constructor(props) {
@@ -78,9 +79,12 @@ class ListsUser extends Component {
         console.log(this.state.lists);
 
         const lists = this.state.lists.map((elem) => (
+            <Link to={`/list/${elem.id}`}
+                  key={ elem.id }
+                  className="lists-user__link"
+            >
                 <ListItem
                     button
-                    key={ elem.id }
                     selected={ this.getCurrentList(elem.id) }
                     onClick={ () => this.handleNavigate(elem.id) } >
                     <ListItemIcon>
@@ -88,6 +92,7 @@ class ListsUser extends Component {
                     </ListItemIcon>
                     <ListItemText primary={ elem.name } />
                 </ListItem>
+            </Link>
             )
         );
 
