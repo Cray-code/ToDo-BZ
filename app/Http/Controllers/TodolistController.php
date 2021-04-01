@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListsRequest;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,18 +24,15 @@ class TodolistController extends Controller
         return Todolist::findOrFail($list_id);
     }
 
-    public function createList(Request $request)
+    public function createList(ListsRequest $request)
     {
-        $this->validate($request, Todolist::validationRules());
         $list = Todolist::create($request->all());
 
         return response()->json($list, 201);
     }
 
-    public function updateList(Request $request, $list_id)
+    public function updateList(ListsRequest $request, $list_id)
     {
-        $this->validate($request, Todolist::validationRules());
-
         $list = Todolist::findOrFail($list_id);
         $list->update($request->all());
 

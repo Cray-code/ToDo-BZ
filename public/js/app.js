@@ -6165,12 +6165,16 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime
   \**********************************/
 /***/ (() => {
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 jQuery(document).ready(function ($) {
   jQuery('#btn-get').click(function () {
     jQuery('#myForm').trigger("reset");
     jQuery('#formModal').modal('show');
   });
   $("#btn-request").click(function (e) {
+    var _formData;
+
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') // Обязательно для передачи!!!
@@ -6181,27 +6185,20 @@ jQuery(document).ready(function ($) {
     var is_checked = jQuery('#favorites').prop("checked") ? 1 : 0;
     var predefined = $('#predefined').val();
     var methods = ['GET', 'POST', 'PUT', 'DELETE'];
-    var formData = {
+    var formData = (_formData = {
       user_id: jQuery('#user_id').val(),
       name: jQuery('#list_name').val(),
       pattern_id: jQuery('#pattern_id').val(),
       predefined: predefined,
-      // task_id: jQuery('#task_id').val(),
-      // name: jQuery('#task_name').val(),
-      // description: jQuery('#task_description').val(),
-      list_id: jQuery('#list_id').val() // term_id: jQuery('#term_id').val(),
-      // repeat_id: jQuery('#repeat_id').val(),
-      // cronTime: jQuery('#cron').val(),
-      // favorites: is_checked
-
-    };
+      task_id: jQuery('#task_id').val()
+    }, _defineProperty(_formData, "name", jQuery('#task_name').val()), _defineProperty(_formData, "description", jQuery('#task_description').val()), _defineProperty(_formData, "list_id", jQuery('#list_id').val()), _defineProperty(_formData, "term_id", jQuery('#term_id').val()), _defineProperty(_formData, "repeat_id", jQuery('#repeat_id').val()), _defineProperty(_formData, "cronTime", jQuery('#cron').val()), _defineProperty(_formData, "favorites", is_checked), _formData);
     $.ajax({
       type: methods[2],
       // url: '/api/tasks/',
-      // url: '/api/tasks/' + formData.task_id,
+      url: '/api/tasks/' + formData.task_id,
       // url: '/api/tasks/list/' + formData.list_id,
       // url: '/api/lists/predefined/' + predefined,
-      url: '/api/lists/' + formData.list_id,
+      // url: '/api/lists/'+formData.list_id,
       data: formData,
       dataType: 'json',
       success: function success(data) {

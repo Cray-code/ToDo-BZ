@@ -26,22 +26,22 @@ jQuery(document).ready(function($){
             pattern_id: jQuery('#pattern_id').val(),
             predefined: predefined,
 
-            // task_id: jQuery('#task_id').val(),
-            // name: jQuery('#task_name').val(),
-            // description: jQuery('#task_description').val(),
+            task_id: jQuery('#task_id').val(),
+            name: jQuery('#task_name').val(),
+            description: jQuery('#task_description').val(),
             list_id: jQuery('#list_id').val(),
-            // term_id: jQuery('#term_id').val(),
-            // repeat_id: jQuery('#repeat_id').val(),
-            // cronTime: jQuery('#cron').val(),
-            // favorites: is_checked
+            term_id: jQuery('#term_id').val(),
+            repeat_id: jQuery('#repeat_id').val(),
+            cronTime: jQuery('#cron').val(),
+            favorites: is_checked
         };
         $.ajax({
             type: methods[2],
             // url: '/api/tasks/',
-            // url: '/api/tasks/' + formData.task_id,
+            url: '/api/tasks/' + formData.task_id,
             // url: '/api/tasks/list/' + formData.list_id,
             // url: '/api/lists/predefined/' + predefined,
-            url: '/api/lists/'+formData.list_id,
+            // url: '/api/lists/'+formData.list_id,
             data: formData,
             dataType: 'json',
             success: function (data) {
