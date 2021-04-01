@@ -38,13 +38,14 @@ jQuery(document).ready(function($){
             remind_id: 10,
         };
         $.ajax({
-            type: methods[2],
+            type: methods[0],
             // url: '/api/tasks/',
             // url: '/api/tasks/' + formData.task_id,
             // url: '/api/tasks/list/' + formData.list_id,
             // url: '/api/lists/predefined/' + predefined,
             // url: '/api/lists/'+formData.list_id,
-            url: '/api/reminds/10',
+            // url: '/api/reminds/task/270',
+            url: 'api/reminddics',
 
             data: formData,
             dataType: 'json',

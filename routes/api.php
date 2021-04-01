@@ -65,6 +65,18 @@ Route::group([
     Route::delete('/{remind_id}', [RemindController::class, 'delete']);
 });
 
+//Terms, Repeats, Dicreminds Routes
+Route::get('/terms', function(){
+    return \App\Models\Term::all()->toJson();
+});
+Route::get('/repeats', function (){
+    return \App\Models\Repeat::all()->toJson();
+});
+Route::get('/reminddics', function (){
+   return \App\Models\Reminddic::all()->toJson();
+});
+
+
 //Users Routes
 Route::group([
     'prefix' => '/api/user',
