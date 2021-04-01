@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListsRequest;
 use App\Models\Todolist;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TodolistController extends Controller
@@ -22,36 +22,32 @@ class TodolistController extends Controller
         return Todolist::findOrFail($list_id);
     }
 
-    public function createList(Request $request)
+    public function createList(ListsRequest $request)
     {
-        $this->validate($request, Todolist::validationRules());
         $list = Todolist::create($request->all());
 
         return response()->json($list, 201);
     }
 
-    public function updateList(Request $request, $list_id)
+    public function updateList(ListsRequest $request, $list_id)
     {
-        $this->validate($request, Todolist::validationRules());
-
         $list = Todolist::findOrFail($list_id);
         $list->update($request->all());
 
         return response()->json($list, 202);
     }
 
-    public function delete($list_id)
+    public function delete(int $list_id)
     {
         Todolist::findOrFail($list_id)->delete();
 
         return response(['success'=>'Список успешно удален'],202);
     }
 
-    public function getPredefinedLists(){
-        $predefined = Todolist::where('user_id', Auth::id())
-            ->where('predefined', true)
-            ->get();
-        $response = $predefined->count() > 0 ? $predefined
+    public function getPredefinedLists(int $predefined)
+    {
+        $predefinedLists = (new Todolist())->getPredefinedList($predefined);
+        $response = $predefinedLists->count() > 0 ? $predefinedLists
                     : response()->json(['error'=>'Ничего не найдено.'], 404);
 
         return $response;

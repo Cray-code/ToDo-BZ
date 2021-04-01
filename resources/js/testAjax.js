@@ -13,6 +13,7 @@ jQuery(document).ready(function($){
         });
         e.preventDefault();
         var is_checked = jQuery('#favorites').prop("checked") ? 1 : 0
+        var predefined = $('#predefined').val()
         var methods = [
             'GET',
             'POST',
@@ -21,9 +22,10 @@ jQuery(document).ready(function($){
         ];
         var formData = {
             user_id: jQuery('#user_id').val(),
-            // name: jQuery('#list_name').val(),
-            // pattern_id: jQuery('#pattern_id').val(),
-            // predefined: jQuery('#predefined').val(),
+            name: jQuery('#list_name').val(),
+            pattern_id: jQuery('#pattern_id').val(),
+            predefined: predefined,
+
             task_id: jQuery('#task_id').val(),
             name: jQuery('#task_name').val(),
             description: jQuery('#task_description').val(),
@@ -34,11 +36,11 @@ jQuery(document).ready(function($){
             favorites: is_checked
         };
         $.ajax({
-            type: methods[0],
+            type: methods[2],
             // url: '/api/tasks/',
-            // url: '/api/tasks/' + formData.task_id,
-            url: '/api/tasks/list/' + formData.list_id,
-            // url: '/api/lists/prop/predefined',
+            url: '/api/tasks/' + formData.task_id,
+            // url: '/api/tasks/list/' + formData.list_id,
+            // url: '/api/lists/predefined/' + predefined,
             // url: '/api/lists/'+formData.list_id,
             data: formData,
             dataType: 'json',

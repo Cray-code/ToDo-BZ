@@ -1,0 +1,9 @@
+.main-page {
+    height: 80vw;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-auto-columns: 400px auto;
+    grid-template-areas:
+        "predef tasks"
+        "lists tasks";
+}

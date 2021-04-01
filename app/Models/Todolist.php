@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * App\Models\Todolist
@@ -36,15 +37,12 @@ class Todolist extends Model
         'predefined'
     ];
 
-    public static function validationRules()
+    public function getPredefinedList($predefined)
     {
-        return [
-            'id' => 'numeric | min:0 | not_in:0',
-            'name' => 'string | min:5 | max:255',
-            'user_id' => 'numeric | min:0 | not_in:0',
-            'pattern_id' => 'numeric | min:0 | not_in:0',
-            'predefined' => 'boolean'
-        ];
+        return Todolist::where('user_id', Auth::id())
+            ->where('predefined', $predefined)
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
 }
