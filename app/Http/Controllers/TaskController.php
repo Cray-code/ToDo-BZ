@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TasksRequest;
 use App\Models\Task;
-use App\Models\Todolist;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
