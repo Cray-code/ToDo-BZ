@@ -1,2 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+.main-page {
+  height: 80vw;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  grid-auto-columns: 400px auto;
+  grid-template-areas: "predef tasks" "lists tasks";
+}
 
+.lists-predefined {
+  grid-area: predef;
+}
+
+.lists-user {
+  grid-area: lists;
+}
+
+.tasks {
+  grid-area: tasks;
+}

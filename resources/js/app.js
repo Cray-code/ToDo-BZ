@@ -13,9 +13,10 @@
  */
 
 
-import MainPage from "./components/MainPage";
+//import MainPage from "./components/MainPage";
 
-import ListsComponent from "./components/ListsComponent";
+//import ListsComponent from "./components/ListsComponent";
 
+require('./components/index')
 
 require('./testAjax');
