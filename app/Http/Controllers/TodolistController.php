@@ -48,12 +48,9 @@ class TodolistController extends Controller
         return response(['success'=>'Список успешно удален'],202);
     }
 
-    public function getPredefinedLists(bool $predefined)
+    public function getPredefinedLists(int $predefined)
     {
-        $predefinedLists = Todolist::where('user_id', Auth::id())
-            ->where('predefined', $predefined)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        $predefinedLists = (new Todolist())->getPredefinedList($predefined);
         $response = $predefinedLists->count() > 0 ? $predefinedLists
                     : response()->json(['error'=>'Ничего не найдено.'], 404);
 
