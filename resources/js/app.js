@@ -12,6 +12,11 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import ListComponent from "./components/ListComponent";
+
+//import MainPage from "./components/MainPage";
+
+//import ListsComponent from "./components/ListsComponent";
+
+require('./components/index')
 
 require('./testAjax');

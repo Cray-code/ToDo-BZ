@@ -2,39 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TasksRequest;
 use App\Models\Task;
-use App\Models\Todolist;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function testRequest(Request $request){
-//        dump($request);
-        $task = Task::where('list_id', $request->get('list_id'))
-            ->find($request->get('task_id'));
-
-        $response = $task ? response()->json($task,200) : response($task, 404);
-//        dump($response);
-
-        return $response;
-    }
-
-    public function getAllTasks(){
-        return response(Task::all(), 200);
-    }
-
-    public function getTaskById($task_id){
-        $task = Task::find($task_id);
-        return $task ? response($task,200) : response('Not found', 404);
-    }
-
-    public function store(Request $request)
+    public function getByListId($list_id)
     {
-        return Task::create($request->all());
+        return Task::where('list_id', $list_id)->get();
     }
 
-    public function update(Request $request, Task $task_id)
+    public function getById($id)
+    {
+        return Task::findOrFail($id);
+    }
+
+    public function create(TasksRequest $request)
+    {
+        $task = Task::create($request->all());
+
+        return response()->json($task, 201);
+    }
+
+    public function update(TasksRequest $request, $task_id)
     {
         $task = Task::findOrFail($task_id);
         $task->update($request->all());
@@ -42,11 +32,11 @@ class TaskController extends Controller
         return $task;
     }
 
-    public function delete(Request $request, $id)
+    public function delete($task_id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
+        Task::findOrFail($task_id)->delete();
 
-        return 204;
+        return response()->json(['success'=>'Задача с id = '.$task_id .' успешно удалена'], 200);
     }
+
 }

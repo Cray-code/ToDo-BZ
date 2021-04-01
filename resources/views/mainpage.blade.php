@@ -26,7 +26,6 @@
                     @endif
 
                 @auth()
-                    <div>{{ Auth::user()->name }}</div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -35,14 +34,8 @@
                 @endauth
             {{--End Navigation--}}
 
-            <main>
-                @auth()
-                        <div id="list">{{--Это компонент РЕАКТ--}}</div>
-                @endauth
-                @if(!Auth::user())
-                        <h3>Авторизуйтесь, чтобы начать...</h3>
-                @endif
-            </main>
+            <div id="main"></div>
+
 
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
         <hr>
@@ -72,10 +65,6 @@
                                         <label>User_id</label>
                                         <input type="text" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>Task_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="task_id" name="task_id">--}}
-{{--                                    </div>--}}
                                     <div class="form-group">
                                         <label>List_id</label>
                                         <input type="text" class="form-control" id="list_id" name="list_id">
@@ -92,12 +81,38 @@
                                         <label>predefined</label>
                                         <input type="text" class="form-control" id="predefined" name="predefined">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label>Task_id</label>
+                                        <input type="text" class="form-control" id="task_id" name="task_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Task_name</label>
+                                        <input type="text" class="form-control" id="task_name" name="task_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Task_description</label>
+                                        <input type="text" class="form-control" id="task_description" name="description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Term_id</label>
+                                        <input type="text" class="form-control" id="term_id" name="term_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Repeat_id</label>
+                                        <input type="text" class="form-control" id="repeat_id" name="repeat_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CronTime</label>
+                                        <input type="datetime-local" class="form-control" id="cron" name="cron">
+                                    </div>
                                     <div class="mt-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">
                                             <label for="favorites" class="form-check-label">Favorites</label>
+                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -113,16 +128,23 @@
         {{-------------------------------------------Конец зоны для тестов--------------------------------------------}}
 
             {{--            Если пользователь авторизован, получаем объект User--}}
-        @auth()
+        @if(\Illuminate\Support\Facades\Auth::user())
             <script>
                 var user = {
                     user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
                     user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                     user_email: '{{ \Illuminate\Support\Facades\Auth::user()->email }}',
                 }
-                console.log(user)
             </script>
-        @endauth
+        @else
+            <script>
+                var user ={
+                    user_id: null,
+                    user_name: 'Guest',
+                    user_email: null
+                }
+            </script>
+        @endif
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

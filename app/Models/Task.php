@@ -25,12 +25,19 @@ class Task extends Model
 
     protected $fillable = [
         'name',
-//        'description',
+        'description',
         'list_id',
-//        'term_id',
-//        'repeat_id',
-//        'cronTime',
+        'term_id',
+        'repeat_id',
+        'cronTime',
         'favorites'
     ];
+
+    public static function validationRules()
+    {
+        return [
+
+        ];
+    }
 
 }

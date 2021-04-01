@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function getAllUsers(){
-//        dump(response(User::all(), 200)->header('TestFromBack', 'Hallo from back'));
-//        dd(response()->json(User::all(), 200));
         return response(User::all(), 200);
     }
 
@@ -22,6 +20,7 @@ class UserController extends Controller
 
     public function getUserById($user_id){
         $user = User::find($user_id);
+
         return $user ? response($user,200) : response('Not found', 404);
     }
 }
