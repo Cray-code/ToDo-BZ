@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckDicRemindId;
 use App\Http\Middleware\CheckListTitle;
 use App\Http\Middleware\CheckTaskTitle;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkListTitle' => CheckListTitle::class,
         'checkTaskTitle' => CheckTaskTitle::class,
+        'checkDicRemindId' => CheckDicRemindId::class,
     ];
 }
