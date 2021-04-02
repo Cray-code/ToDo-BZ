@@ -15,22 +15,12 @@ class MainPage extends Component {
      }
 
     render() {
-        var mainStyles = {
-            height: '50vh',
-            backgroundColor: '#f1efef',
-            padding: '1rem',
-        }
         return (
 
             <div className="main-page">
                 <ListsPredefined userId={ this.state.userId }/>
                 <ListsUser userId={ this.state.userId }/>
                 <Tasks userId={ this.state.userId } listId={ this.props.listId }/>
-
-                <div style={mainStyles}>
-                    <h3>Hello, {this.state.userName}</h3>
-                    <ListsComponent />
-                </div>
             </div>
         );
     }

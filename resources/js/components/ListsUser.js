@@ -76,7 +76,7 @@ class ListsUser extends Component {
     }*/
 
     render() {
-        console.log(this.state.lists);
+        // console.log(this.state.lists);
 
         const lists = this.state.lists.map((elem) => (
             <Link to={`/list/${elem.id}`}

@@ -134,7 +134,7 @@
             {{--            Если пользователь авторизован, получаем объект User--}}
         @if(\Illuminate\Support\Facades\Auth::user())
             <script>
-                var user = {
+                const user = {
                     user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
                     user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                     user_email: '{{ \Illuminate\Support\Facades\Auth::user()->email }}',
@@ -142,7 +142,7 @@
             </script>
         @else
             <script>
-                var user ={
+                const user ={
                     user_id: null,
                     user_name: 'Guest',
                     user_email: null
