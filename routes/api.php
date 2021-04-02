@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RemindController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,8 @@ Route::group([
     'prefix' => '/tasks',
     'middleware' => ['auth']
 ], function (){
-    Route::get('/list/{list_id}', [TaskController::class, 'getByListId']);
     Route::get('/{task_id}', [TaskController::class, 'getById']);
+    Route::get('/list/{list_id}', [TaskController::class, 'getByListId']);
     Route::post('/', [TaskController::class, 'create'])
         ->middleware('checkTaskTitle');
     Route::put('/{task_id}', [TaskController::class, 'update'])
@@ -50,6 +51,30 @@ Route::group([
     Route::delete('/{task_id}', [TaskController::class, 'delete']);
 });
 
+//Reminds Routes
+Route::group([
+    'prefix' => '/reminds',
+    'middleware' => ['auth']
+], function (){
+    Route::get('/{remind_id}', [RemindController::class, 'getById']);
+    Route::get('/task/{task_id}', [RemindController::class, 'getByTaskId']);
+    Route::post('/', [RemindController::class, 'create'])
+        ->middleware('checkDicRemindId');
+    Route::put('/{remind_id}', [RemindController::class, 'update'])
+        ->middleware('checkDicRemindId');
+    Route::delete('/{remind_id}', [RemindController::class, 'delete']);
+});
+
+//Terms, Repeats, Dicreminds Routes
+Route::get('/terms', function(){
+    return \App\Models\Term::all()->toJson();
+});
+Route::get('/repeats', function (){
+    return \App\Models\Repeat::all()->toJson();
+});
+Route::get('/reminddics', function (){
+   return \App\Models\Reminddic::all()->toJson();
+});
 
 //Users Routes
 Route::group([
