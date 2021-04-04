@@ -21,15 +21,15 @@ jQuery(document).ready(function($){
             'DELETE'
         ];
         var formData = {
-            // user_id: jQuery('#user_id').val(),
-            // name: jQuery('#list_name').val(),
-            // pattern_id: jQuery('#pattern_id').val(),
-            // predefined: predefined,
+            user_id: jQuery('#user_id').val(),
+            name: jQuery('#list_name').val(),
+            pattern_id: jQuery('#pattern_id').val(),
+            predefined: predefined,
 
-            task_id: jQuery('#task_id').val(),
+            // task_id: jQuery('#task_id').val(),
             // name: jQuery('#task_name').val(),
             // description: jQuery('#task_description').val(),
-            // list_id: jQuery('#list_id').val(),
+            list_id: jQuery('#list_id').val(),
             // term_id: jQuery('#term_id').val(),
             // repeat_id: jQuery('#repeat_id').val(),
             // cronTime: jQuery('#cron').val(),
@@ -38,14 +38,14 @@ jQuery(document).ready(function($){
             remind_id: 10,
         };
         $.ajax({
-            type: methods[0],
+            type: methods[1],
             // url: '/api/tasks/',
             // url: '/api/tasks/' + formData.task_id,
             // url: '/api/tasks/list/' + formData.list_id,
             // url: '/api/lists/predefined/' + predefined,
-            // url: '/api/lists/'+formData.list_id,
+            url: '/api/lists/'+formData.list_id,
             // url: '/api/reminds/task/270',
-            url: 'api/reminddics',
+            // url: 'api/reminddics',
 
             data: formData,
             dataType: 'json',
