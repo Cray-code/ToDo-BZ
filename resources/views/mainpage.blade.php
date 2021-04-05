@@ -57,35 +57,31 @@
                             </div>
                             <div class="modal-body">
                                 <form id="myForm" name="myForm" class="form-horizontal">
-                                    @csrf
-{{--                                    ВАЖНО! "ЭТОТ ТОКЕН ДОЛЖЕН БЫТЬ В КАЖДОЙ ФОРМЕ.--}}
-{{--                                    Скрытый проверенный токен CSRF необходим для предотвращения атак подделки межсайтовых запросов на веб-приложения.--}}
-{{--                                    CSRF-атаки - это неавторизованные действия, которые выполняют аутентифицированные пользователи системы.--}}
                                     <div class="form-group">
                                         <label>User_id</label>
                                         <input type="hidden" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>List_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="list_id" name="list_id">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>list_Name</label>--}}
-{{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>pattern_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>predefined</label>--}}
-{{--                                        <input type="text" class="form-control" id="predefined" name="predefined">--}}
-{{--                                    </div>--}}
-
                                     <div class="form-group">
-                                        <label>Task_id</label>
-                                        <input type="text" class="form-control" id="task_id" name="task_id">
+                                        <label>List_id</label>
+                                        <input type="text" class="form-control" id="list_id" name="list_id">
                                     </div>
+                                    <div class="form-group">
+                                        <label>list_Name</label>
+                                        <input type="text" class="form-control" id="list_name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>pattern_id</label>
+                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>predefined</label>
+                                        <input type="text" class="form-control" id="predefined" name="predefined">
+                                    </div>
+
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>Task_id</label>--}}
+{{--                                        <input type="text" class="form-control" id="task_id" name="task_id">--}}
+{{--                                    </div>--}}
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>Task_name</label>--}}
 {{--                                        <input type="text" class="form-control" id="task_name" name="task_name">--}}
@@ -106,10 +102,10 @@
 {{--                                        <label>CronTime</label>--}}
 {{--                                        <input type="datetime-local" class="form-control" id="cron" name="cron">--}}
 {{--                                    </div>--}}
-                                    <div class="form-group">
-                                        <label>diRemind_id</label>
-                                        <input type="text" class="form-control" id="dicRemind_id" name="dicRemind_id">
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>diRemind_id</label>--}}
+{{--                                        <input type="text" class="form-control" id="dicRemind_id" name="dicRemind_id">--}}
+{{--                                    </div>--}}
 {{--                                    <div class="mt-4">--}}
 {{--                                        <div class="form-check">--}}
 {{--                                            <label for="favorites" class="form-check-label">Favorites</label>--}}
@@ -134,7 +130,7 @@
             {{--            Если пользователь авторизован, получаем объект User--}}
         @if(\Illuminate\Support\Facades\Auth::user())
             <script>
-                var user = {
+                const user = {
                     user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
                     user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                     user_email: '{{ \Illuminate\Support\Facades\Auth::user()->email }}',
@@ -142,7 +138,7 @@
             </script>
         @else
             <script>
-                var user ={
+                const user ={
                     user_id: null,
                     user_name: 'Guest',
                     user_email: null

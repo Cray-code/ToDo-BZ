@@ -1,13 +1,13 @@
 import { RSAA, getJSON } from "redux-api-middleware";
 
-export const loadLists = () => ({
+export const loadLists = (route) => ({
     [RSAA]: {
-        endpoint: '/api/lists',
+        endpoint: route,
         method: 'GET',
         types: [
             'LOAD_LISTS_REQUEST',
             {
-                type: 'LOAD_LISTS_SUCCESS',
+                type: (route === '/api/lists') ? 'LOAD_LISTS_SUCCESS' : 'LOAD_PREDEFINED_LISTS_SUCCESS',
                 payload: async (action, state, response) => {
                     const result = await getJSON(response);
                     return { data: result };
@@ -22,7 +22,10 @@ export const addList = (name, pattern_id, predefined, user_id) => ({
     [RSAA]: {
         endpoint: '/api/lists',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
         body: JSON.stringify({ name, pattern_id, predefined, user_id }),
         types: [
             'ADD_LIST_REQUEST',
@@ -37,3 +40,4 @@ export const addList = (name, pattern_id, predefined, user_id) => ({
         ]
     }
 });
+
