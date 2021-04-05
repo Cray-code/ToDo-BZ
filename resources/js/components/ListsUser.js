@@ -21,7 +21,7 @@ class ListsUser extends Component {
 
     addList = (name) => {
         // Request (name, pattern_id, predefined, user_id)
-        this.props.addList(name, 1, 0, this.props.userId);
+        this.props.addList(name, 1, 1, this.props.userId);
     }
 
     getCurrentList(index) {
@@ -40,13 +40,13 @@ class ListsUser extends Component {
 
     componentDidMount() {
         // Responses (created_at, id, name, pattern_id, predefined, updated_at, user_id)
-        this.props.loadLists();
+        this.props.loadLists('/api/lists');
     }
 
     render() {
         // console.log('this.props.lists');
         // console.log(this.props.lists);
-        const lists = this.props.lists.map((elem) => (
+        const lists = (this.props.lists) ?  this.props.lists.map((elem) => (
             <Link to={`/list/${elem.id}`}
                   key={ elem.id }
                   className="lists-user__link"
@@ -62,7 +62,7 @@ class ListsUser extends Component {
                 </ListItem>
             </Link>
             )
-        );
+        ) : ['Списков задач пока нет. Авторизуйтесь, чтобы начать...'];
 
         return (
             <div className="lists-user">

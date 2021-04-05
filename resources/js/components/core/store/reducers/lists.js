@@ -2,6 +2,7 @@ import update from 'react-addons-update';
 
 const storeLists = {
     lists: [],
+    predefinedLists: []
 };
 
 export default (store = storeLists, action) => {
@@ -14,6 +15,16 @@ export default (store = storeLists, action) => {
         case 'LOAD_LISTS_SUCCESS': {
             return update(store, {
                 lists: { $set: action.payload.data }
+            });
+        }
+        case 'LOAD_PREDEFINED_LISTS_SUCCESS': {
+            return update(store, {
+                predefinedLists: { $set: action.payload.data }
+            });
+        }
+        case 'LOAD_LISTS_FAILURE': {
+            return update(store, {
+                predefinedLists: { $set: action.payload.data }
             });
         }
         default: {
