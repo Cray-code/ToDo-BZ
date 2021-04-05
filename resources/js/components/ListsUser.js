@@ -20,9 +20,8 @@ class ListsUser extends Component {
     }
 
     addList = (name) => {
-        const date = Date.now();
-        // (created_at, id, name, pattern_id, predefined, updated_at, user_id)
-        this.props.addList(date, date, name, 0, null, date, this.props.userId);
+        // Request (name, pattern_id, predefined, user_id)
+        this.props.addList(name, 1, 0, this.props.userId);
     }
 
     getCurrentList(index) {
@@ -40,20 +39,12 @@ class ListsUser extends Component {
     }
 
     componentDidMount() {
+        // Responses (created_at, id, name, pattern_id, predefined, updated_at, user_id)
         this.props.loadLists();
     }
-/*
-        fetch('/api/lists', {
-         })
-           .then(response => {
-               return response.json();
-           })
-           .then(lists => {
-               this.setState({ lists });
-           });
-*/
 
     render() {
+        console.log('this.props.lists');
         console.log(this.props.lists);
         const lists = this.props.lists.map((elem) => (
             <Link to={`/list/${elem.id}`}
