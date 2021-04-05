@@ -32,7 +32,6 @@ mix.webpackConfig({
                     ],
                     presets: ["@babel/preset-env", "@babel/preset-react"]
                 },
-
             }
         ]
     },

@@ -57,10 +57,6 @@
                             </div>
                             <div class="modal-body">
                                 <form id="myForm" name="myForm" class="form-horizontal">
-                                    @csrf
-{{--                                    ВАЖНО! "ЭТОТ ТОКЕН ДОЛЖЕН БЫТЬ В КАЖДОЙ ФОРМЕ.--}}
-{{--                                    Скрытый проверенный токен CSRF необходим для предотвращения атак подделки межсайтовых запросов на веб-приложения.--}}
-{{--                                    CSRF-атаки - это неавторизованные действия, которые выполняют аутентифицированные пользователи системы.--}}
                                     <div class="form-group">
                                         <label>User_id</label>
                                         <input type="hidden" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
