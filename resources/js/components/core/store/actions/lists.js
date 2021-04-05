@@ -22,7 +22,10 @@ export const addList = (name, pattern_id, predefined, user_id) => ({
     [RSAA]: {
         endpoint: '/api/lists',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
         body: JSON.stringify({ name, pattern_id, predefined, user_id }),
         types: [
             'ADD_LIST_REQUEST',

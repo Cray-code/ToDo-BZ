@@ -44,8 +44,8 @@ class ListsUser extends Component {
     }
 
     render() {
-        console.log('this.props.lists');
-        console.log(this.props.lists);
+        // console.log('this.props.lists');
+        // console.log(this.props.lists);
         const lists = this.props.lists.map((elem) => (
             <Link to={`/list/${elem.id}`}
                   key={ elem.id }

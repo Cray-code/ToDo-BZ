@@ -8,7 +8,7 @@ export default (store = storeLists, action) => {
     switch (action.type) {
         case 'ADD_LIST_SUCCESS': {
             return update(store, {
-                lists: { $push: action.payload.data }
+                lists: { $push: [action.payload.data] }
             });
         }
         case 'LOAD_LISTS_SUCCESS': {

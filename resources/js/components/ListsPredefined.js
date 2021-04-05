@@ -7,6 +7,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import AddIcon from '@material-ui/icons/Add';
 import CreateList from "./CreateList";
 import { Link } from "react-router-dom";
+
 import lists from "./core/store/reducers/lists";
 
 class ListsPredefined extends Component {
@@ -93,6 +94,9 @@ class ListsPredefined extends Component {
                                 !requestFailed ? 'Предопределенных списков пока нет...' :
                                     'Что-то пошло не так. Код ответа сервера: ' + responseStatus}
                         </List>
+                        <ListItem>
+                            <CreateList user={ this.props.userId } addList={ this.addList } />
+                        </ListItem>
                     </div>
                 );
     }

@@ -3,7 +3,7 @@ import initReducers from './reducers';
 import middleWares from '../middleware';
 
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : x => x;
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (x) => x;
 
 export default function ourStore() {
     const initStore = {};
