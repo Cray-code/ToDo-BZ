@@ -22,11 +22,12 @@ export default (store = storeLists, action) => {
                 predefinedLists: { $set: action.payload.data }
             });
         }
-        case 'LOAD_LISTS_FAILURE': {
-            return update(store, {
-                predefinedLists: { $set: action.payload.data }
-            });
-        }
+        // case 'LOAD_LISTS_FAILURE': {
+        //     return update(store, {
+        //         predefinedLists: { $set: action.payload.data },
+        //         lists: { $set: action.payload.data }
+        //     });
+        // }
         default: {
             return store;
         }

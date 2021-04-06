@@ -24,7 +24,8 @@ export const addList = (name, pattern_id, predefined, user_id) => ({
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'credentials': 'same-origin'
                 },
         body: JSON.stringify({ name, pattern_id, predefined, user_id }),
         types: [
@@ -33,6 +34,7 @@ export const addList = (name, pattern_id, predefined, user_id) => ({
                 type: 'ADD_LIST_SUCCESS',
                 payload: async (action, state, response) => {
                     const result = await getJSON(response);
+                    console.log({data: result})
                     return { data: result };
                 },
             },
