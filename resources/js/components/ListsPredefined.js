@@ -86,7 +86,7 @@ class ListsPredefined extends Component {
                     </ListItem>
                 </Link>
             )
-        ) : ['Предопределенных листов пока нет. Авторизуйтесь, чтобы начать...'];
+        ) : ['Предопределенных листов пока нет...'];
                 return (
                     <div className="lists-predefined">
                         <List>
