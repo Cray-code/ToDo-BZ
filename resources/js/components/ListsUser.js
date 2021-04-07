@@ -21,7 +21,7 @@ class ListsUser extends Component {
 
     addList = (name) => {
         // Request (name, pattern_id, predefined, user_id)
-        this.props.addList(name, 1, 1, this.props.userId);
+        this.props.addList(name, 1, 0, this.props.userId);
     }
 
     getCurrentList(index) {
@@ -39,7 +39,7 @@ class ListsUser extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists');
+        this.props.loadLists('/api/lists/predefined/0');
     }
 
     render() {
