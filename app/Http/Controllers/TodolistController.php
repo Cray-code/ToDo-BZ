@@ -10,7 +10,9 @@ class TodolistController extends Controller
 {
     public function getListsByUser()
     {
-        $userLists = Todolist::where('user_id', Auth::id())->get();
+        $userLists = Todolist::where('user_id', Auth::id())
+            ->orderBy('created_at', 'DESC')
+            ->get();
         $response = $userLists->count() > 0 ? $userLists
                     : response()->json(null, 200);
 
