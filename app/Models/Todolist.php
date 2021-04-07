@@ -39,10 +39,16 @@ class Todolist extends Model
 
     public function getPredefinedList($predefined)
     {
-        return Todolist::where('user_id', Auth::id())
-            ->where('predefined', $predefined)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        if ($predefined){
+            $lists = Todolist::where('user_id', 1)
+                ->where('predefined', $predefined)
+                ->get();
+        } else {
+            $lists = Todolist::where('user_id', Auth::id())
+                ->where('predefined', $predefined)
+                ->get();
+        }
+        return $lists;
     }
 
 }
