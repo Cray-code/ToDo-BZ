@@ -12,9 +12,9 @@ class TaskItem extends Component {
     }
 
     render() {
-        console.log(!!this.props.listId);
+        // console.log(!!this.props.listId);
         return (
-            <ListItem className="tasks">                
+            <ListItem className="tasks">
                 <ListItemText primary={`${this.props.taskId} test Task` } />
                 <TaskPredefined />
             </ListItem>
