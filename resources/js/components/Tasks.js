@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 import TaskItem from "./TaskItem";
 import List from '@material-ui/core/List';
+import { loadTasks, addTask } from '@actions/tasks';
 
 class Tasks extends Component {
     constructor(props) {
@@ -8,11 +13,22 @@ class Tasks extends Component {
         this.state = {
         }
     }
-    render() {       
+    async componentDidMount() {
+        //await this.props.loadTasks(this.props.listId);
+    };
+
+
+    render() {
+        const { tasks } = this.props;
+        const Tasks = (tasks) ? tasks.map((elem) => (
+                <TaskItem  taskId={ elem.id } taskName={ elem.name } />
+            )
+        ) : ['Задач пока нет...'];
         return (
             <div className="tasks">
                 <p>tasks</p>
-                <List component="div">                 
+                <List component="div">
+                <p> { Tasks}</p>
                         <TaskItem user={ this.props.userId } taskId='111'  />                  
                 </List>
                 
@@ -27,4 +43,12 @@ class Tasks extends Component {
     }
 }
 
-export default Tasks;
+// export default Tasks;
+
+const mapState = ({ tasksReducer }) => ({
+    tasks: tasksReducer.tasks,
+});
+
+const mapAction = dispatch => bindActionCreators({ addTask, loadTasks }, dispatch);
+
+export default connect(mapState, mapAction)(Tasks);
