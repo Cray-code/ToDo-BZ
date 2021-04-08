@@ -14,21 +14,21 @@ class Tasks extends Component {
         }
     }
     async componentDidMount() {
-        //await this.props.loadTasks(this.props.listId);
+        await this.props.loadTasks(this.props.listId);
     };
 
 
     render() {
         const { tasks } = this.props;
         const Tasks = (tasks) ? tasks.map((elem) => (
-                <TaskItem  taskId={ elem.id } taskName={ elem.name } />
+                <TaskItem  key={ elem.id } taskId={ elem.id } taskName={ elem.name } />
             )
         ) : ['Задач пока нет...'];
         return (
             <div className="tasks">
                 <p>tasks</p>
                 <List component="div">
-                <p> { Tasks}</p>
+                 { Tasks}
                         <TaskItem user={ this.props.userId } taskId='111'  />                  
                 </List>
                 
