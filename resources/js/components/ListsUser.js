@@ -10,6 +10,7 @@ import CreateList from "./CreateList";
 import { Link } from "react-router-dom";
 import { addList } from '@actions/lists';
 import { loadLists } from '@actions/lists';
+import { loadTasks } from '@actions/tasks';
 
 class ListsUser extends Component {
     constructor(props) {
@@ -34,8 +35,9 @@ class ListsUser extends Component {
         });
     }
 
-    handleNavigate(listId) {
+    async handleNavigate(listId) {
         this.setCurrentList(listId);
+        await this.props.loadTasks(listId);
     }
 
     componentDidMount() {
@@ -79,6 +81,6 @@ const mapState = ({ listsReducer }) => ({
     lists: listsReducer.lists,
 });
 
-const mapAction = dispatch => bindActionCreators({ addList, loadLists }, dispatch);
+const mapAction = dispatch => bindActionCreators({ addList, loadLists, loadTasks }, dispatch);
 
 export default connect(mapState, mapAction)(ListsUser);

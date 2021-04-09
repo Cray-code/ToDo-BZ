@@ -2,6 +2,7 @@ import update from 'react-addons-update';
 
 const storeTasks = {
     tasks: [],
+    
     activeList: null
 
 };

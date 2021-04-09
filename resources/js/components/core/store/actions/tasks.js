@@ -17,7 +17,8 @@ export const loadTasks = (list) => ({
                     try {
                         const res = await getJSON(responce);
                         console.log(res);
-                        return { data: JSON.parse(res) };
+                        return { data: res };
+                        //return { data: JSON.parse(res) };
                     }
                     catch(err) {
                       console.log(err);
