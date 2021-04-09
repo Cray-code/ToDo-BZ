@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TaskPredefined from "./TaskPredefined";
+import TaskPredefined from "@logged_in/components/TaskPredefined";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 

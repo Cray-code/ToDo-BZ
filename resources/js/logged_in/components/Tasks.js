@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TaskItem from "./TaskItem";
+import TaskItem from "@logged_in/components/TaskItem";
 import List from '@material-ui/core/List';
 import { loadTasks, addTask } from '@actions/tasks';
 import {Link} from "react-router-dom";

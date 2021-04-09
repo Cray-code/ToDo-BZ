@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import CreateList from "./CreateList";
+import CreateList from "@logged_in/components/CreateList";
 import { Link } from "react-router-dom";
 import { addList } from '@actions/lists';
 import { loadLists } from '@actions/lists';
