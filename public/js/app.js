@@ -20185,10 +20185,7 @@ var Tasks = /*#__PURE__*/function (_Component) {
         className: "tasks"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_7__.default, {
         component: "div"
-      }, _Tasks, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_TaskItem__WEBPACK_IMPORTED_MODULE_4__.default, {
-        user: this.props.userId,
-        taskId: "111"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "userId - ", this.props.userId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "listId - ", this.props.listId)));
+      }, _Tasks), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "userId - ", this.props.userId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "listId - ", this.props.listId)));
     }
   }]);
 

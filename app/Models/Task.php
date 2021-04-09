@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 /**
  * App\Models\Task
@@ -42,7 +43,7 @@ class Task extends Model
             array_push($tasks, $task);
         }
 
-        return $tasks;
+        return Arr::flatten($tasks);
     }
 
 }

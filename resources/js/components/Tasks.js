@@ -41,7 +41,7 @@ class Tasks extends Component {
             <div className="tasks">
                 <List component="div">
                  { Tasks }
-                        <TaskItem user={ this.props.userId } taskId='111'  />
+                        {/*<TaskItem user={ this.props.userId } taskId='111'  />*/}
                 </List>
 
                     <div>
