@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ListsPredefined from "./ListsPredefined";
-import ListsUser from "./ListsUser";
-import Tasks from "./Tasks";
-import Footer from "./Footer";
+import ListsPredefined from "@logged_in/components/ListsPredefined";
+import ListsUser from "@logged_in/components/ListsUser";
+import Tasks from "@logged_in/components/Tasks";
+import Footer from "@logged_in/components/Footer";
 
 class MainPage extends Component {
      constructor(props) {
