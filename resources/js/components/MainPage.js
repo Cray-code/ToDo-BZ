@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import Header from "./Header";
 import ListsPredefined from "./ListsPredefined";
 import ListsUser from "./ListsUser";
 import Tasks from "./Tasks";
 import Footer from "./Footer";
+
 
 class MainPage extends Component {
      constructor(props) {
@@ -17,6 +19,7 @@ class MainPage extends Component {
     render() {
         return (
             <div className="main-page">
+                <Header />
                 <ListsPredefined userId={ this.state.userId }/>
                 <ListsUser userId={ this.state.userId }/>
                 <Tasks userId={ this.state.userId } listId={ this.props.listId }/>

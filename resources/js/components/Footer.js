@@ -9,9 +9,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="footer">
-                footer
-            </div>
+            <footer class="footer">@2021. DoPlans Collaborative Training Project.</footer>
         );
     }
 }

@@ -44,7 +44,7 @@ class Tasks extends Component {
                         <TaskItem user={ this.props.userId } taskId='111'  />
                 </List>
 
-                    <div>
+                    <div class="tasks-info">
                         <p>userId - { this.props.userId }</p>
                         <p>listId - { this.props.listId }</p>
                     </div>

@@ -4,7 +4,9 @@
     grid-template-rows: 1fr 2fr 60px;
     grid-auto-columns: 400px auto;
     grid-template-areas:
+        "header header"
         "predef tasks"
         "lists tasks"
         "footer footer";
+    margin: 30px;
 }

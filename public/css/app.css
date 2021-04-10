@@ -4,7 +4,14 @@
   display: grid;
   grid-template-rows: 1fr 2fr 60px;
   grid-auto-columns: 400px auto;
-  grid-template-areas: "predef tasks" "lists tasks" "footer footer";
+  grid-template-areas: "header header" "predef tasks" "lists tasks" "footer footer";
+  margin: 30px;
+}
+
+.header {
+  grid-area: header;
+  grid-auto-flow: column;
+  height: 200px;
 }
 
 .lists-predefined {
@@ -21,8 +28,16 @@
 
 .tasks {
   grid-area: tasks;
+  border: 1px solid lightgray;
+  height: auto;
+  margin: 30px;
 }
 
-.header {
-  grid-area: header;
+.tasks-info {
+  margin: 30px;
+}
+
+.footer {
+  grid-area: footer;
+  margin-top: 30px;
 }
