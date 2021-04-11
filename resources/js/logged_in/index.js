@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { StylesProvider } from '@material-ui/core/styles';
 import { Provider } from "react-redux";
-import ourStore from './core/store';
-import Router from "./core/Router";
+import ourStore from '@core/store';
+import Router from "@core/Router";
 import { BrowserRouter } from "react-router-dom";
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+import theme from "@root/theme";
+import GlobalStyles from "@root/GlobalStyles";
 
 const container = document.querySelector('#main');
 
 ReactDom.render(
     <Provider store={ ourStore() }>
         <BrowserRouter>
-            <StylesProvider>
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline />
+                <GlobalStyles />
                 <Router />
-            </StylesProvider>
+            </MuiThemeProvider>
         </BrowserRouter>
     </Provider>,
     container
