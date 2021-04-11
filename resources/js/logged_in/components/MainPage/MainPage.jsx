@@ -45,9 +45,7 @@ class MainPage extends Component {
                 />
 
                 <main className={classNames(classes.main)}>
-
                     <Tasks userId={this.state.userId} listId={this.props.listId} />
-
                 </main>
             </Fragment>
         );
