@@ -163,10 +163,10 @@ function NavBar(props) {
           >
             {isWidthUp("sm", width) && (
               <Box mr={3}>
-                
+
               </Box>
             )}
-            
+
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
@@ -186,7 +186,7 @@ function NavBar(props) {
               )}
             </ListItem>
           </Box>
-         
+
         </Toolbar>
       </AppBar>
       <Hidden xsDown>
@@ -195,7 +195,7 @@ function NavBar(props) {
           classes={{
             paper: classes.drawerPaper,
           }}
-          open={true}
+          open={false}
         >
           <List>
             {menuItems.map((element, index) => (
@@ -232,11 +232,13 @@ function NavBar(props) {
                     </ListItemIcon>
                   </ListItem>
                 </Tooltip>
-                
+
               </Link>
             ))}
-            <ListsUser userId={ props.userId }/>
+
           </List>
+          <ListsPredefined userId={props.userId} />
+          <ListsUser userId={props.userId} />
         </Drawer>
       </Hidden>
       <NavigationDrawer

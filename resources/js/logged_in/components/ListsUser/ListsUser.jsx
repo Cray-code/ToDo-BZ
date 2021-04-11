@@ -21,7 +21,7 @@ import {
     withStyles,
     isWidthUp,
     withWidth,
-  } from "@material-ui/core";
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { addList } from '@actions/lists';
 import { loadLists } from '@actions/lists';
@@ -68,39 +68,40 @@ class ListsUser extends Component {
         const lists = (this.props.lists) ? this.props.lists.map((elem) => (
             <Link
                 to={`/list/${elem.id}`}
-                key={ elem.id }                
-                className={classes.menuLink}                
-              >
+                key={elem.id}
+                className={classes.menuLink}
+            >
                 <Tooltip
-                  title={elem.name}
-                  placement="right"
-                  key={elem.name}
+                    title={elem.name}
+                    placement="right"
+                    key={elem.name}
                 >
-                  <ListItem
-                    button
-                    selected={ this.getCurrentList(elem.id) }
-                    onClick={ () => this.handleNavigate(elem.id) } 
-                    aria-label={elem.name}
-                  >
-                    <ListItemIcon className={classes.justifyCenter}>
-                        <ListAltIcon />
-                    </ListItemIcon>
-                  </ListItem>
+                    <ListItem
+                        button
+                        selected={this.getCurrentList(elem.id)}
+                        onClick={() => this.handleNavigate(elem.id)}
+                        aria-label={elem.name}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
+                    </ListItem>
                 </Tooltip>
-                
+
             </Link>
 
 
-     
-            )
+
+        )
         ) : ['Списков задач пока нет...'];
 
         return (
             <div className="lists-user">
                 <List>
-                    { lists }
+                    {lists}
                     <ListItem>
-                        <CreateList user={ this.props.userId } addList={ this.addList } />
+                        <CreateList user={this.props.userId} addList={this.addList} />
                     </ListItem>
                 </List>
             </div>

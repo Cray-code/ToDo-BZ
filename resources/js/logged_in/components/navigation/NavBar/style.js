@@ -48,7 +48,7 @@ const styles = (theme) => ({
     overflowX: "hidden",
     marginTop: theme.spacing(8),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(27),
+      width: theme.spacing(36),
     },
     backgroundColor: theme.palette.common.black,
   },

@@ -1,6 +1,6 @@
 const styles = (theme) => ({
     main: {
-      marginLeft: theme.spacing(28),
+      marginLeft: theme.spacing(37),
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
