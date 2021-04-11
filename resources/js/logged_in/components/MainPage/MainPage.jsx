@@ -6,19 +6,19 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import NavBar from "@logged_in/components/navigation/NavBar";
-
-const styles = (theme) => ({
-    main: {
-      marginLeft: theme.spacing(28),
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      [theme.breakpoints.down("xs")]: {
-        marginLeft: 0,
-      },
-    },
-});
+import styles from "./style";
+// const styles = (theme) => ({
+//     main: {
+//       marginLeft: theme.spacing(28),
+//       transition: theme.transitions.create(["width", "margin"], {
+//         easing: theme.transitions.easing.sharp,
+//         duration: theme.transitions.duration.leavingScreen,
+//       }),
+//       [theme.breakpoints.down("xs")]: {
+//         marginLeft: 0,
+//       },
+//     },
+// });
 
 class MainPage extends Component {
      constructor(props) {

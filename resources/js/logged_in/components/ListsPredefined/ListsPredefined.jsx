@@ -8,7 +8,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { Link } from "react-router-dom";
 import { loadLists } from '@actions/lists';
-
+import { withStyles } from '@material-ui/core/styles';
+import styles from "./style";
 
 class ListsPredefined extends Component {
     constructor(props) {
@@ -107,4 +108,4 @@ const mapState = ({ listsReducer }) => ({
 
 const mapAction = dispatch => bindActionCreators({ loadLists }, dispatch);
 
-export default connect(mapState, mapAction)(ListsPredefined);
+export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(ListsPredefined));

@@ -4,7 +4,9 @@ import { bindActionCreators } from "redux";
 import TaskItem from "@logged_in/components/TaskItem";
 import List from '@material-ui/core/List';
 import { loadTasks, addTask } from '@actions/tasks';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { withStyles } from '@material-ui/core/styles';
+import styles from "./style";
 
 class Tasks extends Component {
     constructor(props) {
@@ -62,4 +64,4 @@ const mapState = ({ tasksReducer }) => ({
 
 const mapAction = dispatch => bindActionCreators({ addTask, loadTasks }, dispatch);
 
-export default connect(mapState, mapAction)(Tasks);
+export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(Tasks));
