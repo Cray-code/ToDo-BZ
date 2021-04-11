@@ -81,6 +81,7 @@ class ListsUser extends Component {
                         selected={this.getCurrentList(elem.id)}
                         onClick={() => this.handleNavigate(elem.id)}
                         aria-label={elem.name}
+                        className={classes.permanentDrawerListItem}
                     >
                         <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />

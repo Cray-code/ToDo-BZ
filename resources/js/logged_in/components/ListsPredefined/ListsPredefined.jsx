@@ -15,7 +15,7 @@ import {
     ListItemText,
     Hidden,
     Tooltip,
-    Box,    
+    Box,
     isWidthUp,
     withWidth,
 } from "@material-ui/core";
@@ -92,36 +92,37 @@ class ListsPredefined extends Component {
                 key={elem.id}
                 className={classes.menuLink}
             >
-                    <Tooltip
-                        title={elem.name}
-                        placement="right"
-                        key={elem.name}
+                <Tooltip
+                    title={elem.name}
+                    placement="right"
+                    key={elem.name}
+                >
+                    <ListItem
+                        button
+                        selected={this.getCurrentList(elem.id)}
+                        onClick={() => this.handleNavigate(elem.id)}
+                        aria-label={elem.name}
+                        className={classes.permanentDrawerListItem}
                     >
-                        <ListItem
-                            button
-                            selected={this.getCurrentList(elem.id)}
-                            onClick={() => this.handleNavigate(elem.id)}
-                            aria-label={elem.name}
-                        >
-                            <ListItemIcon className={classes.justifyCenter}>
-                                <ListAltIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={elem.name + ' / id = ' + elem.id} />
-                        </ListItem>
-                    </Tooltip>
-                </Link>
-            )
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
+                    </ListItem>
+                </Tooltip>
+            </Link>
+        )
         ) : ['Авторизуйтесь, чтобы начать...'];
-                return (
-                    <div className="lists-predefined">
-                        <List>
-                            { lists }
-                            {/*{ isFetch ? lists :*/}
-                            {/*    !requestFailed ? 'Предопределенных списков пока нет...' :*/}
-                            {/*        'Что-то пошло не так. Код ответа сервера: ' + responseStatus}*/}
-                        </List>
-                    </div>
-                );
+        return (
+            <div className="lists-predefined">
+                <List>
+                    {lists}
+                    {/*{ isFetch ? lists :*/}
+                    {/*    !requestFailed ? 'Предопределенных списков пока нет...' :*/}
+                    {/*        'Что-то пошло не так. Код ответа сервера: ' + responseStatus}*/}
+                </List>
+            </div>
+        );
     }
 }
 
