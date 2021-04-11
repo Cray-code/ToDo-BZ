@@ -1,14 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Avatar,
+    Drawer,
+    List,
+    IconButton,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Hidden,
+    Tooltip,
+    Box,
+    isWidthUp,
+    withWidth,
+} from "@material-ui/core";
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { Link } from "react-router-dom";
 import { loadLists } from '@actions/lists';
-
+import { withStyles } from '@material-ui/core/styles';
+import styles from "./style";
 
 class ListsPredefined extends Component {
     constructor(props) {
@@ -67,36 +82,47 @@ class ListsPredefined extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         // const requestFailed = this.state.requestFailed;
         // const isFetch = this.state.isFetch;
         // const responseStatus = this.state.responseStatus;
         const lists = (this.props.predefinedLists) ? this.props.predefinedLists.map((elem) => (
-                <Link to={`/list/${elem.id}`}
-                      key={ elem.id }
-                      className="lists-user__link"
+            <Link
+                to={`/list/${elem.id}`}
+                key={elem.id}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title={elem.name}
+                    placement="right"
+                    key={elem.name}
                 >
                     <ListItem
                         button
-                        selected={ this.getCurrentList(elem.id) }
-                        onClick={ () => this.handleNavigate(elem.id) } >
-                        <ListItemIcon>
+                        selected={this.getCurrentList(elem.id)}
+                        onClick={() => this.handleNavigate(elem.id)}
+                        aria-label={elem.name}
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />
                         </ListItemIcon>
-                        <ListItemText primary={ elem.name +' / id = ' + elem.id} />
+                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
                     </ListItem>
-                </Link>
-            )
+                </Tooltip>
+            </Link>
+        )
         ) : ['Авторизуйтесь, чтобы начать...'];
-                return (
-                    <div className="lists-predefined">
-                        <List>
-                            { lists }
-                            {/*{ isFetch ? lists :*/}
-                            {/*    !requestFailed ? 'Предопределенных списков пока нет...' :*/}
-                            {/*        'Что-то пошло не так. Код ответа сервера: ' + responseStatus}*/}
-                        </List>
-                    </div>
-                );
+        return (
+            <div className="lists-predefined">
+                <List>
+                    {lists}
+                    {/*{ isFetch ? lists :*/}
+                    {/*    !requestFailed ? 'Предопределенных списков пока нет...' :*/}
+                    {/*        'Что-то пошло не так. Код ответа сервера: ' + responseStatus}*/}
+                </List>
+            </div>
+        );
     }
 }
 
@@ -107,4 +133,6 @@ const mapState = ({ listsReducer }) => ({
 
 const mapAction = dispatch => bindActionCreators({ loadLists }, dispatch);
 
-export default connect(mapState, mapAction)(ListsPredefined);
+export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(ListsPredefined));
+
+
