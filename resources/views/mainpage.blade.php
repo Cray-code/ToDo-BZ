@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ReactJS Laravel') }}</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Roboto:300,400,500&amp;display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
     <body class="font-sans antialiased">
+           
+
+        <div id="main"></div>
+
+        <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
             <!-- Navigation -->
-                    @if (Route::has('login'))
+            @if (Route::has('login'))
                         @auth
                     @else
                         <a href="{{ route('login') }}">LogIn</a>
@@ -33,10 +39,7 @@
                     </form>
                 @endauth
             {{--End Navigation--}}
-
-            <div id="main"></div>
-
-
+        </div>
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
         <hr>
         <h5 class="mt-12 text-center">Testing zone</h5>
@@ -45,8 +48,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-2 flex-shrink-0 bd-highlight">
-                    <button class="btn btn-success" id="btn-get">Test FORM</button>
+                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
+                    <button class="btn btn-success text-right" id="btn-get">Test FORM</button>
                 </div>
 
                 <div class="modal fade" id="formModal" aria-hidden="true">

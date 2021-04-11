@@ -1,8 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ListsPredefined from "@logged_in/components/ListsPredefined";
 import ListsUser from "@logged_in/components/ListsUser";
 import Tasks from "@logged_in/components/Tasks";
-import Footer from "@logged_in/components/Footer";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core";
+import NavBar from "@logged_in/components/navigation/NavBar";
+
+const styles = (theme) => ({
+    main: {
+      marginLeft: theme.spacing(28),
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      [theme.breakpoints.down("xs")]: {
+        marginLeft: 0,
+      },
+    },
+});
 
 class MainPage extends Component {
      constructor(props) {
@@ -15,15 +31,38 @@ class MainPage extends Component {
      }
 
     render() {
+        const { classes } = this.props;
+        
+        
         return (
-            <div className="main-page">
-                <ListsPredefined userId={ this.state.userId }/>
-                <ListsUser userId={ this.state.userId }/>
-                <Tasks userId={ this.state.userId } listId={ this.props.listId }/>
-                <Footer />
-            </div>
+            <Fragment>
+                
+                <NavBar
+                     userId={ this.state.userId }
+                    // selectedTab={selectedTab}
+                    // messages={messages}
+                    // openAddBalanceDialog={openAddBalanceDialog}
+                />
+                
+                <main className={classNames(classes.main)}>
+                    <ListsPredefined userId={ this.state.userId }/>
+                    <ListsUser userId={ this.state.userId }/>
+                    <Tasks userId={ this.state.userId } listId={ this.props.listId }/><ListsPredefined userId={ this.state.userId }/>
+                      
+                </main>
+            </Fragment>    
         );
     }
 }
 
-export default MainPage;
+export default withStyles(styles, { withTheme: true })(MainPage);
+
+
+// return (
+//     <div className="main-page">
+//         <ListsPredefined userId={ this.state.userId }/>
+//         <ListsUser userId={ this.state.userId }/>
+//         <Tasks userId={ this.state.userId } listId={ this.props.listId }/>
+//         <Footer />
+//     </div>
+// );
