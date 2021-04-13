@@ -16,12 +16,11 @@
 </head>
     <body class="font-sans antialiased">
 
-        <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
+        <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-start">
             <!-- Navigation -->
             @if (Route::has('login'))
                         @auth
                     @else
-{{--                        <a href="{{ route('login') }}">LogIn</a>--}}
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Вход</button>
                     <!-- Modal -->
@@ -69,17 +68,68 @@
                     </div>
 
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
-                            @endif
-                        @endauth
-                    @endif
+    @if (Route::has('register'))
+        <!-- Button trigger modal -->
+        <button style="margin-left: 10px" type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Регистрация</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div style="margin-top: 40%" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <!-- Name -->
+                            <div>
+                                <label for="name" class="form-label">Name</label>
+                                <input id="name" class="form-control" type="text" name="name" required autofocus />
+                            </div>
+                            <!-- Email Address -->
+                            <div class="mt-4">
+                                <label class="form-label" for="email">Email</label>
+                                <input id="email" class="form-control" type="email" name="email" required/>
+                            </div>
+                            <!-- Password -->
+                            <div class="mt-4">
+                                <label  class="form-label" for="password">Password</label>
+                                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                            </div>
+                            <!-- Confirm Password -->
+                            <div class="mt-4">
+                                <label for="password_confirmation" class="form-label">Password confirmation</label>
+                                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required />
+                            </div>
+
+                            <div class="flex items-center justify-end mt-4">
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                    {{ __('Already registered?') }}
+                                </a>
+                                <button style="margin-left: 45%" class="btn btn-outline-secondary btn-sm">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            @endif
+        @endauth
+    @endif
 
                 @auth()
+                    <span style="margin-right: 10px">{{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                             this.closest('form').submit();">Log Out</a>
+                        <a class="btn btn-outline-dark btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
+                             this.closest('form').submit();">Выход</a>
                     </form>
                 @endauth
             {{--End Navigation--}}
