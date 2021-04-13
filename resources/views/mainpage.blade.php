@@ -15,16 +15,60 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
     <body class="font-sans antialiased">
-           
-
-        <div id="main"></div>
 
         <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
             <!-- Navigation -->
             @if (Route::has('login'))
                         @auth
                     @else
-                        <a href="{{ route('login') }}">LogIn</a>
+{{--                        <a href="{{ route('login') }}">LogIn</a>--}}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Вход</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div style="margin-top: 40%" class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="loginModalLabel">Авторизация</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <!-- Email Address -->
+                                        <div>
+                                            <label for="email" class="form-label">Email</label>
+                                            <input id="email" class="form-control" type="email" name="email" required autofocus />
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="mt-4">
+                                            <label for="password"  class="form-label">Password</label>
+                                            <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
+                                        </div>
+                                        <!-- Remember Me -->
+                                        <div class="block mt-4">
+                                            <label for="remember_me" class="inline-flex items-center">
+                                                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                                                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-end mt-4">
+                                            @if (Route::has('password.request'))
+                                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot your password?') }}
+                                                </a>
+                                            @endif
+                                            <button style="margin-left: 45%" class="btn btn-outline-secondary btn-sm">
+                                                {{ __('Log in') }}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}">Register</a>
                             @endif
@@ -40,6 +84,9 @@
                 @endauth
             {{--End Navigation--}}
         </div>
+
+        <div id="main"></div>
+
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
         <hr>
         <h5 class="mt-12 text-center">Testing zone</h5>

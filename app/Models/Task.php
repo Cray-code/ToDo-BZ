@@ -40,10 +40,10 @@ class Task extends Model
         $lists = Todolist::where('user_id', $user_id)->get();
         foreach ($lists as $list) {
             $task = Task::where('list_id', $list->id)->get();
-            array_push($tasks, $task);
+            array_push($tasks, [$list->id, $task]);
         }
 
-        return Arr::flatten($tasks);
+        return $tasks;
     }
 
 }
