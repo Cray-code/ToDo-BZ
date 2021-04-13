@@ -120,14 +120,14 @@ class Tasks extends Component {
                     </Typography>
                 </Box>
                 { Tasks}
-                <List component="div">
-                    <TaskItem user={this.props.userId} taskId='111' />
-                </List>
+                {/*<List component="div">*/}
+                {/*    <TaskItem user={this.props.userId} taskId='111' />*/}
+                {/*</List>*/}
 
-                <div>
-                    <p>userId - {this.props.userId}</p>
-                    <p>listId - {this.props.listId}</p>
-                </div>
+                {/*<div>*/}
+                {/*    <p>userId - {this.props.userId}</p>*/}
+                {/*    <p>listId - {this.props.listId}</p>*/}
+                {/*</div>*/}
 
             </Fragment>
         );
