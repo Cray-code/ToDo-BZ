@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import TaskPredefined from "./TaskPredefined";
+import TaskPredefined from "@logged_in/components/TaskPredefined";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import { withStyles } from '@material-ui/core/styles';
+import styles from "./style";
 
 class TaskItem extends Component {
     constructor(props) {
@@ -22,4 +23,4 @@ class TaskItem extends Component {
     }
 }
 
-export default TaskItem;
+export default (withStyles(styles, { withTheme: true })(TaskItem));
