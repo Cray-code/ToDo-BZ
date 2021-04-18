@@ -16,7 +16,7 @@ export const loadTasks = (list) => ({
                 payload: async (action, state, responce) => {
                     try {
                         const res = await getJSON(responce);
-                        // console.log('Tasks: '+res);
+                         console.log('Tasks: '+res);
                         return { data: res };
                     }
                     catch(err) {
