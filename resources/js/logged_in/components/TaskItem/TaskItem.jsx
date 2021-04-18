@@ -1,9 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, Fragment  } from "react";
 import TaskPredefined from "@logged_in/components/TaskPredefined";
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Typography,
+    Button,
+    List,
+    ListItem,
+    ListItemText,
+    ListItemSecondaryAction,
+    FormControl,
+    Select,
+    OutlinedInput,
+    MenuItem,
+    Checkbox,
+    Box,
+
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import HelpIcon from "@shared/components/HelpIcon";
+import Bordered from "@shared/components/Bordered";
+import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
+
 
 class TaskItem extends Component {
     constructor(props) {
@@ -13,26 +34,29 @@ class TaskItem extends Component {
     }
 
     render() {
-        // console.log(!!this.props.listId);
-        const { tasks } = this.props;
-        const Tasks = (tasks) ? tasks.map((elem) => (
+        const { classes } = this.props;
+         console.log(`TaskItem - ${this.props.task}`);
+        const { task } = this.props;
+        const Task = (task) ?  (
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>{elem.name}</Typography>
+                    <Typography>
+                        {task.name}
+                        {task.description && <HelpIcon title={task.description} />}
+                    </Typography>
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
                         <Bordered disableVerticalPadding disableBorderRadius>
-
                             <ListItem
-                                key={elem.id}
-                                divider={elem.id !== tasks.length - 1}
+                                key={task.id}
+                                divider={task.id !== task.length - 1}
                                 className="listItemLeftPadding"
                             >
                                 <ListItemText>
                                     <Typography variant="body2">
-                                        {elem.description}
-                                        {elem.description && <HelpIcon title={elem.description} />}
+                                        {task.description}
+                                        {task.description && <HelpIcon title={task.description} />}
                                     </Typography>
                                 </ListItemText>
                                 <ListItemSecondaryAction>
@@ -52,29 +76,28 @@ class TaskItem extends Component {
                 </AccordionDetails>
                 <AccordionDetails className={classes.AccordionDetails}>
                     <Box mr={1}>
-                        <Button
-
-
-                        >
-                            Default {false && <ButtonCircularProgress />}
+                        <Button>
+                            Cancel {false && <ButtonCircularProgress />}
                         </Button>
                     </Box>
                     <Button
                         variant="contained"
                         color="secondary"
-
                     >
                         Save {false && <ButtonCircularProgress />}
                     </Button>
                 </AccordionDetails>
             </Accordion>
-        )) : ['Задач пока нет...'];
+        ) : ['Задача не загружена...'];
         return (
-            <ListItem className="tasks">
-                <ListItemText primary={`${this.props.taskId} test Task`} />
-                <TaskPredefined />
-                { Tasks}
-            </ListItem>
+            <Fragment>
+                 { Task }
+                <ListItem className="tasks">
+                    <ListItemText primary={`${this.props.taskId} test Task`} />
+                    <TaskPredefined />
+                   
+                </ListItem>
+            </Fragment>
         );
     }
 }

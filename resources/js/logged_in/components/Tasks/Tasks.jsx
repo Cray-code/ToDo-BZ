@@ -38,26 +38,15 @@ class Tasks extends Component {
     async componentDidMount() {
         await this.props.loadTasks(this.props.listId);
     };
-    // {/* <Link to={`/task/${elem.id}`}
-    //                   key={ elem.id }
-    //                   className="tasks-user__link"
-    //             >
-    //                 <h5>List_id: {elem.list_id}</h5>
-    //                 <p>Task_id: {elem.id}</p>
-    //                 <h6>Name: {elem.name}</h6>
-    //                 <i>Description: {elem.description}</i>
-    //                 <h6>favorites: {elem.favorites}</h6>
-    //                 {/*<p>term_id: {elem.term_id}</p>*/}
-    //                 {/*<p>repeat_id: {elem.repeat_id}</p>*/}
-    //                 <i>Cron: {elem.cronTime}</i>
-    //                 <hr/>
-    //                 {/*<TaskItem  key={ elem.id } taskId={ elem.id } taskName={ elem.name } />*/}
-    //             </Link>
-    //             ) */}
+   
 
     render() {
+         
         const { classes } = this.props;
-        
+        const { tasks } = this.props;
+        const Tasks = (tasks) ? tasks.map((task,i) => (
+            <TaskItem  key={i} task={task} taskId={ task.id } taskName={ task.name } />
+        )) : ['Задач пока нет...'];
         return (
             <Fragment>
                 <Box mt={4}>
@@ -65,8 +54,8 @@ class Tasks extends Component {
                         listId  - {this.props.listId}
                     </Typography>
                 </Box>
-                
-                <TaskItem  key={ elem.id } taskId={ elem.id } taskName={ elem.name } />
+                { Tasks}
+               
 
             </Fragment>
         );
