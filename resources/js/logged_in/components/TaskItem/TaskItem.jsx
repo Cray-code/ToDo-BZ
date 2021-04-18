@@ -14,10 +14,66 @@ class TaskItem extends Component {
 
     render() {
         // console.log(!!this.props.listId);
+        const { tasks } = this.props;
+        const Tasks = (tasks) ? tasks.map((elem) => (
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography>{elem.name}</Typography>
+                </AccordionSummary>
+                <AccordionDetails className={classes.dBlock}>
+                    <List disablePadding>
+                        <Bordered disableVerticalPadding disableBorderRadius>
+
+                            <ListItem
+                                key={elem.id}
+                                divider={elem.id !== tasks.length - 1}
+                                className="listItemLeftPadding"
+                            >
+                                <ListItemText>
+                                    <Typography variant="body2">
+                                        {elem.description}
+                                        {elem.description && <HelpIcon title={elem.description} />}
+                                    </Typography>
+                                </ListItemText>
+                                <ListItemSecondaryAction>
+                                    <FormControl variant="outlined">
+                                        <Checkbox
+                                            value="option4"
+                                            color="primary"
+
+
+                                        />
+                                    </FormControl>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+
+                        </Bordered>
+                    </List>
+                </AccordionDetails>
+                <AccordionDetails className={classes.AccordionDetails}>
+                    <Box mr={1}>
+                        <Button
+
+
+                        >
+                            Default {false && <ButtonCircularProgress />}
+                        </Button>
+                    </Box>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+
+                    >
+                        Save {false && <ButtonCircularProgress />}
+                    </Button>
+                </AccordionDetails>
+            </Accordion>
+        )) : ['Задач пока нет...'];
         return (
             <ListItem className="tasks">
-                <ListItemText primary={`${this.props.taskId} test Task` } />
+                <ListItemText primary={`${this.props.taskId} test Task`} />
                 <TaskPredefined />
+                { Tasks}
             </ListItem>
         );
     }

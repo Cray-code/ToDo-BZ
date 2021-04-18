@@ -57,61 +57,7 @@ class Tasks extends Component {
 
     render() {
         const { classes } = this.props;
-        const { tasks } = this.props;
-        const Tasks = (tasks) ? tasks.map((elem) => (
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>{elem.name}</Typography>
-                </AccordionSummary>
-                <AccordionDetails className={classes.dBlock}>
-                    <List disablePadding>
-                        <Bordered disableVerticalPadding disableBorderRadius>
-
-                            <ListItem
-                                key={elem.id}
-                                divider={elem.id !== tasks.length - 1}
-                                className="listItemLeftPadding"
-                            >
-                                <ListItemText>
-                                    <Typography variant="body2">
-                                        {elem.description}
-                                        {elem.description && <HelpIcon title={elem.description} />}
-                                    </Typography>
-                                </ListItemText>
-                                <ListItemSecondaryAction>
-                                    <FormControl variant="outlined">
-                                        <Checkbox
-                                            value="option4"
-                                            color="primary"
-
-
-                                        />
-                                    </FormControl>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-
-                        </Bordered>
-                    </List>
-                </AccordionDetails>
-                <AccordionDetails className={classes.AccordionDetails}>
-                    <Box mr={1}>
-                        <Button
-
-
-                        >
-                            Default {false && <ButtonCircularProgress />}
-                        </Button>
-                    </Box>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-
-                    >
-                        Save {false && <ButtonCircularProgress />}
-                    </Button>
-                </AccordionDetails>
-            </Accordion>
-        )) : ['Задач пока нет...'];
+        
         return (
             <Fragment>
                 <Box mt={4}>
@@ -119,22 +65,15 @@ class Tasks extends Component {
                         listId  - {this.props.listId}
                     </Typography>
                 </Box>
-                { Tasks}
-                {/*<List component="div">*/}
-                {/*    <TaskItem user={this.props.userId} taskId='111' />*/}
-                {/*</List>*/}
-
-                {/*<div>*/}
-                {/*    <p>userId - {this.props.userId}</p>*/}
-                {/*    <p>listId - {this.props.listId}</p>*/}
-                {/*</div>*/}
+                
+                <TaskItem  key={ elem.id } taskId={ elem.id } taskName={ elem.name } />
 
             </Fragment>
         );
     }
 }
 
-// export default Tasks;
+
 
 const mapState = ({ tasksReducer }) => ({
     tasks: tasksReducer.tasks,
