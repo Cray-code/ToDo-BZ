@@ -35,7 +35,7 @@ class TaskItem extends Component {
 
     render() {
         const { classes } = this.props;
-         console.log(`TaskItem - ${this.props.task}`);
+        // console.log(`TaskItem - ${this.props.task}`);
         const { task } = this.props;
         const Task = (task) ?  (
             <Accordion>

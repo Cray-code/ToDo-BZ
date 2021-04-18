@@ -25,6 +25,8 @@ import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
 import TaskItem from "@logged_in/components/TaskItem";
 import { loadTasks, addTask } from '@actions/tasks';
+import { loadTerms } from '@actions/terms';
+import { loadRepeats } from '@actions/repeats';
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
@@ -38,6 +40,10 @@ class Tasks extends Component {
     async componentDidMount() {
         await this.props.loadTasks(this.props.listId);
     };
+
+    async componentWillMount() {
+        await this.props.loadTerms();
+    }
    
 
     render() {
@@ -66,8 +72,9 @@ class Tasks extends Component {
 
 const mapState = ({ tasksReducer }) => ({
     tasks: tasksReducer.tasks,
+
 });
 
-const mapAction = dispatch => bindActionCreators({ addTask, loadTasks }, dispatch);
+const mapAction = dispatch => bindActionCreators({ addTask, loadTasks, loadTerms, loadRepeats }, dispatch);
 
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(Tasks));
