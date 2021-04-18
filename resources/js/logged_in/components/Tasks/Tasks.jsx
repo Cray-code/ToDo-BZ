@@ -43,11 +43,7 @@ class Tasks extends Component {
         await this.props.loadRepeats();
     };
 
-    
-   
-
     render() {
-         
         const { classes } = this.props;
         const { tasks, terms, repeats } = this.props;
         const Tasks = (tasks) ? tasks.map((task,i) => (
@@ -60,9 +56,7 @@ class Tasks extends Component {
                         listId  - {this.props.listId}
                     </Typography>
                 </Box>
-                { Tasks}
-               
-
+                { Tasks }
             </Fragment>
         );
     }
