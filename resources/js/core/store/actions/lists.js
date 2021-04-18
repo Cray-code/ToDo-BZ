@@ -13,9 +13,7 @@ export const loadLists = (route) => ({
                         const result = await getJSON(response);
                         if (!result) {
                             console.log('Ничего не найдено')
-                            // return { data: result };
                         }
-                            console.log('Enable lists ' + response.status)
                             return { data: result };
                     }
                     catch (e) {

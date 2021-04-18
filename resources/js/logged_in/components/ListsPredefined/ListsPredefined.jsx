@@ -107,7 +107,7 @@ class ListsPredefined extends Component {
                         <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />
                         </ListItemIcon>
-                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
+                        <ListItemText primary={elem.name} />
                     </ListItem>
                 </Tooltip>
             </Link>

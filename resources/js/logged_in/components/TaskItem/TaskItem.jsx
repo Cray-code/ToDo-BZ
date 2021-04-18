@@ -92,11 +92,11 @@ class TaskItem extends Component {
         return (
             <Fragment>
                  { Task }
-                <ListItem className="tasks">
-                    <ListItemText primary={`${this.props.taskId} test Task`} />
-                    <TaskPredefined />
-                   
-                </ListItem>
+                {/*<ListItem className="tasks">*/}
+                {/*    <ListItemText primary={`${this.props.taskId} test Task`} />*/}
+                {/*    <TaskPredefined />*/}
+                {/*   */}
+                {/*</ListItem>*/}
             </Fragment>
         );
     }

@@ -10,22 +10,22 @@ export const loadRepeats = () => ({
             'credentials': 'same-origin'
                 },
         types: [
-            'LOAD_REPEATS_REQUEST', 
+            'LOAD_REPEATS_REQUEST',
             {
                 type: 'LOAD_REPEATS_SUCCESS',
                 payload: async (action, state, responce) => {
                     try {
                         const res = await getJSON(responce);
                         console.log(res);
-                        return { data: res };                        
+                        return { data: res };
                     }
                     catch(err) {
                       console.log(err);
                       return { data: { name: 'System', text: 'Load repeats failed' } };
                     }
-              
+
                 },
-            }, 
+            },
             'LOAD_REPEATS_FAILURE'
         ]
 

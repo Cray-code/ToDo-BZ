@@ -70,13 +70,13 @@ Route::group([
 
 //Terms, Repeats, Dicreminds Routes
 Route::get('/terms', function(){
-    return \App\Models\Term::all()->toJson();
+    return \App\Models\Term::all();
 })->middleware('auth');
 Route::get('/repeats', function (){
-    return \App\Models\Repeat::all()->toJson();
+    return \App\Models\Repeat::all();
 })->middleware('auth');
 Route::get('/reminddics', function (){
-   return \App\Models\Reminddic::all()->toJson();
+   return \App\Models\Reminddic::all();
 })->middleware('auth');
 
 //Users Routes
