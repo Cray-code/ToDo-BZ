@@ -1,8 +1,8 @@
 import { RSAA, getJSON } from "redux-api-middleware";
 
-export const loadTasks = (list) => ({
+export const loadTerms = () => ({
     [RSAA]: {
-        endpoint: `/api/tasks/list/${list}`,
+        endpoint: `/api/terms`,
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -10,24 +10,23 @@ export const loadTasks = (list) => ({
             'credentials': 'same-origin'
                 },
         types: [
-            'LOAD_TASKS_REQUEST', 
+            'LOAD_TERMS_REQUEST', 
             {
-                type: 'LOAD_TASKS_SUCCESS',
+                type: 'LOAD_TERMS_SUCCESS',
                 payload: async (action, state, responce) => {
                     try {
                         const res = await getJSON(responce);
                         console.log(res);
-                        return { data: res };
-                        //return { data: JSON.parse(res) };
+                        return { data: res };                        
                     }
                     catch(err) {
                       console.log(err);
-                      return { data: { name: 'System', text: 'Load tasks failed' } };
+                      return { data: { name: 'System', text: 'Load terms failed' } };
                     }
               
                 },
             }, 
-            'LOAD_TASKS_FAILURE'
+            'LOAD_TERMS_FAILURE'
         ]
 
     }
