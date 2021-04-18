@@ -2,7 +2,7 @@ import { RSAA, getJSON } from "redux-api-middleware";
 
 export const loadTerms = () => ({
     [RSAA]: {
-        endpoint: `/api/terms`,
+        endpoint: `/api/terms/`,
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

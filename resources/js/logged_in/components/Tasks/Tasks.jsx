@@ -39,19 +39,19 @@ class Tasks extends Component {
     }
     async componentDidMount() {
         await this.props.loadTasks(this.props.listId);
+        await this.props.loadTerms();
+        await this.props.loadRepeats();
     };
 
-    async componentWillMount() {
-        await this.props.loadTerms();
-    }
+    
    
 
     render() {
          
         const { classes } = this.props;
-        const { tasks } = this.props;
+        const { tasks, terms, repeats } = this.props;
         const Tasks = (tasks) ? tasks.map((task,i) => (
-            <TaskItem  key={i} task={task} taskId={ task.id } taskName={ task.name } />
+            <TaskItem  key={i} task={task} terms={terms} repeats={repeats} taskId={ task.id } taskName={ task.name } />
         )) : ['Задач пока нет...'];
         return (
             <Fragment>
@@ -70,9 +70,10 @@ class Tasks extends Component {
 
 
 
-const mapState = ({ tasksReducer }) => ({
+const mapState = ({ tasksReducer, termsReducer, repeatsReducer }) => ({
     tasks: tasksReducer.tasks,
-
+    terms: termsReducer.terms,
+    repeats: repeatsReducer.repeats,
 });
 
 const mapAction = dispatch => bindActionCreators({ addTask, loadTasks, loadTerms, loadRepeats }, dispatch);

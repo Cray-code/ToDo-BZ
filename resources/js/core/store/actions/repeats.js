@@ -2,7 +2,7 @@ import { RSAA, getJSON } from "redux-api-middleware";
 
 export const loadRepeats = () => ({
     [RSAA]: {
-        endpoint: `/api/repeats`,
+        endpoint: `/api/repeats/`,
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
