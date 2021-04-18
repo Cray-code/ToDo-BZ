@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TasksRequest;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class TaskController extends Controller
 {
@@ -31,7 +32,7 @@ class TaskController extends Controller
         return response()->json($task, 201);
     }
 
-    public function update(TasksRequest $request, $task_id)
+    public function update(Request $request, $task_id)
     {
         $task = Task::findOrFail($task_id);
         $task->update($request->all());
