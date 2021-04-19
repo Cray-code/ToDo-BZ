@@ -20,11 +20,6 @@ class TaskController extends Controller
         return Task::where('list_id', $list_id)->get();
     }
 
-    public function getById($id)
-    {
-        return Task::findOrFail($id);
-    }
-
     public function create(TasksRequest $request)
     {
         $task = Task::create($request->all());
