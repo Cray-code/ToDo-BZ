@@ -27,9 +27,7 @@ Route::group([
     'prefix' => '/lists',
 //    'middleware' => ['auth']
 ], function (){
-    Route::get('/', [TodolistController::class, 'getListsByUser']);
-    Route::get('/{list_id}', [TodolistController::class, 'getListById']);
-    Route::get('/predefined/{predefined}', [TodolistController::class, 'getLists']);
+    Route::get('/', [TodolistController::class, 'getLists']);
     Route::post('/', [TodolistController::class, 'createList'])
         ->middleware(['auth', 'checkListTitle']);
     Route::put('/{list_id}', [TodolistController::class, 'updateList'])

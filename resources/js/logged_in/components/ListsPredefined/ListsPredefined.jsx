@@ -53,7 +53,7 @@ class ListsPredefined extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists/predefined/1');
+        this.props.loadLists('/api/lists?filter=1');
         // fetch('/api/lists/predefined/1', {
         //     headers: {
         //         "Content-Type": "application/json",
