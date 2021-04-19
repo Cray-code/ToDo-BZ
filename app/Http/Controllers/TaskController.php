@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Request;
 
 class TaskController extends Controller
 {
-
     public function getByUser()
     {
         return Task::getAllTasksByUser(Auth::id());
@@ -41,5 +40,4 @@ class TaskController extends Controller
 
         return response()->json(['success'=>'Deleted successfully'], 202);
     }
-
 }
