@@ -1,5 +1,7 @@
 import React, { Component, Fragment  } from "react";
 import TaskPredefined from "@logged_in/components/TaskPredefined";
+import TaskItemTerm from "@logged_in/components/TaskItemTerm";
+import TaskItemRepeat from "@logged_in/components/TaskItemRepeat";
 import {
     Accordion,
     AccordionSummary,
@@ -48,6 +50,18 @@ class TaskItem extends Component {
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
                         <Bordered disableVerticalPadding disableBorderRadius>
+                            <TaskItemTerm 
+                                terms={terms} 
+                                termId={task.term_id}
+                                nameTitle='Срок выполнения'
+                            />
+                        </Bordered>
+                    </List>
+                </AccordionDetails>
+               
+                <AccordionDetails className={classes.dBlock}>
+                    <List disablePadding>
+                        <Bordered disableVerticalPadding disableBorderRadius>
                             <ListItem
                                 key={task.id}
                                 divider={task.id !== task.length - 1}
@@ -55,7 +69,7 @@ class TaskItem extends Component {
                             >
                                 <ListItemText>
                                     <Typography variant="body2">
-                                        {task.description}
+                                        {terms && terms.length}
                                         {task.description && <HelpIcon title={task.description} />}
                                     </Typography>
                                 </ListItemText>

@@ -35,46 +35,56 @@ class TaskItemTerm extends Component {
 
     render() {
         const { classes } = this.props;
-        // console.log(`TaskItem - ${this.props.task}`);
-        const { task, term, terms} = this.props;
-        const Task = (task) ?  (
-           
-                
-                    <List disablePadding>
-                        <Bordered disableVerticalPadding disableBorderRadius>
-                            <ListItem
-                                key={task.id}
-                                divider={task.id !== task.length - 1}
-                                className="listItemLeftPadding"
-                            >
-                                <ListItemText>
-                                    <Typography variant="body2">
-                                        {task.description}
-                                        {task.description && <HelpIcon title={task.description} />}
-                                    </Typography>
-                                </ListItemText>
-                                <ListItemSecondaryAction>
-                                    <FormControl variant="outlined">
-                                        <Checkbox
-                                            value="option4"
-                                            color="primary"
-
-
-                                        />
-                                    </FormControl>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-
-                        </Bordered>
-                    </List>
+        
+        const { nameTitle, termId, terms} = this.props;
+        const currTerm = terms.filter(el => {el.id === termId}); 
+        // const termsSel = (terms) ?  (         
+                    
+            
+                            
                
                 
-        ) : ['Задача не загружена...'];
+        // ) : ['Свойство не загружено...'];
         return (
-            <AccordionDetails className={classes.dBlock}>
-                 { Task }
+            <ListItem
+                key={termId}
                
-            </AccordionDetails>
+                className="listItemLeftPadding"
+            >
+                <ListItemText>
+                  <Typography variant="body2">{nameTitle}</Typography>
+                </ListItemText>
+                <FormControl variant="outlined">
+                  <ListItemSecondaryAction
+                    className={classes.ListItemSecondaryAction}
+                  >
+                    <Select
+                     value={`term${termId}`}
+                    
+                      input={
+                        <OutlinedInput
+                          name='taskTerm'
+                          labelWidth={0}
+                          className={classes.numberInput}
+                          classes={{ input: classes.numberInputInput }}
+                          value={`term${termId}`}
+                        />
+                      }
+                      MenuProps={{ disableScrollLock: true }}
+                    >
+                      {terms.map((innerElement) => (
+                        <MenuItem value={`term${innerElement.id}`} key={innerElement.id}>
+                          {innerElement.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </ListItemSecondaryAction>
+                </FormControl>
+               
+            </ListItem>
+                 
+               
+            
         );
     }
 }
