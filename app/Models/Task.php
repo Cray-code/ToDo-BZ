@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Task
@@ -37,14 +38,11 @@ class Task extends Model
 
     static function getAllTasksByUser($user_id)
     {
-        $tasks = [];
-        $lists = Todolist::where('user_id', $user_id)->get();
-        foreach ($lists as $list) {
-            $task = Task::where('list_id', $list->id)->get();
-            array_push($tasks, [$list->id => $task]);
-        }
-
-        return $tasks;
+        return DB::table('tasks')
+            ->leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
+            ->select('tasks.id', 'tasks.name', 'tasks.description', 'tasks.list_id', 'tasks.term_id', 'tasks.repeat_id',
+                'tasks.cronTime', 'tasks.favorites', 'todolists.user_id')
+            ->where('todolists.user_id', $user_id)
+            ->get();
     }
-
 }
