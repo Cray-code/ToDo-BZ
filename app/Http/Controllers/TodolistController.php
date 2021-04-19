@@ -9,19 +9,13 @@ use Illuminate\Support\Facades\Request;
 
 class TodolistController extends Controller
 {
-    public function getLists(int $predefined)
-    {
-        return Todolist::getLists($predefined, Auth::id());
-    }
-
-    public function getListsByUser()
-    {
-        return Todolist::getLists('all', Auth::id());
-    }
-
-    public function getListById($list_id)
-    {
-        return Todolist::findOrFail($list_id);
+    /*
+     * api/lists?filter=1 для predefine-листов
+     * api/lists?filter=0 для обычных листов
+     * api/lists?filter=all для всех листов юзера
+    */
+    public function getLists(){
+        return Todolist::getLists($_GET['filter'], Auth::id());
     }
 
     public function createList(ListsRequest $request)

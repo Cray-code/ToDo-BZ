@@ -27,9 +27,7 @@ Route::group([
     'prefix' => '/lists',
 //    'middleware' => ['auth']
 ], function (){
-    Route::get('/', [TodolistController::class, 'getListsByUser']);
-    Route::get('/{list_id}', [TodolistController::class, 'getListById']);
-    Route::get('/predefined/{predefined}', [TodolistController::class, 'getLists']);
+    Route::get('/', [TodolistController::class, 'getLists']);
     Route::post('/', [TodolistController::class, 'createList'])
         ->middleware(['auth', 'checkListTitle']);
     Route::put('/{list_id}', [TodolistController::class, 'updateList'])
@@ -44,13 +42,11 @@ Route::group([
     'prefix' => '/tasks',
     'middleware' => ['auth']
 ], function (){
-    Route::get('/{task_id}', [TaskController::class, 'getById']);
+    Route::get('/', [TaskController::class, 'getByUser']);
     Route::get('/list/{list_id}', [TaskController::class, 'getByListId']);
-    Route::get('/user/{user_id}', [TaskController::class, 'getByUser']);
     Route::post('/', [TaskController::class, 'create'])
         ->middleware('checkTaskTitle');
-    Route::put('/{task_id}', [TaskController::class, 'update'])
-        ->middleware('checkTaskTitle');
+    Route::put('/{task_id}', [TaskController::class, 'update']);
     Route::delete('/{task_id}', [TaskController::class, 'delete']);
 });
 
