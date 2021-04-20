@@ -3,4 +3,5 @@ import listsReducer from './lists';
 import tasksReducer from './tasks';
 import termsReducer from './terms';
 import repeatsReducer from './repeats';
-export default combineReducers({ listsReducer, tasksReducer, termsReducer, repeatsReducer });
+import userReducer from './user';
+export default combineReducers({ listsReducer, tasksReducer, termsReducer, repeatsReducer, userReducer });

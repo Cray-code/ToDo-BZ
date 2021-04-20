@@ -59,7 +59,7 @@ class ListsUser extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists?filter=0');
+        //this.props.loadLists('/api/lists?filter=0');
     }
 
     render() {

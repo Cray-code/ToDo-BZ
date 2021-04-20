@@ -37,8 +37,8 @@ class Tasks extends Component {
         this.state = {
         }
     }
-    async componentDidMount() {
-        await this.props.loadTasks(this.props.listId);
+    async componentDidMount() {  
+        //await this.props.loadTasks(this.props.listId);     
         await this.props.loadTerms();
         await this.props.loadRepeats();
     };
