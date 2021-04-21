@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainPage from '@logged_in/components/MainPage';
+import MainPage from '@logged_in/MainPage';
 import { Switch, Route } from 'react-router-dom';
 
 

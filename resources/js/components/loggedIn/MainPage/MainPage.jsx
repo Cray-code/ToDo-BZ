@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from "react";
-import ListsPredefined from "@logged_in/components/ListsPredefined";
-import ListsUser from "@logged_in/components/ListsUser";
-import Tasks from "@logged_in/components/Tasks";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { loadActiveUser } from '@actions/user';
+import { loadTasks} from '@actions/tasks';
+import { loadLists } from '@actions/lists';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
-import NavBar from "@logged_in/components/navigation/NavBar";
+import NavBar from "@logged_in/navigation/NavBar";
+import Tasks from "@logged_in/Tasks";
 import styles from "./style";
 
 
@@ -17,6 +21,12 @@ class MainPage extends Component {
             userName: user.user_name,
             userEmail: user.user_email,
         }
+    }
+    async componentDidMount() { 
+        await this.props.loadActiveUser(this.state.userId);
+        await this.props.loadLists('/api/lists?filter=1');
+        await this.props.loadLists('/api/lists?filter=0');
+        await this.props.loadTasks();
     }
 
     render() {
@@ -40,7 +50,11 @@ class MainPage extends Component {
         );
     }
 }
+const mapState = ({ userReducer }) => ({
+    user: userReducer.user
+  });
+const mapAction = dispatch => bindActionCreators({ loadActiveUser, loadTasks, loadLists }, dispatch);
 
-export default withStyles(styles, { withTheme: true })(MainPage);
+export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(MainPage));
 
 

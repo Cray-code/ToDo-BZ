@@ -1,7 +1,5 @@
 import React, { Component, Fragment  } from "react";
-import TaskPredefined from "@logged_in/components/TaskPredefined";
-import TaskItemTerm from "@logged_in/components/TaskItemTerm";
-import TaskItemRepeat from "@logged_in/components/TaskItemRepeat";
+
 import {
     Accordion,
     AccordionSummary,
@@ -24,6 +22,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import HelpIcon from "@shared/components/HelpIcon";
 import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
+import TaskPredefined from "@logged_in/TaskPredefined";
+import TaskItemTerm from "@logged_in/TaskItemTerm";
+import TaskItemRepeat from "@logged_in/TaskItemRepeat";
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
 
@@ -55,11 +56,16 @@ class TaskItem extends Component {
                                 termId={task.term_id}
                                 nameTitle='Срок выполнения'
                             />
+                             <TaskItemRepeat 
+                                repeats={repeats} 
+                                repeatId={task.repeat_id}
+                                nameTitle='Повтор'
+                            />
                         </Bordered>
                     </List>
                 </AccordionDetails>
                
-                <AccordionDetails className={classes.dBlock}>
+                {/* <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
                         <Bordered disableVerticalPadding disableBorderRadius>
                             <ListItem
@@ -87,7 +93,7 @@ class TaskItem extends Component {
 
                         </Bordered>
                     </List>
-                </AccordionDetails>
+                </AccordionDetails> */}
                 <AccordionDetails className={classes.AccordionDetails}>
                     <Box mr={1}>
                         <Button>

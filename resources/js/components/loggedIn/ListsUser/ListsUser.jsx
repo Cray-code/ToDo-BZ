@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import CreateList from "@logged_in/components/CreateList";
+import CreateList from "@logged_in/CreateList";
 import {
     AppBar,
     Toolbar,
@@ -59,7 +59,7 @@ class ListsUser extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists?filter=0');
+        //this.props.loadLists('/api/lists?filter=0');
     }
 
     render() {

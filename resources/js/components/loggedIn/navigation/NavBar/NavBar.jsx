@@ -30,8 +30,8 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
 
 import NavigationDrawer from "@shared/components/NavigationDrawer";
-import ListsPredefined from "@logged_in/components/ListsPredefined";
-import ListsUser from "@logged_in/components/ListsUser";
+import ListsPredefined from "@logged_in/ListsPredefined";
+import ListsUser from "@logged_in/ListsUser";
 import styles from "./style";
 
 

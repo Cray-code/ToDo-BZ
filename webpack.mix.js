@@ -38,14 +38,18 @@ mix.webpackConfig({
 
     resolve: {
         alias: {
-            '@actions': path.resolve(__dirname, 'resources', 'js', 'core', 'store', 'actions'),
-            '@middlewares': path.resolve(__dirname, 'resources', 'js', 'core', 'middleware'),
-            '@store': path.resolve(__dirname, 'resources', 'js', 'core', 'store'),
-            '@core': path.resolve(__dirname, 'resources', 'js', 'core'),
+            '@actions': path.resolve(__dirname, 'resources', 'js', 'store', 'actions'),
+            '@middlewares': path.resolve(__dirname, 'resources', 'js', 'store', 'middleware'),
+            '@store': path.resolve(__dirname, 'resources', 'js', 'store'),
+            '@route': path.resolve(__dirname, 'resources', 'js', 'route'),
             '@root': path.resolve(__dirname, 'resources', 'js'),
-            '@logged_in': path.resolve(__dirname, 'resources', 'js', 'logged_in'),
-            '@logged_out': path.resolve(__dirname, 'resources', 'js', 'logged_out'),
-            '@shared': path.resolve(__dirname, 'resources', 'js','shared'),
+            '@loggedIn': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedIn'),
+            '@loggedOut': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedOut'),
+            '@common': path.resolve(__dirname, 'resources', 'js','common'),
+            '@logged_in': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedIn'),
+            '@logged_out': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedOut'),
+            '@shared': path.resolve(__dirname, 'resources', 'js','common'),
+            
         }
     },
 });
