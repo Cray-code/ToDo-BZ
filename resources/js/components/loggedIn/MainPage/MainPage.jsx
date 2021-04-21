@@ -8,8 +8,8 @@ import { loadLists } from '@actions/lists';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
-import NavBar from "@logged_in/components/navigation/NavBar";
-import Tasks from "@logged_in/components/Tasks";
+import NavBar from "@logged_in/navigation/NavBar";
+import Tasks from "@logged_in/Tasks";
 import styles from "./style";
 
 

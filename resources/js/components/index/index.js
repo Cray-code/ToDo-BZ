@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from "react-redux";
-import ourStore from '@core/store';
-import Router from "@core/Router";
+import ourStore from '@root/store';
+import Router from "@root/router";
 import { BrowserRouter } from "react-router-dom";
 import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import theme from "@root/theme";

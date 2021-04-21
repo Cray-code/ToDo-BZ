@@ -23,7 +23,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import HelpIcon from "@shared/components/HelpIcon";
 import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
-import TaskItem from "@logged_in/components/TaskItem";
+import TaskItem from "@logged_in/TaskItem";
 import { loadTasks, addTask } from '@actions/tasks';
 import { loadTerms } from '@actions/terms';
 import { loadRepeats } from '@actions/repeats';

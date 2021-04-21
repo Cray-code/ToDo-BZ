@@ -2,7 +2,7 @@ import { RSAA, getJSON } from 'redux-api-middleware';
 
 export const loadUser = () => ({
   [RSAA]: {
-    endpoint: '/api/me/',
+    endpoint: '/api/usr/',
     method: 'GET',
     types: [
       'LOAD_USER_REQUEST', 
