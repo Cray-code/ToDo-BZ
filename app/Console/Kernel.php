@@ -3,11 +3,9 @@
 namespace App\Console;
 
 use App\Console\Commands\SendOverdueTaskEmails;
-use App\Http\Controllers\SendTaskMail;
-use App\Mail\OverdueTaskMail;
+use App\Jobs\ScanTasksDeadlines;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,6 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 //        $schedule->command('mail:send')->everyMinute();
+//        $schedule->command('queue:work')->everyMinute();
+//        $schedule->job(new ScanTasksDeadlines())->everyMinute();
     }
 
     /**

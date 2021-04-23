@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ScanTasksDeadlines;
 use App\Mail\OverdueTaskMail;
 use App\Models\Task;
 use Illuminate\Console\Command;
@@ -22,7 +23,7 @@ class SendOverdueTaskEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Send an alert email about overdue tasks to a user';
+    protected $description = 'Send an alert email about overdue tasks to users';
 
     /**
      * Create a new command instance.
@@ -41,18 +42,7 @@ class SendOverdueTaskEmails extends Command
      */
     public function handle()
     {
-        $data = Task::leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
-            ->select('todolists.user_id', 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.deadline')
-            ->where('tasks.deadline', '<', Carbon::now())
-            ->orderBy('tasks.deadline')
-                ->leftJoin('users', 'todolists.user_id', '=', 'users.id')
-                ->select('tasks.id as task_id', 'tasks.name as task_name', 'tasks.description', 'tasks.deadline', 'users.name as user_name', 'users.email')
-            ->get();
-
-        echo($data);
-
-//        Mail::to('roman82direct@yandex.ru')
-//            ->send(new OverdueTaskMail('Testing Artisan mail:send'));
+        ScanTasksDeadlines::dispatch();
 
         return 0;
     }
