@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 class SendTaskMail extends Controller
 {
     public function sendMail(){
-        $comment = 'Это сообщение отправлено из формы обратной связи';
+        $comment = 'У вас есть просроченные задачи!';
         $toEmail = "roman82direct@yandex.ru";
         Mail::to($toEmail)->send(new OverdueTaskMail($comment));
         return 'Сообщение отправлено на адрес '. $toEmail;
