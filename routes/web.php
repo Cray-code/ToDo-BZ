@@ -16,7 +16,7 @@ use App\Http\Controllers\TaskController;
 */
 
 //send mail test
-Route::get('/send', [\App\Http\Controllers\SendTaskMail::class, 'sendMail']);
+//Route::get('/send', [\App\Http\Controllers\SendTaskMail::class, 'sendMail']);
 
 Route::get('/', function () {
     return view('mainpage');
