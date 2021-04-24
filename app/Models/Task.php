@@ -31,6 +31,7 @@ class Task extends Model
         'description',
         'deadline',
         'is_alert',
+        'is_complete',
         'list_id',
         'term_id',
         'repeat_id',
