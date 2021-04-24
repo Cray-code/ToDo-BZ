@@ -14,7 +14,7 @@ class AddIsCompleteColumnToTasks extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->boolean('is_comlete')
+            $table->boolean('is_complete')
                 ->default(0)
                 ->after('is_alert');
         });
@@ -28,7 +28,7 @@ class AddIsCompleteColumnToTasks extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('is_comlete');
+            $table->dropColumn('is_complete');
         });
     }
 }
