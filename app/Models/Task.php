@@ -47,13 +47,16 @@ class Task extends Model
             ->get();
     }
 
-    static function getOverduedTasks(){
+    static function getOverduedTasks()
+    {
         return Task::leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
             ->select('todolists.user_id', 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.deadline')
             ->where('tasks.deadline', '<', Carbon::now())
             ->orderBy('tasks.deadline')
-            ->leftJoin('users', 'todolists.user_id', '=', 'users.id')
-            ->select('tasks.id as task_id', 'tasks.name as task_name', 'tasks.description', 'tasks.deadline', 'users.name as user_name', 'users.email')
-            ->get();
+                ->leftJoin('users', 'todolists.user_id', '=', 'users.id')
+                ->select('users.id as user_id', 'users.name as user_name', 'users.email', 'tasks.id as task_id',
+                                 'tasks.name as task_name', 'tasks.description', 'tasks.deadline')
+                ->orderBy('user_id')
+                ->get();
     }
 }

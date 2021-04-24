@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Mail\OverdueTaskMail;
 use App\Models\Task;
-use App\Models\Todolist;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,18 +36,19 @@ class ScanTasksDeadlines implements ShouldQueue
      */
     public function handle()
     {
-        $data = Task::getOverduedTasks();
-        Storage::disk('mail_logs')->append('mail.log', date("Y-m-d H:i:s"));
-        $message = 'success';
-        try {
-            foreach ($data as $item) {
-                Mail::to($item->email)
-                    ->send(new OverdueTaskMail('Просрочено выполнение задачи: ' . $item->task_name));
+        $arr = Task::getOverduedTasks();
+        $mails = $arr->pluck('email')->unique();
+
+        foreach ($mails as $mail) {
+            Storage::disk('mail_logs')->append('mail.log', date("Y-m-d H:i:s"). ' email: '.$mail);
+            $message = 'success';
+            try {
+                Mail::to($mail)->send(new OverdueTaskMail($arr->where('email', $mail)));
+            } catch (\Exception $exception) {
+                $message = "error: " . $exception->getMessage();
+            } finally {
+                Storage::disk('mail_logs')->append('mail.log', $message);
             }
-        } catch (\Exception $exception) {
-            $message = "error: " . $exception->getMessage();
-        } finally {
-            Storage::disk('mail_logs')->append('mail.log', $message);
         }
     }
 }
