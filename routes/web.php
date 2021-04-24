@@ -14,10 +14,6 @@ use App\Http\Controllers\TaskController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//send mail test
-//Route::get('/send', [\App\Http\Controllers\SendTaskMail::class, 'sendMail']);
-
 Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
