@@ -30,6 +30,7 @@ class Task extends Model
         'name',
         'description',
         'deadline',
+        'is_alert',
         'list_id',
         'term_id',
         'repeat_id',
@@ -52,6 +53,7 @@ class Task extends Model
         return Task::leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
             ->select('todolists.user_id', 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.deadline')
             ->where('tasks.deadline', '<', Carbon::now())
+            ->where('is_alert', 0)
             ->orderBy('tasks.deadline')
                 ->leftJoin('users', 'todolists.user_id', '=', 'users.id')
                 ->select('users.id as user_id', 'users.name as user_name', 'users.email', 'tasks.id as task_id',

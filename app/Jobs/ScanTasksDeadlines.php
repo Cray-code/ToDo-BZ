@@ -42,8 +42,12 @@ class ScanTasksDeadlines implements ShouldQueue
         foreach ($mails as $mail) {
             Storage::disk('mail_logs')->append('mail.log', date("Y-m-d H:i:s"). ' email: '.$mail);
             $message = 'success';
+            $data = $arr->where('email', $mail);
             try {
-                Mail::to($mail)->send(new OverdueTaskMail($arr->where('email', $mail)));
+                Mail::to($mail)->send(new OverdueTaskMail($data));
+                foreach ($data as $item){
+                    Task::find($item->task_id)->update(['is_alert'=>1]);
+                }
             } catch (\Exception $exception) {
                 $message = "error: " . $exception->getMessage();
             } finally {
