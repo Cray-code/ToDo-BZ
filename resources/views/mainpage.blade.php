@@ -142,7 +142,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
-                    <button class="btn btn-success text-right" id="btn-get">Create Task</button>
+                    <button class="btn btn-success text-right" id="btn-get">Создать задачу</button>
                 </div>
 
                 <div class="modal fade" id="formModal" aria-hidden="true">
@@ -157,10 +157,10 @@
 {{--                                        <label>User_id</label>--}}
                                         <input type="hidden" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-                                    <div class="form-group">
+{{--                                    <div class="form-group">--}}
 {{--                                        <label>List_id</label>--}}
-                                        <input type="hidden" class="form-control" id="list_id" name="list_id" value="61">
-                                    </div>
+{{--                                        <input type="hidden" class="form-control" id="list_id" name="list_id" value="61">--}}
+{{--                                    </div>--}}
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>list_Name</label>--}}
 {{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
@@ -179,15 +179,24 @@
 {{--                                        <input type="text" class="form-control" id="task_id" name="task_id">--}}
 {{--                                    </div>--}}
                                     <div class="form-group">
-                                        <label>Task_name</label>
+                                        <label>Выберите список</label>
+                                        <select class="form-select" id="list_id" name="list_id">
+                                            {{ $lists = \App\Models\Todolist::where('user_id', \Illuminate\Support\Facades\Auth::id())->get() }}
+                                            @foreach($lists as $list)
+                                                <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Название задачи</label>
                                         <input type="text" class="form-control" id="task_name" name="task_name">
                                     </div>
                                     <div class="form-group">
-                                        <label>Task_description</label>
+                                        <label>Описание задачи</label>
                                         <input type="text" class="form-control" id="task_description" name="description">
                                     </div>
                                     <div class="form-group">
-                                        <label>DeadLine</label>
+                                        <label>Срок исполнения</label>
                                         <input type="datetime-local" class="form-control" id="deadline" name="deadline">
                                     </div>
 {{--                                    <div class="form-group">--}}

@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -32,6 +31,7 @@ class OverdueTaskMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.taskmail', ['user'=>$this->user_name, 'tasks'=>$this->arr_data]);
+        return $this->subject("doPlans: Просроченные задачи")
+                    ->view('mails.taskmail', ['user'=>$this->user_name, 'tasks'=>$this->arr_data]);
     }
 }

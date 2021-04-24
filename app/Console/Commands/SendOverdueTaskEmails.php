@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ScanTasksDeadlines;
+use App\Jobs\TasksDeadlinesAlert;
 use App\Mail\OverdueTaskMail;
 use App\Models\Task;
 use Illuminate\Console\Command;
@@ -42,8 +42,7 @@ class SendOverdueTaskEmails extends Command
      */
     public function handle()
     {
-        ScanTasksDeadlines::dispatch();
-
+        TasksDeadlinesAlert::dispatch();
         return 0;
     }
 }
