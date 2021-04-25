@@ -42,7 +42,8 @@ class TaskItemRepeat extends Component {
         return (
             <ListItem
                 key={repeatId}
-               
+                disableGutters
+                divider
                 className="listItemLeftPadding"
             >
                 <ListItemText>

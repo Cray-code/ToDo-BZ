@@ -172,7 +172,7 @@ function NavBar(props) {
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
               <Avatar
-                alt="profile picture"
+                alt={props.userName}
                 src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
@@ -180,7 +180,7 @@ function NavBar(props) {
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">{props.userName} (id- {props.userId})</Typography>
                   }
                 />
               )}

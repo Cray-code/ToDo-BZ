@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { loadActiveUser } from '@actions/user';
-import { loadTasks} from '@actions/tasks';
+import { loadTasks, setVisibilityFilter, VisibilityFilters} from '@actions/tasks';
 import { loadLists } from '@actions/lists';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import NavBar from "@logged_in/navigation/NavBar";
 import Tasks from "@logged_in/Tasks";
+import TasksVisibleFilter from '@logged_in/TasksVisibleFilter'
 import styles from "./style";
 
 
@@ -23,7 +24,8 @@ class MainPage extends Component {
         }
     }
     async componentDidMount() { 
-        await this.props.loadActiveUser(this.state.userId);
+        await this.props.loadActiveUser(this.state.userId,this.state.userName);
+        this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL);
         await this.props.loadLists('/api/lists?filter=1');
         await this.props.loadLists('/api/lists?filter=0');
         await this.props.loadTasks();
@@ -38,13 +40,15 @@ class MainPage extends Component {
 
                 <NavBar
                     userId={this.state.userId}
+                    userName= {user.user_name}
                 // selectedTab={selectedTab}
                 // messages={messages}
                 // openAddBalanceDialog={openAddBalanceDialog}
                 />
 
                 <main className={classNames(classes.main)}>
-                    <Tasks userId={this.state.userId} listId={this.props.listId} />
+                    <TasksVisibleFilter />
+                    {/* <Tasks userId={this.state.userId} listId={this.props.listId} /> */}
                 </main>
             </Fragment>
         );
@@ -53,7 +57,7 @@ class MainPage extends Component {
 const mapState = ({ userReducer }) => ({
     user: userReducer.user
   });
-const mapAction = dispatch => bindActionCreators({ loadActiveUser, loadTasks, loadLists }, dispatch);
+const mapAction = dispatch => bindActionCreators({ loadActiveUser, loadTasks, loadLists, setVisibilityFilter }, dispatch);
 
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(MainPage));
 
