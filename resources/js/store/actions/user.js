@@ -17,8 +17,8 @@ export const loadUser = () => ({
     ]
   }
 });
-export const loadActiveUser = id => ({
+export const loadActiveUser = (userId,userName) => ({
   type: 'LOAD_USER_ID',
-  payload: { data: {id: id ? id : null }}
+  payload: { data: {id: userId ? userId : null, name: userName ? userName : null }}
   
 });

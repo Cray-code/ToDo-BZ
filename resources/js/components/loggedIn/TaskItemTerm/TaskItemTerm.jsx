@@ -48,7 +48,8 @@ class TaskItemTerm extends Component {
         return (
             <ListItem
                 key={termId}
-               
+                disableGutters
+                divider
                 className="listItemLeftPadding"
             >
                 <ListItemText>
