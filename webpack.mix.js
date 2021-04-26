@@ -27,7 +27,10 @@ mix.webpackConfig({
                     plugins: [
                         [
                             "@babel/plugin-proposal-class-properties",
-                            { "loose": true }
+                            { "loose": true, "useBuiltIns": true }
+                        ],
+                        [
+                            "@babel/plugin-proposal-object-rest-spread"                            
                         ]
                     ],
                     presets: ["@babel/preset-env", "@babel/preset-react"]

@@ -9,7 +9,9 @@ import {
     List,
     ListItem,
     ListItemText,
+    ListItemIcon,
     ListItemSecondaryAction,
+    LoopIcon,
     FormControl,
     Select,
     OutlinedInput,
@@ -26,6 +28,7 @@ import TaskPredefined from "@logged_in/TaskPredefined";
 import TaskItemTerm from "@logged_in/TaskItemTerm";
 import TaskItemRepeat from "@logged_in/TaskItemRepeat";
 import { withStyles } from '@material-ui/core/styles';
+import classNames from "classnames";
 import styles from "./style";
 
 
@@ -39,6 +42,7 @@ class TaskItem extends Component {
     render() {
         const { classes } = this.props;
         // console.log(`TaskItem - ${this.props.task}`);
+        const isAccountActivated = true;
         const { task, terms, repeats } = this.props;
         const Task = (task) ?  (
             <Accordion>
@@ -46,7 +50,7 @@ class TaskItem extends Component {
                     <Typography>
                         {task.name}
                         {task.description && <HelpIcon title={task.description} />}
-                    </Typography>
+                    </Typography>                    
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>

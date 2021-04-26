@@ -39,21 +39,24 @@ class Tasks extends Component {
     }
     async componentDidMount() {  
         //await this.props.loadTasks(this.props.listId);     
-        await this.props.loadTerms();
-        await this.props.loadRepeats();
+        
     };
-
+    
     render() {
         const { classes } = this.props;
-        const { tasks, terms, repeats } = this.props;
+        const { tasks, terms, repeats, lists, paramFilters } = this.props;
+        const listName = (listId,listStore) => {
+            const currList = listStore.filter(element => element.id == listId);           
+            return currList && currList[0] && currList[0].name;
+        }
         const Tasks = (tasks) ? tasks.map((task,i) => (
             <TaskItem  key={i} task={task} terms={terms} repeats={repeats} taskId={ task.id } taskName={ task.name } />
         )) : ['Задач пока нет...'];
         return (
             <Fragment>
                 <Box mt={4}>
-                    <Typography variant="subtitle1" gutterBottom>
-                        listId  - {this.props.listId}
+                    <Typography variant="h4" gutterBottom>
+                        {listName(paramFilters, lists)}
                     </Typography>
                 </Box>
                 { Tasks }
