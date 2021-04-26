@@ -25,7 +25,7 @@ import {
 import { Link } from "react-router-dom";
 import { addList } from '@actions/lists';
 import { loadLists } from '@actions/lists';
-import { loadTasks } from '@actions/tasks';
+import { setVisibilityFilter, VisibilityFilters } from '@actions/tasks';
 import styles from "./style";
 
 
@@ -55,7 +55,7 @@ class ListsUser extends Component {
 
     async handleNavigate(listId) {
         this.setCurrentList(listId);
-        await this.props.loadTasks(listId);
+        this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID,listId);
     }
 
     componentDidMount() {
@@ -111,7 +111,7 @@ const mapState = ({ listsReducer }) => ({
     lists: listsReducer.lists,
 });
 
-const mapAction = dispatch => bindActionCreators({ addList, loadLists, loadTasks }, dispatch);
+const mapAction = dispatch => bindActionCreators({ addList, loadLists, setVisibilityFilter }, dispatch);
 
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(ListsUser));
 

@@ -24,9 +24,9 @@ import HelpIcon from "@shared/components/HelpIcon";
 import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
 import TaskItem from "@logged_in/TaskItem";
-import { loadTasks, addTask } from '@actions/tasks';
-import { loadTerms } from '@actions/terms';
-import { loadRepeats } from '@actions/repeats';
+// import { loadTasks, addTask } from '@actions/tasks';
+// import { loadTerms } from '@actions/terms';
+// import { loadRepeats } from '@actions/repeats';
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
@@ -63,13 +63,14 @@ class Tasks extends Component {
 }
 
 
+export default withStyles(styles, { withTheme: true })(Tasks);
+// const mapState = ({ tasksReducer, termsReducer, repeatsReducer }) => ({
+//     tasks: tasksReducer.tasks,
+//     terms: termsReducer.terms,
+//     repeats: repeatsReducer.repeats,
+// });
 
-const mapState = ({ tasksReducer, termsReducer, repeatsReducer }) => ({
-    tasks: tasksReducer.tasks,
-    terms: termsReducer.terms,
-    repeats: repeatsReducer.repeats,
-});
+// const mapAction = dispatch => bindActionCreators({ addTask, loadTasks, loadTerms, loadRepeats }, dispatch);
 
-const mapAction = dispatch => bindActionCreators({ addTask, loadTasks, loadTerms, loadRepeats }, dispatch);
+// export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(Tasks));
 
-export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(Tasks));
