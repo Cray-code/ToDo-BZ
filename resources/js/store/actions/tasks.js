@@ -33,7 +33,7 @@ export const loadTasks = () => ({
 });
 
 
-export const addTask = (name, description, list_id, term_id, repeat_id, cronTime, favorites) => ({
+export const addTask = (name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete) => ({
     [RSAA]: {
         endpoint: '/api/tasks',
         method: 'POST',
@@ -42,7 +42,7 @@ export const addTask = (name, description, list_id, term_id, repeat_id, cronTime
             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'credentials': 'same-origin'
                 },
-        body: JSON.stringify({ name, description, list_id, term_id, repeat_id, cronTime, favorites}),
+        body: JSON.stringify({ name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete }),
         types: [
             'ADD_TASK_REQUEST',
             {

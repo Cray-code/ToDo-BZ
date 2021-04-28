@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
 
-function CreateList(props) {
+function ListCreate(props) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -71,4 +71,4 @@ function CreateList(props) {
     );
 }
 
-export default (withStyles(styles, { withTheme: true })(CreateList));
+export default (withStyles(styles, { withTheme: true })(ListCreate));

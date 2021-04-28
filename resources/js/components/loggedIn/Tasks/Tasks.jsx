@@ -24,6 +24,7 @@ import HelpIcon from "@shared/components/HelpIcon";
 import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
 import TaskItem from "@logged_in/TaskItem";
+import TaskCreate from "@logged_in/TaskCreate";
 // import { loadTasks, addTask } from '@actions/tasks';
 // import { loadTerms } from '@actions/terms';
 // import { loadRepeats } from '@actions/repeats';
@@ -37,11 +38,16 @@ class Tasks extends Component {
         this.state = {
         }
     }
-    async componentDidMount() {  
-        //await this.props.loadTasks(this.props.listId);     
+     componentDidMount() {        
         
-    };
-    
+    }
+
+    addTask = (name, description = 'не задано', list_id = 0, term_id = 0, repeat_id = 0, cronTime, favorites = 0, is_complete = 0) => {        
+        this.props.addTask(name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete );
+        // { name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete }
+        
+    }
+
     render() {
         const { classes } = this.props;
         const { tasks, terms, repeats, lists, paramFilters } = this.props;
@@ -56,10 +62,13 @@ class Tasks extends Component {
             <Fragment>
                 <Box mt={4}>
                     <Typography variant="h4" gutterBottom>
-                        {listName(paramFilters, lists)}
+                        {lists ? listName(paramFilters, lists) : ['Список задач не определен...']}
                     </Typography>
                 </Box>
                 { Tasks }
+                <Box mt={4}>
+                    <TaskCreate user={this.props.userId} addTask={this.addTask} listId={paramFilters}/>
+                </Box>
             </Fragment>
         );
     }

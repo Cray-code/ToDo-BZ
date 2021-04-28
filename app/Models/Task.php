@@ -43,7 +43,7 @@ class Task extends Model
     {
         return Task::leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
             ->select('tasks.id', 'tasks.name', 'tasks.description', 'tasks.list_id', 'tasks.term_id', 'tasks.repeat_id',
-                'tasks.cronTime', 'tasks.favorites', 'tasks.created_at', 'tasks.updated_at', 'todolists.user_id')
+                'tasks.cronTime', 'tasks.favorites', 'tasks.deadline', 'tasks.is_complete', 'tasks.created_at', 'tasks.updated_at', 'todolists.user_id')
             ->where('todolists.user_id', $user_id)
             ->orderBy('tasks.created_at')
             ->get();
