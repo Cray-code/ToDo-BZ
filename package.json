@@ -38,6 +38,7 @@
         "date-fns": "^2.20.0",
         "emoji-mart": "^3.0.1",
         "js-cookie": "^2.2.0",
+        "moment": "^2.29.1",
         "prop-types": "^15.7.2",
         "react-addons-update": "^15.6.3",
         "react-cropper": "^2.1.7",

@@ -10,6 +10,7 @@ import {
     ListItem,
     ListItemText,
     ListItemSecondaryAction,
+    
     FormControl,
     Select,
     OutlinedInput,
@@ -55,6 +56,7 @@ class TaskItemTerm extends Component {
                 <ListItemText>
                   <Typography variant="body2">{nameTitle}</Typography>
                 </ListItemText>
+                
                 <FormControl variant="outlined">
                   <ListItemSecondaryAction
                     className={classes.ListItemSecondaryAction}

@@ -138,7 +138,7 @@
 {{--        <h5 class="mt-12 text-center">Testing zone</h5>--}}
 
         {{-- Это modal тест AJAX. Testing Routes--}}
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 d-none"> {{--Скрыл временно тестовый блок. Убери D-NONE из class и блок появится--}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">

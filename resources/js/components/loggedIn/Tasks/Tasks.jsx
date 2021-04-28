@@ -25,6 +25,7 @@ import Bordered from "@shared/components/Bordered";
 import ButtonCircularProgress from "@shared/components/ButtonCircularProgress";
 import TaskItem from "@logged_in/TaskItem";
 import TaskCreate from "@logged_in/TaskCreate";
+import {dfltTaskParam} from "@constants/paramsDefault";
 // import { loadTasks, addTask } from '@actions/tasks';
 // import { loadTerms } from '@actions/terms';
 // import { loadRepeats } from '@actions/repeats';
@@ -42,8 +43,16 @@ class Tasks extends Component {
         
     }
 
-    addTask = (name, description = 'не задано', list_id = 0, term_id = 0, repeat_id = 0, cronTime, favorites = 0, is_complete = 0) => {        
-        this.props.addTask(name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete );
+    addTask = (name, 
+            list_id = dfltTaskParam.TASK_LIST_ID, 
+            description = dfltTaskParam.TASK_DESCRIPTION, 
+            term_id = dfltTaskParam.TASK_TERM_ID, 
+            repeat_id = dfltTaskParam.TASK_REPEAT_ID, 
+            cronTime = '', 
+            favorites = dfltTaskParam.TASK_FAVORITES, 
+            is_complete = dfltTaskParam.TASK_IS_COMPLETE
+            ) => {        
+        this.props.addTask(name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete );
         // { name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete }
         
     }
@@ -67,7 +76,7 @@ class Tasks extends Component {
                 </Box>
                 { Tasks }
                 <Box mt={4}>
-                    <TaskCreate user={this.props.userId} addTask={this.addTask} listId={paramFilters}/>
+                    { paramFilters && (paramFilters > 0) && <TaskCreate user={this.props.userId} addTask={this.addTask} listId={paramFilters}/> } 
                 </Box>
             </Fragment>
         );

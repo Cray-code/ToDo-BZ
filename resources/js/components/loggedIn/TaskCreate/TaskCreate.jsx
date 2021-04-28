@@ -33,7 +33,7 @@ function TaskCreate(props) {
 
     const sendTask = () => {
         if (taskName) {
-            props.addTask(taskName);
+            props.addTask(taskName, props.listId);
             handleClose();
         }
     };

@@ -18,7 +18,7 @@ import {
     MenuItem,
     Checkbox,
     Box,
-
+    Switch,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import HelpIcon from "@shared/components/HelpIcon";
@@ -47,10 +47,23 @@ class TaskItem extends Component {
         const Task = (task) ?  (
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>
-                        {task.name}
-                        {task.description && <HelpIcon title={task.description} />}
-                    </Typography>                    
+                   
+                    <Box display="flex" alignItems="center">
+                        {/* <ListItemIcon>
+                           
+                             <Switch
+                                color="secondary"                               
+                              
+                            /> 
+                        </ListItemIcon> */}
+                        <Box mr={2}>
+                             <Typography>
+                                {task.name}
+                                {task.description && <HelpIcon title={task.description} />}
+                            </Typography>  
+                        </Box>
+                        
+                    </Box>                
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>

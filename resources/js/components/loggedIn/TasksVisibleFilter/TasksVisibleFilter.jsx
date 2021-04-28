@@ -33,22 +33,13 @@ const nameResolveId = (sourceId,dataForId,nameId) => {
             namesLinkId = element.name;
         }  
     });
+    if (nameId === 'list_name') {console.log(`${nameId} - ${namesLinkId}`);}
     
     return {nameId : namesLinkId};
 }
 
 const mapState = ({ tasksReducer, listsReducer, termsReducer, repeatsReducer, visibilityFilterReducer }) => ({
-    tasks:  getVisibleTasks(tasksReducer.tasks &&
-        tasksReducer.tasks.map(task =>
-            Object.assign({}, 
-                task, 
-                nameResolveId(task.list_id,listsReducer.lists,'list_name'),
-                nameResolveId(task.term_id,termsReducer.terms,'term_name'),
-                nameResolveId(task.repeat_id,repeatsReducer.repeats,'repeat_name')
-                ) 
-            //{...task, ...tasksResolveId(task)}  
-            //task                                      
-        ), 
+    tasks:  getVisibleTasks(tasksReducer.tasks , 
         visibilityFilterReducer.visibilityFilter,
         visibilityFilterReducer.paramFilters
         ),

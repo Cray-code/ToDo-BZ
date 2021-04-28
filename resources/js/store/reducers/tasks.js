@@ -19,7 +19,9 @@ export default (store = storeTasks, action) => {
                 tasks: { $set: action.payload.data }
             });
         }
-        
+        case 'LOAD_TASKS_FAILURE': {
+            console.log(action.payload.data)
+        }
         default: {
             return store;
         }
