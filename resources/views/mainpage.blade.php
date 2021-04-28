@@ -16,7 +16,7 @@
 </head>
     <body class="font-sans antialiased">
 
-        <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-start">
+        <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
             <!-- Navigation -->
             @if (Route::has('login'))
                         @auth
@@ -121,7 +121,7 @@
     @endif
 
                 @auth()
-                    <span style="margin-right: 10px">{{ Auth::user()->name }}</span>
+                    <!-- <span style="margin-right: 10px">{{ Auth::user()->name }}</span> -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a class="btn btn-outline-dark btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -138,7 +138,7 @@
 {{--        <h5 class="mt-12 text-center">Testing zone</h5>--}}
 
         {{-- Это modal тест AJAX. Testing Routes--}}
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 d-none"> {{--Скрыл временно тестовый блок. Убери D-NONE из class и блок появится--}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">

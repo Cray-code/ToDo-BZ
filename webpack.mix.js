@@ -27,7 +27,10 @@ mix.webpackConfig({
                     plugins: [
                         [
                             "@babel/plugin-proposal-class-properties",
-                            { "loose": true }
+                            { "loose": true, "useBuiltIns": true }
+                        ],
+                        [
+                            "@babel/plugin-proposal-object-rest-spread"                            
                         ]
                     ],
                     presets: ["@babel/preset-env", "@babel/preset-react"]
@@ -49,7 +52,7 @@ mix.webpackConfig({
             '@logged_in': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedIn'),
             '@logged_out': path.resolve(__dirname, 'resources', 'js', 'components', 'loggedOut'),
             '@shared': path.resolve(__dirname, 'resources', 'js','common'),
-            
+            '@constants': path.resolve(__dirname, 'resources', 'js','common', 'constants'),
         }
     },
 });

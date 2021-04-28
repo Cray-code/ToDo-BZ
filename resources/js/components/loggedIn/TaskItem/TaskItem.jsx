@@ -9,14 +9,16 @@ import {
     List,
     ListItem,
     ListItemText,
+    ListItemIcon,
     ListItemSecondaryAction,
+    LoopIcon,
     FormControl,
     Select,
     OutlinedInput,
     MenuItem,
     Checkbox,
     Box,
-
+    Switch,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import HelpIcon from "@shared/components/HelpIcon";
@@ -26,6 +28,7 @@ import TaskPredefined from "@logged_in/TaskPredefined";
 import TaskItemTerm from "@logged_in/TaskItemTerm";
 import TaskItemRepeat from "@logged_in/TaskItemRepeat";
 import { withStyles } from '@material-ui/core/styles';
+import classNames from "classnames";
 import styles from "./style";
 
 
@@ -39,14 +42,28 @@ class TaskItem extends Component {
     render() {
         const { classes } = this.props;
         // console.log(`TaskItem - ${this.props.task}`);
+        const isAccountActivated = true;
         const { task, terms, repeats } = this.props;
         const Task = (task) ?  (
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography>
-                        {task.name}
-                        {task.description && <HelpIcon title={task.description} />}
-                    </Typography>
+                   
+                    <Box display="flex" alignItems="center">
+                        {/* <ListItemIcon>
+                           
+                             <Switch
+                                color="secondary"                               
+                              
+                            /> 
+                        </ListItemIcon> */}
+                        <Box mr={2}>
+                             <Typography>
+                                {task.name}
+                                {task.description && <HelpIcon title={task.description} />}
+                            </Typography>  
+                        </Box>
+                        
+                    </Box>                
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>

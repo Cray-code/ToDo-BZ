@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { loadActiveUser } from '@actions/user';
 import { loadTasks, setVisibilityFilter, VisibilityFilters} from '@actions/tasks';
 import { loadLists } from '@actions/lists';
+import { loadTerms } from '@actions/terms';
+import { loadRepeats } from '@actions/repeats';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
@@ -28,7 +30,10 @@ class MainPage extends Component {
         this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL);
         await this.props.loadLists('/api/lists?filter=1');
         await this.props.loadLists('/api/lists?filter=0');
+        await this.props.loadTerms();
+        await this.props.loadRepeats();
         await this.props.loadTasks();
+        
     }
 
     render() {
@@ -57,7 +62,7 @@ class MainPage extends Component {
 const mapState = ({ userReducer }) => ({
     user: userReducer.user
   });
-const mapAction = dispatch => bindActionCreators({ loadActiveUser, loadTasks, loadLists, setVisibilityFilter }, dispatch);
+const mapAction = dispatch => bindActionCreators({ loadActiveUser, loadTasks, loadLists, setVisibilityFilter, loadTerms, loadRepeats }, dispatch);
 
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(MainPage));
 
