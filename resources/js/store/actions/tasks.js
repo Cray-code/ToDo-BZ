@@ -86,7 +86,7 @@ export const updateTask = (task) => ({
                 payload: async (action, state, response) => {
                     try {
                         const result = await getJSON(response);
-                        console.log({ data: result })
+                        //console.log({ data: result })
                         
                             return { data: result };
                         

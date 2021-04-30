@@ -13,12 +13,18 @@ export default (store = storeTasks, action) => {
         }
         case 'LOAD_TASKS_SUCCESS': {
             return update(store, {
-                tasks: { $set: action.payload.data }
+                tasks:  { $set: action.payload.data } 
             });
         }
         case 'UPDATE_TASK_SUCCESS': {
+            const taskData = store.tasks.map(task => {                
+                if(task.id === action.payload.data.id) {
+                    return Object.assign({}, task, action.payload.data);
+                }        
+                return task;
+              });
             return update(store, {
-                tasks: { $merge: [action.payload.data] }
+                tasks: { $set: taskData }
             });
         }      
         case 'LOAD_TASKS_FAILURE': {
