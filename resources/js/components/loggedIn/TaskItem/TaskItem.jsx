@@ -84,6 +84,7 @@ class TaskItem extends Component {
                             />
                         </Bordered>
                     </List>
+                    
                 </AccordionDetails>
 
                 {/* <AccordionDetails className={classes.dBlock}>
