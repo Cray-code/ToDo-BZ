@@ -28,6 +28,7 @@ class TaskItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            expanded: false
         }
     }
     toggle_param = (tParam) => {
@@ -36,9 +37,14 @@ class TaskItem extends Component {
 
     handleInputChange = (paramName, paramValue) => {
         console.log(`handleInputChange - ${paramName} - ${paramValue}`);
-        this.props.updateTask({ ...this.props.task, [paramName]: paramValue });
+        paramName === 'is_complete' ?
+            this.props.updateTask({ ...this.props.task, [paramName]: paramValue, is_alert: paramValue }) :
+            this.props.updateTask({ ...this.props.task, [paramName]: paramValue });
     }
 
+    handlePanelChange = (panel) => (event, isExpanded) => {
+        this.setState({ expanded: isExpanded ? panel : false });
+    };
 
     render() {
         const { classes } = this.props;
@@ -47,7 +53,12 @@ class TaskItem extends Component {
         let keyId = 0;
         const { task, terms, repeats } = this.props;
         const Task = (task) ? (
-            <Accordion TransitionProps={{ unmountOnExit: true }} >
+            <Accordion
+                TransitionProps={{ unmountOnExit: true }}
+                defaultExpanded={false}
+                expanded={this.state.expanded === `taskPanel${task.id}`} onChange={this.handlePanelChange(`taskPanel${task.id}`)}
+                isExpand={false}
+            >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
 
                     <Box display="flex" alignItems="center">
@@ -97,29 +108,24 @@ class TaskItem extends Component {
 
                 </AccordionDetails>
 
-                <AccordionDetails className={classes.AccordionDetails}>
-                    {/* <Box mr={1}>
+                {/* <AccordionDetails className={classes.AccordionDetails}>
+                     <Box mr={1}>
                         <Button>
                             Cancel {false && <ButtonCircularProgress />}
                         </Button>
-                    </Box> */}
+                    </Box> 
                     <Button
                         variant="contained"
                         color="secondary"
                     >
                         Сохранить {false && <ButtonCircularProgress />}
                     </Button>
-                </AccordionDetails>
+                </AccordionDetails> */}
             </Accordion>
         ) : ['Задача не загружена...'];
         return (
             <Fragment>
                 { Task}
-                {/*<ListItem className="tasks">*/}
-                {/*    <ListItemText primary={`${this.props.taskId} test Task`} />*/}
-                {/*    <TaskPredefined />*/}
-                {/*   */}
-                {/*</ListItem>*/}
             </Fragment>
         );
     }

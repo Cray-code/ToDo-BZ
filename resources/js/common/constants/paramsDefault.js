@@ -8,7 +8,8 @@ export const dfltTaskParam = {
     TASK_IS_COMPLETE : 0,
     TASK_FAVORITES : 0,
     TASK_IS_ALERT : 0,
-    TASK_DEADLINE : moment().add('days', 1).format('L')
+    TASK_DEADLINE: moment().add('days', 1).format('L'),
+    TASK_CRONTIME: moment().add('days', 1).format('L')
 };
 
 
