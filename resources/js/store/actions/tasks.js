@@ -33,7 +33,7 @@ export const loadTasks = () => ({
 });
 
 
-export const addTask = (name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete) => ({
+export const addTask = (name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete, is_alert) => ({
     [RSAA]: {
         endpoint: '/api/tasks',
         method: 'POST',
@@ -43,7 +43,7 @@ export const addTask = (name, list_id, description, term_id, repeat_id, cronTime
             'credentials': 'same-origin'
                 },
         //body: JSON.stringify({ name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete }),
-        body: JSON.stringify({ name, list_id, description, favorites, term_id, repeat_id, is_complete }),
+        body: JSON.stringify({ name, list_id, description, favorites, term_id, repeat_id, is_complete, is_alert }),
         types: [
             'ADD_TASK_REQUEST',
             {

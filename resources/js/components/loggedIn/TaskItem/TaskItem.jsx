@@ -42,6 +42,12 @@ class TaskItem extends Component {
         return tParam ? 0 : 1;
     }
 
+    handleInputChange = (paramName, paramValue) => {
+        console.log(`handleInputChange - ${paramName} - ${paramValue}`);
+        this.props.updateTask({ ...this.props.task, [paramName]: paramValue });
+    }
+
+
     render() {
         const { classes } = this.props;
         // console.log(`TaskItem - ${this.props.task}`);
@@ -76,57 +82,32 @@ class TaskItem extends Component {
                                 terms={terms}
                                 termId={task.term_id}
                                 nameTitle='Срок выполнения'
+                                handleInputChange={this.handleInputChange}
+
                             />
                             <TaskItemRepeat
                                 repeats={repeats}
                                 repeatId={task.repeat_id}
                                 nameTitle='Повтор'
+                                handleInputChange={this.handleInputChange}
                             />
+                            
                         </Bordered>
                     </List>
-                    
+
                 </AccordionDetails>
 
-                {/* <AccordionDetails className={classes.dBlock}>
-                    <List disablePadding>
-                        <Bordered disableVerticalPadding disableBorderRadius>
-                            <ListItem
-                                key={task.id}
-                                divider={task.id !== task.length - 1}
-                                className="listItemLeftPadding"
-                            >
-                                <ListItemText>
-                                    <Typography variant="body2">
-                                        {terms && terms.length}
-                                        {task.description && <HelpIcon title={task.description} />}
-                                    </Typography>
-                                </ListItemText>
-                                <ListItemSecondaryAction>
-                                    <FormControl variant="outlined">
-                                        <Checkbox
-                                            value="option4"
-                                            color="primary"
-
-
-                                        />
-                                    </FormControl>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-
-                        </Bordered>
-                    </List>
-                </AccordionDetails> */}
                 <AccordionDetails className={classes.AccordionDetails}>
-                    <Box mr={1}>
+                    {/* <Box mr={1}>
                         <Button>
                             Cancel {false && <ButtonCircularProgress />}
                         </Button>
-                    </Box>
+                    </Box> */}
                     <Button
                         variant="contained"
                         color="secondary"
                     >
-                        Save {false && <ButtonCircularProgress />}
+                        Сохранить {false && <ButtonCircularProgress />}
                     </Button>
                 </AccordionDetails>
             </Accordion>

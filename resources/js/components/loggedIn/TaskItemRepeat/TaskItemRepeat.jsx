@@ -18,7 +18,7 @@ import {
   Box,
 
 } from "@material-ui/core";
-
+import { dfltTaskParam } from "@constants/paramsDefault";
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
 
@@ -34,7 +34,7 @@ class TaskItemRepeat extends Component {
     const { classes } = this.props;
 
     const { nameTitle, repeatId, repeats } = this.props;
-    const currRepeat = repeats.filter(el => { el.id === repeatId });
+    //const currRepeat = repeats.filter(el => { el.id === repeatId });
 
     return (
       <ListItem
@@ -51,21 +51,21 @@ class TaskItemRepeat extends Component {
             className={classes.ListItemSecondaryAction}
           >
             <Select
-              defaultValue={`repeat${repeatId}`}
+              value={repeatId || dfltTaskParam.TASK_REPEAT_ID}
 
               input={
                 <OutlinedInput
-                  name='taskRepeat'
+                  name='repeat_id'
                   labelWidth={0}
                   className={classes.numberInput}
                   classes={{ input: classes.numberInputInput }}
-                  value={`repeat${repeatId}`}
+                  onChange={(event) => { const { name, value } = event.target; this.props.handleInputChange(name, value); }}
                 />
               }
               MenuProps={{ disableScrollLock: true }}
             >
               {repeats.map((innerElement) => (
-                <MenuItem value={`repeat${innerElement.id}`} key={innerElement.id}>
+                <MenuItem value={innerElement.id} key={innerElement.id}>
                   {innerElement.name}
                 </MenuItem>
               ))}

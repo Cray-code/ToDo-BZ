@@ -50,15 +50,15 @@ class Tasks extends Component {
         repeat_id = dfltTaskParam.TASK_REPEAT_ID,
         cronTime = '',
         favorites = dfltTaskParam.TASK_FAVORITES,
-        is_complete = dfltTaskParam.TASK_IS_COMPLETE
+        is_complete = dfltTaskParam.TASK_IS_COMPLETE,
+        is_alert = dfltTaskParam.TASK_IS_ALERT
     ) => {
-        this.props.addTask(name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete);
+        this.props.addTask(name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete, is_alert);
         // { name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete }
 
     }
 
-    updateTask = (task
-    ) => {
+    updateTask = (task) => {
         this.props.updateTask(task);
         // { name, description, list_id, term_id, repeat_id, cronTime, favorites, is_complete }
 
