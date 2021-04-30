@@ -40,7 +40,7 @@ class TaskItemRepeat extends Component {
       <ListItem
         key={repeatId}
         disableGutters
-        divider={false}
+        divider={true}
         className="listItemLeftPadding"
       >
         <ListItemText>
