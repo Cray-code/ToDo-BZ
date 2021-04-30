@@ -47,7 +47,7 @@ class TaskItem extends Component {
         let keyId = 0;
         const { task, terms, repeats } = this.props;
         const Task = (task) ? (
-            <Accordion>
+            <Accordion TransitionProps={{ unmountOnExit: true }} >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
 
                     <Box display="flex" alignItems="center">
@@ -89,7 +89,7 @@ class TaskItem extends Component {
                                 favoritesChecked={task.favorites}
                                 nameTitle='Задать приоритет задаче'
                                 handleInputChange={this.handleInputChange}
-                                toggle_param={ this.toggle_param}
+                                toggle_param={this.toggle_param}
                                 keyId={keyId++}
                             />
                         </Bordered>

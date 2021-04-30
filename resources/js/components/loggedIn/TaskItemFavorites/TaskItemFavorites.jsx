@@ -6,7 +6,6 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   FormControl,
-
   Checkbox
 } from "@material-ui/core";
 import { dfltTaskParam } from "@constants/paramsDefault";
@@ -45,7 +44,7 @@ class TaskItemFavorites extends Component {
               name='favorites'
               value="option5"
               color="primary"
-              checked={Boolean(favoritesChecked)}
+              checked={Boolean(favoritesChecked || dfltTaskParam.TASK_FAVORITES)}
               onChange={(event) => { const { name, checked } = event.target; this.props.handleInputChange(name, this.props.toggle_param(!checked)); }}
             />
           </ListItemSecondaryAction>
