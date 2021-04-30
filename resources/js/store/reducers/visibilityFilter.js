@@ -11,8 +11,7 @@ const visibilityFilter = (store = storeFilters, action) => {
     case 'SET_VISIBILITY_FILTER':
         return update(store, 
                  { $set: action.payload.data }
-            );
-      //return action.filter
+            );      
     default:
       return store
   }

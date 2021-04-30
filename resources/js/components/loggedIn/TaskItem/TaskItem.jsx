@@ -1,4 +1,4 @@
-import React, { Component, Fragment  } from "react";
+import React, { Component, Fragment } from "react";
 
 import {
     Accordion,
@@ -38,50 +38,54 @@ class TaskItem extends Component {
         this.state = {
         }
     }
+    toggle_param = (tParam) => {
+        return tParam ? 0 : 1;
+    }
 
     render() {
         const { classes } = this.props;
         // console.log(`TaskItem - ${this.props.task}`);
         const isAccountActivated = true;
         const { task, terms, repeats } = this.props;
-        const Task = (task) ?  (
+        const Task = (task) ? (
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                   
+
                     <Box display="flex" alignItems="center">
-                        {/* <ListItemIcon>
-                           
-                             <Switch
-                                color="secondary"                               
-                              
-                            /> 
-                        </ListItemIcon> */}
+                        <ListItemIcon>
+
+                            <Switch
+                                color="secondary"
+                                onClick={(event) => { event.stopPropagation(); this.props.updateTask({ ...task, is_complete: this.toggle_param(task.is_complete) }); }}
+                                checked={Boolean(!task.is_complete)}
+                            />
+                        </ListItemIcon>
                         <Box mr={2}>
-                             <Typography>
+                            <Typography>
                                 {task.name}
                                 {task.description && <HelpIcon title={task.description} />}
-                            </Typography>  
+                            </Typography>
                         </Box>
-                        
-                    </Box>                
+
+                    </Box>
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
                         <Bordered disableVerticalPadding disableBorderRadius>
-                            <TaskItemTerm 
-                                terms={terms} 
+                            <TaskItemTerm
+                                terms={terms}
                                 termId={task.term_id}
                                 nameTitle='Срок выполнения'
                             />
-                             <TaskItemRepeat 
-                                repeats={repeats} 
+                            <TaskItemRepeat
+                                repeats={repeats}
                                 repeatId={task.repeat_id}
                                 nameTitle='Повтор'
                             />
                         </Bordered>
                     </List>
                 </AccordionDetails>
-               
+
                 {/* <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
                         <Bordered disableVerticalPadding disableBorderRadius>
@@ -128,7 +132,7 @@ class TaskItem extends Component {
         ) : ['Задача не загружена...'];
         return (
             <Fragment>
-                 { Task }
+                { Task}
                 {/*<ListItem className="tasks">*/}
                 {/*    <ListItemText primary={`${this.props.taskId} test Task`} />*/}
                 {/*    <TaskPredefined />*/}

@@ -1,10 +1,7 @@
 import update from 'react-addons-update';
 
 const storeTasks = {
-    tasks: [],
-    
-    activeList: null
-
+    tasks: []
 };
 
 export default (store = storeTasks, action) => {
@@ -19,9 +16,15 @@ export default (store = storeTasks, action) => {
                 tasks: { $set: action.payload.data }
             });
         }
+        case 'UPDATE_TASK_SUCCESS': {
+            return update(store, {
+                tasks: { $merge: [action.payload.data] }
+            });
+        }      
         case 'LOAD_TASKS_FAILURE': {
             console.log(action.payload.data)
         }
+          
         default: {
             return store;
         }

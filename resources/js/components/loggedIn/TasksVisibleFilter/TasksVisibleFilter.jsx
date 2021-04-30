@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { loadTasks, addTask, toggleTask, VisibilityFilters } from '@actions/tasks';
+import { loadTasks, addTask, updateTask, VisibilityFilters } from '@actions/tasks';
 import { loadTerms } from '@actions/terms';
 import { loadRepeats } from '@actions/repeats';
 import Tasks from "@logged_in/Tasks";
@@ -51,7 +51,7 @@ const mapState = ({ tasksReducer, listsReducer, termsReducer, repeatsReducer, vi
 });
 
 const mapAction = dispatch => bindActionCreators(
-    { addTask, loadTasks, loadTerms, loadRepeats },
+    { addTask, loadTasks, updateTask, loadTerms, loadRepeats },
     // {
     //     toggleTask: id => dispatch(toggleTask(id))
     // }, 

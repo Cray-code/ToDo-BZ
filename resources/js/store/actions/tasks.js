@@ -52,9 +52,9 @@ export const addTask = (name, list_id, description, term_id, repeat_id, cronTime
                     try {
                         const result = await getJSON(response);
                         console.log({ data: result })
-                        //if (res.ok) {
+                        
                             return { data: result };
-                        //}
+                        
                     }
                     catch(err) {
                       console.log(err);
@@ -67,6 +67,42 @@ export const addTask = (name, list_id, description, term_id, repeat_id, cronTime
         ]
     }
 });
+
+export const updateTask = (task) => ({
+    [RSAA]: {
+        endpoint: `/api/tasks/${task.id}`,
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'credentials': 'same-origin'
+                },
+        //body: JSON.stringify({ name, list_id, description, term_id, repeat_id, cronTime, favorites, is_complete }),
+        body: JSON.stringify(task),
+        types: [
+            'UPDATE_TASK_REQUEST',
+            {
+                type: 'UPDATE_TASK_SUCCESS',
+                payload: async (action, state, response) => {
+                    try {
+                        const result = await getJSON(response);
+                        console.log({ data: result })
+                        
+                            return { data: result };
+                        
+                    }
+                    catch(err) {
+                      console.log(err);
+                      return { data: { name: 'System', text: 'UPDATE Task failed' } };
+                    }
+
+                },
+            },
+            'UPDATE_TASK_FAILURE',
+        ]
+    }
+});
+
 
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
