@@ -237,8 +237,9 @@ function NavBar(props) {
             ))}
 
           </List>
-          <ListsPredefined userId={props.userId} />
+          
           <ListsUser userId={props.userId} />
+          <ListsPredefined userId={props.userId} />
         </Drawer>
       </Hidden>
       <NavigationDrawer
