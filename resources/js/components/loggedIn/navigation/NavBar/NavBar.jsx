@@ -16,6 +16,7 @@ import {
   Hidden,
   Tooltip,
   Box,
+  Divider,
   withStyles,
   isWidthUp,
   withWidth,
@@ -31,6 +32,7 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
 import NavigationDrawer from "@shared/components/NavigationDrawer";
 import ListsPredefined from "@logged_in/ListsPredefined";
+import ListsFilter from "@logged_in/ListsFilter";
 import ListsUser from "@logged_in/ListsUser";
 import styles from "./style";
 
@@ -237,9 +239,12 @@ function NavBar(props) {
             ))}
 
           </List>
-          
+
           <ListsUser userId={props.userId} />
+          <Divider />
           <ListsPredefined userId={props.userId} />
+          <ListsFilter userId={props.userId} />
+
         </Drawer>
       </Hidden>
       <NavigationDrawer

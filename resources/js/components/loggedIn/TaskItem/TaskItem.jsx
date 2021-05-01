@@ -28,7 +28,7 @@ class TaskItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            // expandedState: null
         }
     }
     toggle_param = (tParam) => {
@@ -42,13 +42,21 @@ class TaskItem extends Component {
             this.props.updateTask({ ...this.props.task, [paramName]: paramValue });
     }
 
-    handlePanelChange = (panel) => (event, isExpanded) => {
-        this.setState({ expanded: isExpanded ? panel : false });
-    };
+    // handlePanelChange = (panel) => (event, isExpanded) => {
+    //     const { expandedState } = this.state;
+    //     console.log({ event, isExpanded, panel, expandedState }, this.state);
+    //     this.setState((state) => {
+    //         return { expandedState: isExpanded ? panel : false }
+    //     });
+    //     // this.setState({ ...this.state, expandedState: isExpanded ? panel : false });
+
+    //     console.log({ expandedState, expanded: expandedState === panel });
+    // };
 
     render() {
         const { classes } = this.props;
         // console.log(`TaskItem - ${this.props.task}`);
+        const { expandedState } = this.state;
         const isAccountActivated = true;
         let keyId = 0;
         const { task, terms, repeats } = this.props;
@@ -56,8 +64,8 @@ class TaskItem extends Component {
             <Accordion
                 TransitionProps={{ unmountOnExit: true }}
                 defaultExpanded={false}
-                expanded={this.state.expanded === `taskPanel${task.id}`} onChange={this.handlePanelChange(`taskPanel${task.id}`)}
-                isExpand={false}
+            // expanded={expandedState === `taskPanel${task.id}`} onChange={this.handlePanelChange(`taskPanel${task.id}`)}
+            // isExpand={false}
             >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
 
@@ -78,6 +86,7 @@ class TaskItem extends Component {
                         </Box>
 
                     </Box>
+
                 </AccordionSummary>
                 <AccordionDetails className={classes.dBlock}>
                     <List disablePadding>
@@ -98,7 +107,7 @@ class TaskItem extends Component {
                             />
                             <TaskItemFavorites
                                 favoritesChecked={task.favorites}
-                                nameTitle='Задать приоритет задаче'
+                                nameTitle='Приоритетная задача'
                                 handleInputChange={this.handleInputChange}
                                 toggle_param={this.toggle_param}
                                 keyId={keyId++}
