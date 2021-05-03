@@ -1,11 +1,11 @@
 const styles = (theme) => ({
     numberInput: {
-      width: 120,
+      width: 180,
       [theme.breakpoints.down("sm")]: {
-        width: 80,
+        width: 120,
       },
       "@media (max-width: 350px)": {
-        width: 65,
+        width: 95,
       },
     },
     numberInputInput: {

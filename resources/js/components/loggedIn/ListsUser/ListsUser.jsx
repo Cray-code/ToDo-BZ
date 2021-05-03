@@ -53,7 +53,7 @@ class ListsUser extends Component {
         });
     }
 
-    async handleNavigate(listId) {
+    handleNavigate(listId) {
         this.setCurrentList(listId);
         this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID,listId);
     }
