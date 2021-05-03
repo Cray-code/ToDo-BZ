@@ -19,7 +19,7 @@ class TermsTableSeeder extends Seeder
 
         $faker = Factory::create();
 
-        $terms = ['Сегодня', 'Завтра', 'Следующая неделя', 'Без срока'];
+        $terms = ['Сегодня', 'Завтра', 'Следующая неделя', 'Когда-нибудь'];
         foreach ($terms as $item) {
             Term::create([
                 'name' => $item,

@@ -19,7 +19,7 @@ class RepeatsTableSeeder extends Seeder
 
         $faker = Factory::create();
 
-        $repeats = ['Ежедневно', 'Рабочие дни', 'Еженедельно', 'Ежемесячно', 'Ежегодно'];
+        $repeats = ['Ежедневно', 'Рабочие дни', 'Еженедельно', 'Ежемесячно', 'Ежегодно', 'Не повторять'];
         foreach ($repeats as $item) {
             Repeat::create([
                 'name' => $item,
