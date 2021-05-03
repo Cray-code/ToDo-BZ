@@ -105,10 +105,12 @@ export const updateTask = (task) => ({
 
 
 export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_ULIST_ID: 'SHOW_ULIST_ID',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+    SHOW_ALL: 'SHOW_ALL',
+    SHOW_ULIST_ID: 'SHOW_ULIST_ID',
+    SHOW_TERMS_ID: 'SHOW_TERMS_ID',
+    SHOW_FAVORITES: 'SHOW_FAVORITES',
+    SHOW_COMPLETED: 'SHOW_COMPLETED',
+    SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
 
 export const setVisibilityFilter = (filter,paramFilters) => ({
@@ -123,34 +125,3 @@ export const toggleTask = id => ({
 
 
 
-// export const loadTasks = (list) => ({
-//     [RSAA]: {
-//         endpoint: `/api/tasks/list/${list}`,
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-//             'credentials': 'same-origin'
-//                 },
-//         types: [
-//             'LOAD_TASKS_REQUEST',
-//             {
-//                 type: 'LOAD_TASKS_SUCCESS',
-//                 payload: async (action, state, responce) => {
-//                     try {
-//                         const res = await getJSON(responce);
-//                          console.log('Tasks: '+res);
-//                         return { data: res };
-//                     }
-//                     catch(err) {
-//                       console.log(err);
-//                       return { data: { name: 'System', text: 'Load tasks failed' } };
-//                     }
-
-//                 },
-//             },
-//             'LOAD_TASKS_FAILURE'
-//         ]
-
-//     }
-// });
