@@ -28,7 +28,9 @@ import styles from "./style";
 const visibilityFilter = {
     showAll: 'showAll',
     showTermId: 'showTermId',
-    showFavorites: 'showFavorites'
+    showFavorites: 'showFavorites',
+    showCompleted: 'showCompleted',
+    showActive: 'showActive'
 };
 class ListsFilter extends Component {
     constructor(props) {
@@ -49,6 +51,12 @@ class ListsFilter extends Component {
             case visibilityFilter.showFavorites:
                 this.props.setVisibilityFilter(VisibilityFilters.SHOW_FAVORITES, paramFilter);
                 break;
+            case visibilityFilter.showCompleted:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED, paramFilter);
+                break;
+            case visibilityFilter.showActive:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE, paramFilter);
+                break;
             default:
                 throw new Error('Unknown filter: ' + filter)
         }
@@ -61,10 +69,10 @@ class ListsFilter extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, users } = this.props;
         let keyId = 0;
         // console.log('this.props.lists');
-        const filtersTerm = (this.props.terms) ? this.props.terms.map((elem) => (
+        const filtersTerm = this.props.terms && this.props.terms.map((elem) => (
             <Link
                 to={`/list/flt_${elem.id}`}
                 key={keyId++}
@@ -92,7 +100,7 @@ class ListsFilter extends Component {
             </Link>
 
         )
-        ) : ['Фильтров задач пока нет...'];
+        );
 
         const filtersFavorites = [
             <Link
@@ -122,20 +130,83 @@ class ListsFilter extends Component {
             </Link>
         ];
 
+        const filtersCompleted = [
+            <Link
+                to={`/list/flt_completed`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Завершенные"
+                    placement="right"
+                    key="Завершенные"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showCompleted, 1)}
+                        aria-label="Завершенные"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Завершенные" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
+
+        const filtersActive = [
+            <Link
+                to={`/list/flt_active`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Активные"
+                    placement="right"
+                    key="Активные"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showActive, 0)}
+                        aria-label="Активные"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Активные" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
+
         return (
             <div className="lists-user">
-                <List>
-                    {filtersTerm}
-                    {filtersFavorites}
-                </List>
+                {users.id ?
+                    <List>
+                        {filtersTerm}
+                        {filtersFavorites}
+                        {filtersActive}
+                        {filtersCompleted}
+                    </List>
+                    :
+                    ['Фильтров задач пока нет...']
+                }
             </div>
         );
     }
 }
 
 
-const mapState = ({ termsReducer }) => ({
-    terms: termsReducer.terms
+const mapState = ({ termsReducer, userReducer }) => ({
+    terms: termsReducer.terms,
+    users: userReducer.user
 });
 
 const mapAction = dispatch => bindActionCreators({ setVisibilityFilter }, dispatch);
