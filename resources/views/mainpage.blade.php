@@ -44,6 +44,9 @@
                                             <label for="password"  class="form-label">Password</label>
                                             <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
                                         </div>
+
+                                        {!! Captcha::display() !!}
+
                                         <!-- Remember Me -->
                                         <div class="block mt-4">
                                             <label for="remember_me" class="inline-flex items-center">
@@ -151,7 +154,7 @@
 {{--        <h5 class="mt-12 text-center">Testing zone</h5>--}}
 
         {{-- Это modal тест AJAX. Testing Routes--}}
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 d-none"> {{--Скрыл временно тестовый блок. Убери D-NONE из class и блок появится--}}
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> {{--Скрыл временно тестовый блок. Убери D-NONE из class и блок появится--}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
