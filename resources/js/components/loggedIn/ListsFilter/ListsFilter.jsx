@@ -186,6 +186,34 @@ class ListsFilter extends Component {
             </Link>
         ];
 
+        const filtersAll = [
+            <Link
+                to={`/list/flt_all`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Все"
+                    placement="right"
+                    key="Все"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showAll, 1)}
+                        aria-label="Все"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Все" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
+
         return (
             <div className="lists-user">
                 {users.id ?
@@ -194,6 +222,7 @@ class ListsFilter extends Component {
                         {filtersFavorites}
                         {filtersActive}
                         {filtersCompleted}
+                        {filtersAll}
                     </List>
                     :
                     ['Фильтров задач пока нет...']
