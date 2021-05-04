@@ -242,7 +242,7 @@ function NavBar(props) {
 
           <ListsUser userId={props.userId} />
           <Divider />
-          <ListsPredefined userId={props.userId} />
+          {/* <ListsPredefined userId={props.userId} /> */}
           <ListsFilter userId={props.userId} />
 
         </Drawer>

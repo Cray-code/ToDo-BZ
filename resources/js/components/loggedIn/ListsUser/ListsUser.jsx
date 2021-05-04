@@ -55,7 +55,7 @@ class ListsUser extends Component {
 
     handleNavigate(listId) {
         this.setCurrentList(listId);
-        this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID,listId);
+        this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID, listId);
     }
 
     componentDidMount() {
@@ -65,7 +65,7 @@ class ListsUser extends Component {
     render() {
         const { classes } = this.props;
         // console.log('this.props.lists');
-        const lists = (this.props.lists) ? this.props.lists.map((elem) => (
+        const lists = this.props.lists ? this.props.lists.map((elem) => (
             <Link
                 to={`/list/${elem.id}`}
                 key={elem.id}
@@ -82,6 +82,7 @@ class ListsUser extends Component {
                         onClick={() => this.handleNavigate(elem.id)}
                         aria-label={elem.name}
                         className={classes.permanentDrawerListItem}
+                        key={elem.id}
                     >
                         <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />
@@ -92,15 +93,18 @@ class ListsUser extends Component {
 
             </Link>
         )
-        ) : ['Списков задач пока нет...'];
+        ) :
+            ['Списков задач пока нет...'];
 
         return (
             <div className="lists-user">
                 <List>
                     {lists}
-                    <ListItem>
-                        <ListCreate user={this.props.userId} addList={this.addList} />
-                    </ListItem>
+                    {this.props.lists &&
+                        <ListItem>
+                            <ListCreate user={this.props.userId} addList={this.addList} />
+                        </ListItem>
+                    }
                 </List>
             </div>
         );
@@ -108,7 +112,7 @@ class ListsUser extends Component {
 }
 
 const mapState = ({ listsReducer }) => ({
-    lists: listsReducer.lists,
+    lists: listsReducer.lists
 });
 
 const mapAction = dispatch => bindActionCreators({ addList, loadLists, setVisibilityFilter }, dispatch);
@@ -116,17 +120,4 @@ const mapAction = dispatch => bindActionCreators({ addList, loadLists, setVisibi
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(ListsUser));
 
 
-{/* <Link to={`/list/${elem.id}`}
-key={ elem.id }
-className="lists-user__link"
->
-<ListItem
-  button
-  selected={ this.getCurrentList(elem.id) }
-  onClick={ () => this.handleNavigate(elem.id) } >
-  <ListItemIcon>
-      <ListAltIcon />
-  </ListItemIcon>
-  <ListItemText primary={ elem.name } />
-</ListItem>
-</Link> */}
+

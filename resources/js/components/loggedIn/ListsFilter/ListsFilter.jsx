@@ -25,22 +25,38 @@ import { setVisibilityFilter, VisibilityFilters } from '@actions/tasks';
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
 
+const visibilityFilter = {
+    showAll: 'showAll',
+    showTermId: 'showTermId',
+    showFavorites: 'showFavorites',
+    showCompleted: 'showCompleted',
+    showActive: 'showActive'
+};
 class ListsFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
 
-            lists: [],
-            currentList: ''
         }
     }
 
     handleNavigate(filter, paramFilter) {
         switch (filter) {
-            case showAll:
-                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID, paramFilter);
+            case visibilityFilter.showAll:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL, paramFilter);
                 break;
-
+            case visibilityFilter.showTermId:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_TERMS_ID, paramFilter);
+                break;
+            case visibilityFilter.showFavorites:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_FAVORITES, paramFilter);
+                break;
+            case visibilityFilter.showCompleted:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED, paramFilter);
+                break;
+            case visibilityFilter.showActive:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE, paramFilter);
+                break;
             default:
                 throw new Error('Unknown filter: ' + filter)
         }
@@ -53,12 +69,13 @@ class ListsFilter extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, users } = this.props;
+        let keyId = 0;
         // console.log('this.props.lists');
-        const lists = (this.props.terms) ? this.props.terms.map((elem) => (
+        const filtersTerm = this.props.terms && this.props.terms.map((elem) => (
             <Link
                 to={`/list/flt_${elem.id}`}
-                key={elem.id}
+                key={keyId++}
                 className={classes.menuLink}
             >
                 <Tooltip
@@ -69,7 +86,7 @@ class ListsFilter extends Component {
                     <ListItem
                         button
 
-                        onClick={() => this.handleNavigate(showAll, elem.id)}
+                        onClick={() => this.handleNavigate(visibilityFilter.showTermId, elem.id)}
                         aria-label={elem.name}
                         className={classes.permanentDrawerListItem}
                     >
@@ -81,22 +98,115 @@ class ListsFilter extends Component {
                 </Tooltip>
 
             </Link>
+
         )
-        ) : ['Списков задач пока нет...'];
+        );
+
+        const filtersFavorites = [
+            <Link
+                to={`/list/flt_favorites`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Важное"
+                    placement="right"
+                    key="Важное"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showFavorites, 1)}
+                        aria-label="Важное"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Важное" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
+
+        const filtersCompleted = [
+            <Link
+                to={`/list/flt_completed`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Завершенные"
+                    placement="right"
+                    key="Завершенные"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showCompleted, 1)}
+                        aria-label="Завершенные"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Завершенные" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
+
+        const filtersActive = [
+            <Link
+                to={`/list/flt_active`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Активные"
+                    placement="right"
+                    key="Активные"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showActive, 0)}
+                        aria-label="Активные"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Активные" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
 
         return (
             <div className="lists-user">
-                <List>
-                    {lists}
-                </List>
+                {users.id ?
+                    <List>
+                        {filtersTerm}
+                        {filtersFavorites}
+                        {filtersActive}
+                        {filtersCompleted}
+                    </List>
+                    :
+                    ['Фильтров задач пока нет...']
+                }
             </div>
         );
     }
 }
 
 
-const mapState = ({ termsReducer }) => ({
-    terms: termsReducer.terms
+const mapState = ({ termsReducer, userReducer }) => ({
+    terms: termsReducer.terms,
+    users: userReducer.user
 });
 
 const mapAction = dispatch => bindActionCreators({ setVisibilityFilter }, dispatch);
