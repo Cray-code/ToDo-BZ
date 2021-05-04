@@ -172,7 +172,7 @@ class ListsFilter extends Component {
                     <ListItem
                         button
 
-                        onClick={() => this.handleNavigate(visibilityFilter.showActive, 0)}
+                        onClick={() => this.handleNavigate(visibilityFilter.showActive, 1)}
                         aria-label="Активные"
                         className={classes.permanentDrawerListItem}
                     >
