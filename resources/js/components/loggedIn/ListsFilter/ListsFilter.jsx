@@ -25,22 +25,30 @@ import { setVisibilityFilter, VisibilityFilters } from '@actions/tasks';
 import { withStyles } from '@material-ui/core/styles';
 import styles from "./style";
 
+const visibilityFilter = {
+    showAll: 'showAll',
+    showTermId: 'showTermId',
+    showFavorites: 'showFavorites'
+};
 class ListsFilter extends Component {
     constructor(props) {
         super(props);
         this.state = {
 
-            lists: [],
-            currentList: ''
         }
     }
 
     handleNavigate(filter, paramFilter) {
         switch (filter) {
-            case showAll:
-                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ULIST_ID, paramFilter);
+            case visibilityFilter.showAll:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL, paramFilter);
                 break;
-
+            case visibilityFilter.showTermId:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_TERMS_ID, paramFilter);
+                break;
+            case visibilityFilter.showFavorites:
+                this.props.setVisibilityFilter(VisibilityFilters.SHOW_FAVORITES, paramFilter);
+                break;
             default:
                 throw new Error('Unknown filter: ' + filter)
         }
@@ -54,11 +62,12 @@ class ListsFilter extends Component {
 
     render() {
         const { classes } = this.props;
+        let keyId = 0;
         // console.log('this.props.lists');
-        const lists = (this.props.terms) ? this.props.terms.map((elem) => (
+        const filtersTerm = (this.props.terms) ? this.props.terms.map((elem) => (
             <Link
                 to={`/list/flt_${elem.id}`}
-                key={elem.id}
+                key={keyId++}
                 className={classes.menuLink}
             >
                 <Tooltip
@@ -69,7 +78,7 @@ class ListsFilter extends Component {
                     <ListItem
                         button
 
-                        onClick={() => this.handleNavigate(showAll, elem.id)}
+                        onClick={() => this.handleNavigate(visibilityFilter.showTermId, elem.id)}
                         aria-label={elem.name}
                         className={classes.permanentDrawerListItem}
                     >
@@ -81,13 +90,43 @@ class ListsFilter extends Component {
                 </Tooltip>
 
             </Link>
+
         )
-        ) : ['Списков задач пока нет...'];
+        ) : ['Фильтров задач пока нет...'];
+
+        const filtersFavorites = [
+            <Link
+                to={`/list/flt_favorites`}
+                key={keyId++}
+                className={classes.menuLink}
+            >
+                <Tooltip
+                    title="Важное"
+                    placement="right"
+                    key="Важное"
+                >
+                    <ListItem
+                        button
+
+                        onClick={() => this.handleNavigate(visibilityFilter.showFavorites, 1)}
+                        aria-label="Важное"
+                        className={classes.permanentDrawerListItem}
+                    >
+                        <ListItemIcon className={classes.justifyCenter}>
+                            <ListAltIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Важное" />
+                    </ListItem>
+                </Tooltip>
+
+            </Link>
+        ];
 
         return (
             <div className="lists-user">
                 <List>
-                    {lists}
+                    {filtersTerm}
+                    {filtersFavorites}
                 </List>
             </div>
         );

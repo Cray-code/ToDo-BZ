@@ -116,17 +116,4 @@ const mapAction = dispatch => bindActionCreators({ addList, loadLists, setVisibi
 export default connect(mapState, mapAction)(withStyles(styles, { withTheme: true })(ListsUser));
 
 
-{/* <Link to={`/list/${elem.id}`}
-key={ elem.id }
-className="lists-user__link"
->
-<ListItem
-  button
-  selected={ this.getCurrentList(elem.id) }
-  onClick={ () => this.handleNavigate(elem.id) } >
-  <ListItemIcon>
-      <ListAltIcon />
-  </ListItemIcon>
-  <ListItemText primary={ elem.name } />
-</ListItem>
-</Link> */}
+

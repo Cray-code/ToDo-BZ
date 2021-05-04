@@ -14,7 +14,11 @@ const getVisibleTasks = (tasks, filter, paramFilter) => {
     case VisibilityFilters.SHOW_ALL:
       return tasks
     case VisibilityFilters.SHOW_ULIST_ID:
-      return tasks.filter(t => t.list_id==paramFilter)  
+      return tasks.filter(t => t.list_id == paramFilter) 
+    case VisibilityFilters.SHOW_TERMS_ID:
+      return tasks.filter(t => t.term_id == paramFilter) 
+    case VisibilityFilters.SHOW_FAVORITES:
+        return tasks.filter(t => t.favorites==paramFilter)
     case VisibilityFilters.SHOW_COMPLETED:
       return tasks.filter(t => t.completed)
     case VisibilityFilters.SHOW_ACTIVE:
