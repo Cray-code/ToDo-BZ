@@ -63,7 +63,7 @@ class ListsUser extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, users } = this.props;
         // console.log('this.props.lists');
         const lists = this.props.lists ? this.props.lists.map((elem) => (
             <Link
@@ -100,7 +100,7 @@ class ListsUser extends Component {
             <div className="lists-user">
                 <List>
                     {lists}
-                    {this.props.lists &&
+                    {users.id &&
                         <ListItem>
                             <ListCreate user={this.props.userId} addList={this.addList} />
                         </ListItem>
@@ -111,8 +111,9 @@ class ListsUser extends Component {
     }
 }
 
-const mapState = ({ listsReducer }) => ({
-    lists: listsReducer.lists
+const mapState = ({ listsReducer, userReducer }) => ({
+    lists: listsReducer.lists,
+    users: userReducer.user
 });
 
 const mapAction = dispatch => bindActionCreators({ addList, loadLists, setVisibilityFilter }, dispatch);

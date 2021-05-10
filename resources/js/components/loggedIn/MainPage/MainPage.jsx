@@ -28,11 +28,11 @@ class MainPage extends Component {
     async componentDidMount() { 
         await this.props.loadActiveUser(this.state.userId,this.state.userName);
         this.props.setVisibilityFilter(VisibilityFilters.SHOW_ALL);
-        await this.props.loadLists('/api/lists?filter=1');
-        await this.props.loadLists('/api/lists?filter=0');
-        await this.props.loadTerms();
-        await this.props.loadRepeats();
-        await this.props.loadTasks();
+        this.state.userId && await this.props.loadLists('/api/lists?filter=1');
+        this.state.userId && await this.props.loadLists('/api/lists?filter=0');
+        this.state.userId && await this.props.loadTerms();
+        this.state.userId && await this.props.loadRepeats();
+        this.state.userId && await this.props.loadTasks();
         
     }
 
@@ -41,8 +41,7 @@ class MainPage extends Component {
 
 
         return (
-            <Fragment>
-
+            <Fragment>                   
                 <NavBar
                     userId={this.state.userId}
                     userName= {user.user_name}
