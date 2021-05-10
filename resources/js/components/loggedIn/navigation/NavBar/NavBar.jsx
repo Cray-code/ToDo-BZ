@@ -27,7 +27,7 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar';
 
 
 import NavigationDrawer from "@shared/components/NavigationDrawer";
@@ -125,8 +125,9 @@ function NavBar(props) {
   return (
     <Fragment>
       <AppBar position="sticky" className={classes.appBar}>
-        <LoadingBar />
+
         <Toolbar className={classes.appBarToolbar}>
+
           <Box display="flex" alignItems="center">
             <Hidden smUp>
               <Box mr={1}>
