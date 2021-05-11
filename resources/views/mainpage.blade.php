@@ -157,9 +157,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> {{--Скрыл временно тестовый блок. Убери D-NONE из class и блок появится--}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
-                    <button class="btn btn-success text-right" id="btn-get">Создать задачу</button>
-                </div>
+{{--                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">--}}
+{{--                    <button class="btn btn-success text-right" id="btn-get">Создать задачу</button>--}}
+{{--                </div>--}}
 
                 <div class="modal fade" id="formModal" aria-hidden="true">
                     <div class="modal-dialog">
