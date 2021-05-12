@@ -50,12 +50,12 @@ class Tasks extends Component {
     render() {
         const { classes } = this.props;
         const { tasks, terms, repeats, lists, paramFilters } = this.props;
-        const listName = (listId, listStore) => {
+        const listName = (listId, listStore = lists ) => {
             const currList = listStore.filter(element => element.id == listId);
             return currList && currList[0] && currList[0].name;
         }
         const Tasks = (tasks) ? tasks.map((task, i) => (
-            <TaskItem key={i} task={task} terms={terms} repeats={repeats} taskId={task.id} taskName={task.name} updateTask={this.updateTask} />
+            <TaskItem key={i} task={task} terms={terms} repeats={repeats} taskId={task.id} taskName={task.name} updateTask={this.updateTask} uListName={listName(task.list_id) } />
         )) : ['Задач пока нет...'];
         return (
             <Fragment>

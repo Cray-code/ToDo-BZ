@@ -59,7 +59,7 @@ class TaskItem extends Component {
         const { expandedState } = this.state;
         const isAccountActivated = true;
         let keyId = 0;
-        const { task, terms, repeats } = this.props;
+        const { task, terms, repeats, uListName } = this.props;
         const Task = (task) ? (
             <Accordion
                 TransitionProps={{ unmountOnExit: true }}
@@ -81,7 +81,8 @@ class TaskItem extends Component {
                         <Box mr={2}>
                             <Typography>
                                 {task.name}
-                                {task.description && <HelpIcon title={task.description} />}
+                                {/* {task.description && <HelpIcon title={task.description} />} */}
+                                {uListName && <HelpIcon title={uListName} />}
                             </Typography>
                         </Box>
 
